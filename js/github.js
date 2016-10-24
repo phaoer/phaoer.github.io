@@ -18,6 +18,8 @@ function aaa()
             TweenMax.to("#content",1,{height:300});
         },1000
     )
+       $('.loading').animate({'width':'55%'},50);
+           //第二个进度节点
     setTimeout(function()
     {
         document.getElementById('music2').play();
@@ -48,6 +50,8 @@ function aaa()
 
         });
     },4000)
+            $('.loading').animate({'width':'80%'},50);
+            //第三个进度节点
 }
 
 function myAddEvent(obj, ev, fn) //事件绑定
