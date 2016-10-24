@@ -3,6 +3,7 @@
  */
 function aaa()
 {
+    $('.loading').animate({'width':'44%'},50);
     TweenMax.to("#div2", 1, { rotationZ: 360 });
     TweenMax.to("#div2", 1, { opacity: 0 });
     var oDiv=document.getElementById("loadanimation");
@@ -18,7 +19,7 @@ function aaa()
             TweenMax.to("#content",1,{height:300});
         },1000
     )
-       $('.loading').animate({'width':'55%'},50);
+       $('.loading').animate({'width':'65%'},50);
            //第二个进度节点
     setTimeout(function()
     {
