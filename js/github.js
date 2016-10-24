@@ -14,11 +14,8 @@ function aaa()
             TweenMax.to("#w", 1, { left: 100});
             TweenMax.to("#ee", 1, { top: 0 });
             TweenMax.to("#ee", 3, { right: -55 });
-
-
             TweenMax.to("#content", 1, { opacity: 1 });
             TweenMax.to("#content",1,{height:300});
-
         },1000
     )
     setTimeout(function()
