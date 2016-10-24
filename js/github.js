@@ -93,6 +93,9 @@ window.onload=function(){aaa();indexanimation()};
                 aDiv[this.index].style.visibility = 'visible';
             }
         };
+        $('.loading').animate({'width':'100%'},50);
+        //第四个进度节点
+        $("#loa").html("Completed");
 
     myAddEvent(oA,'click',function()
     {
