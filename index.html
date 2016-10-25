@@ -6,12 +6,12 @@
     <script src="js/jquery-2.2.1.min.js"></script>
     <script src="js/TweenMax.js"></script>
     <script src="js/l-by-l.min.js"></script>
-    <script src="js/video.min.js"></script>
-    <link href="css/video-js.min.css" rel="stylesheet">
-    <link href="css/github.css" rel="stylesheet">
-    <script src="js/github.js"></script>
+    <script src="js/githubNew.js"></script>
+    <link href="css/githubNew.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
 </head>
-<body>
+<body style="overflow: hidden">
 <div id="loadanimation" style="width: 100%;height: 100%;z-index: 100;background-color:#2A2B2F;padding-top:1px;position:absolute;">
     <div id="div1">
         <div id="div2">
@@ -24,74 +24,95 @@
         <div id="loa" style="width: 100px;margin:20px auto;color: #F45551;font-size: 25px;">
             Loading
         </div>
-        <div  style="width:604px;height:14px;margin: 20px auto;border:3px solid #F45551">
+        <div  style="width:606px;height:19px;margin: 20px auto;border:3px solid #F45551">
             <div class="loading" style="width: 0px;height:10px;background:#F45551;margin: 2px;"></div>
         </div>
     </div>
 </div>
-<div style="position:absolute; width:100%; height:100%; z-index:-1">
+
+<script type="text/javascript">
+    $('.loading').animate({'width':'2%'},50);
+    //第一个进度节点
+</script>
+<div style="position:absolute; width:100%; height:100%; z-index:-2">
     <img src="http://ofad4ydvw.bkt.clouddn.com/images/back.jpg" width="100%" height="100%">
 </div>
-<div  style="width: 100%;height: 100%;z-index: 1;position:absolute;">
-    <div id="wordwelcom">
-        <div id="w" class="fword" style="top: 0px;left: -50px;">Welcom
-            <div id="ee" class="fword" style="right: 2222px;">e</div>
+
+<div style="position: absolute;z-index: -1;width: 100%;height: 100%;">
+<div id="i1" class="fx2">
+    <img src="http://ofad4ydvw.bkt.clouddn.com/images/DSC_9831.JPG" width="150px" height="150px">
+</div>
+
+<div id="i2" class="fx">
+    <img src="http://ofad4ydvw.bkt.clouddn.com/images/mine.JPG" width="100px" height="100px">
+</div>
+
+    <script type="text/javascript">
+        $('.loading').animate({'width':'5%'},50);
+    </script>
+
+<div id="i3" class="fx">
+    <img src="http://ofad4ydvw.bkt.clouddn.com/images/4.JPG" width="250px" height="150px">
+</div>
+
+<div id="i4" class="fx2">
+    <img src="http://ofad4ydvw.bkt.clouddn.com/images/IMG_1028.JPG" width="150px" height="200px">
+</div>
+
+    <div id="i5">
+        <img src="http://ofad4ydvw.bkt.clouddn.com/images/IMG_0696.JPG" width="200px" height="150px">
+    </div>
+
+    <div id="i6" class="fx">
+        <img src="http://ofad4ydvw.bkt.clouddn.com/images/04.jpg" width="150px" height="150px">
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('.loading').animate({'width':'16%'},50);
+</script>
+
+<div style="position: absolute;z-index:1;
+background: rgba(0,0,0, 0.3);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+width: 100%;height:100%;">
+
+<div  id="centerw" style="height: 120px;width: 450px;margin:auto;margin-top: 120px;">
+    <h2 style="width: 450px;color: white;">This may be a simple web site,</h2>
+    <h2 style="width: 450px;color: white;">But, this is my self show</h2>
+    <div id="bottom">
+        <table style="width: 100%">
+            <tr>
+                <td style="text-align:center;"><a href="#" id="pt" class="btn btn-success">Self introduction.</a></td>
+                <td style="text-align:center;"><a href="#" class="btn btn-danger">Video</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+    <div id="ft" style="position: relative;margin:auto;width:450px;height: 300px;">
+        <div id="content" class="bar" style="visibility: hidden">
+
+                <p class="word1 wordstyle"></p>
+                <p class="word2 wordstyle"></p>
+                <p class="word3 wordstyle"></p>
+
+        </div>
+
+        <div id="content3" class="bar" style="visibility: hidden">
+            <video id="example_video1" class="video-js vjs-default-skin vjs-big-play-centered"
+                   controls preload="auto" width="450" height="200"
+                   poster="http://video-js.zencoder.com/oceans-clip.png"
+                   data-setup='{"example_option":true}'>
+                <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
+            </video>
         </div>
     </div>
     <script type="text/javascript">
-        $('.loading').animate({'width':'2%'},50);
-        //第一个进度节点
+        $('.loading').animate({'width':'33%'},50);
     </script>
-    <div id="ft" style="position: relative;margin:40px auto;width:920px;height: 300px;">
-    <div id="content" class="bar" style="visibility: visible">
-        <audio src="http://ofad4ydvw.bkt.clouddn.com/mp3/text.mp3" id="music2">你的浏览器不支持audio标签</audio>
-        <div id="left">
-            <img src="http://ofad4ydvw.bkt.clouddn.com/images/mine.JPG" width="100%" height="100%">
-        </div>
-        <div id="right">
-            <p class="word1 wordstyle"></p>
-            <p class="word2 wordstyle"></p>
-            <p class="word3 wordstyle"></p>
-        </div>
-    </div>
-        <script type="text/javascript">
-            $('.loading').animate({'width':'5%'},50);
-        </script>
-    <div id="content2" class="bar" style="visibility: hidden">
-        <div id="ptrun">
-            <ul>
-                <li><img src="http://ofad4ydvw.bkt.clouddn.com/images/1.JPG" width="230px" height="295px"></li>
-                <li><img src="http://ofad4ydvw.bkt.clouddn.com/images/2.PNG" width="230px" height="295px"></li>
-                <li><img src="http://ofad4ydvw.bkt.clouddn.com/images/3.JPG" width="230px" height="295px"></li>
-                <li><img src="http://ofad4ydvw.bkt.clouddn.com/images/4.JPG" width="230px" height="295px"></li>
-            </ul>
-        </div>
-    </div>
-    <div id="content3" class="bar" style="visibility: hidden">
-        <video id="example_video1" class="video-js vjs-default-skin vjs-big-play-centered"
-               controls preload="auto" width="920" height="300" 
-               data-setup='{"example_option":true}'>
-            <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
-        </video>
-    </div>
-        <script type="text/javascript">
-            $('.loading').animate({'width':'16%'},50);
-        </script>
-    </div>
-    <div id="bottom">
-        <audio src="http://ofad4ydvw.bkt.clouddn.com/mp3/click.mp3" id="music3">你的浏览器不支持audio标签</audio>
-          <table style="width: 100%">
-              <tr>
-                  <td style="text-align:center;"><a href="#" id="pt" style="color:#F45551 ">简介</a></td>
-                  <td style="text-align:center;"><a href="#">相册</a></td>
-                  <td style="text-align:center;"><a href="#">视频</a></td>
-              </tr>
-              </table>
-    </div>
+
 </div>
-        <script type="text/javascript">
-            $('.loading').animate({'width':'33%'},50);
-        </script>
+
 </body>
 </html>
-

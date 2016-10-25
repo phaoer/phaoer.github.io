@@ -1,0 +1,164 @@
+html,body
+{
+    height: 100%;
+    margin: 0px;
+   padding: 0px;
+}
+.path1 {
+    stroke-dasharray: 280;
+    stroke-dashoffset: 280;
+    animation: dash 2s infinite;
+}
+.path2 {
+    stroke-dasharray: 305;
+    stroke-dashoffset: 305;
+    animation: dash 2s infinite;
+}
+.path3 {
+    stroke-dasharray: 243;
+    stroke-dashoffset: 243;
+    animation: dash 2s infinite;
+}
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+#div1
+{
+    width: 678px;
+    height: 326px;
+    background-color:#2A2B2F;
+    margin: auto;
+}
+#div2
+{
+    width: 340px;
+    height: 150px;
+    margin:100px auto;/*垂直外边距问题*/
+}
+#i1
+{
+    position:absolute;bottom:-100px;right:150px;width:150px;height: 150px;
+    transform:rotate(-9deg);
+    -ms-transform:rotate(-9deg); /* Internet Explorer */
+    -moz-transform:rotate(-9deg); /* Firefox */
+    -webkit-transform:rotate(-9deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-9deg); /* Opera */
+}
+#i2
+{
+    position:absolute;bottom:-100px;right:100px;width:100px;height: 100px;
+    transform:rotate(9deg);
+    -ms-transform:rotate(9deg); /* Internet Explorer */
+    -moz-transform:rotate(9deg); /* Firefox */
+    -webkit-transform:rotate(9deg); /* Safari 和 Chrome */
+    -o-transform:rotate(9deg); /* Opera */
+}
+#i3
+{
+    position:absolute;bottom:-100px;left:100px;width:250px;height: 150px;
+    transform:rotate(9deg);
+    -ms-transform:rotate(9deg); /* Internet Explorer */
+    -moz-transform:rotate(9deg); /* Firefox */
+    -webkit-transform:rotate(9deg); /* Safari 和 Chrome */
+    -o-transform:rotate(9deg); /* Opera */
+}
+#i4
+{
+    position:absolute;bottom:-100px;left:100px;width:150px;height: 200px;
+    transform:rotate(9deg);
+    -ms-transform:rotate(-9deg); /* Internet Explorer */
+    -moz-transform:rotate(-9deg); /* Firefox */
+    -webkit-transform:rotate(-9deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-9deg); /* Opera */
+}
+#i5
+{
+    position:absolute;bottom:-100px;left:550px;width:200px;height: 150px;
+    transform:rotate(5deg);
+    -ms-transform:rotate(5deg); /* Internet Explorer */
+    -moz-transform:rotate(5deg); /* Firefox */
+    -webkit-transform:rotate(5deg); /* Safari 和 Chrome */
+    -o-transform:rotate(5deg);
+}
+#i6
+{
+    position:absolute;bottom:-100px;left:550px;width:150px;height: 150px;
+    transform:rotate(9deg);
+    -ms-transform:rotate(9deg); /* Internet Explorer */
+    -moz-transform:rotate(9deg); /* Firefox */
+    -webkit-transform:rotate(9deg); /* Safari 和 Chrome */
+    -o-transform:rotate(9deg); /* Opera */
+}
+.bar
+{
+    filter:alpha(opacity=0); /*IE滤镜，透明度50%*/
+    -moz-opacity:0; /*Firefox私有，透明度50%*/
+    opacity:0;
+}
+#content
+{
+    position: relative;
+    margin:20px auto;
+    width:450px;
+    height:0px;
+    background:url(http://ofad4ydvw.bkt.clouddn.com/images/rightback.jpg) no-repeat top center;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+
+}
+#content3
+{
+    position: absolute;
+    left:0px;
+    top:0px;
+    width:450px;
+    height: 300px;
+    margin: 20px auto;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+}
+
+.word3
+{
+    width:440px;
+}
+.wordstyle
+{
+    text-align: center;
+    color: dodgerblue;
+    font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+}
+
+#bottom
+{
+    width:450px;
+    margin-top:30px;
+    margin:auto;
+}
+table
+{
+    width: 100%;
+}
+td{
+    font-family:幼圆;
+    align:center;
+    width:150px;
+    font-size: 15px;
+
+}
+A:link {
+    color:dodgerblue;
+    TEXT-DECORATION: none
+}
+A:visited {
+    color:dodgerblue;
+    TEXT-DECORATION: none
+}
+A:hover {
+    text-decoration: none;
+}
+A:active {
+    text-decoration: none;
+}
