@@ -10,12 +10,13 @@ $(window).load(function() {
     setTimeout
     (function () {
             oDiv.style.display = "none";
-            TweenMax.to("#i1", 1, {bottom: 300});
-            TweenMax.to("#i2", 2, {bottom: 100});
-            TweenMax.to("#i3", 1, {bottom: 360});
-            TweenMax.to("#i4", 2, {bottom: 120});
-            TweenMax.to("#i5", 3, {bottom: 410});
-            TweenMax.to("#i6", 3, {bottom: 110});
+        TweenMax.to("#i1", 1, {bottom: '50%',onComplete:function(){TweenMax.to("#i1", 1, {bottom: '49.8%',repeat:2});}});
+            TweenMax.to("#i2", 2, {bottom: '20%',onComplete:function(){TweenMax.to("#i2", 1, {bottom: '20.2%',repeat:2});}});
+            TweenMax.to("#i3", 1, {bottom: '60%',onComplete:function(){TweenMax.to("#i3", 1, {bottom: '59.8%',repeat:2});}});
+            TweenMax.to("#i4", 2, {bottom: '22%',onComplete:function(){TweenMax.to("#i4", 1, {bottom: '21.8%',repeat:2});}});
+            TweenMax.to("#i5", 3, {bottom: '65%',onComplete:function(){TweenMax.to("#i5", 1, {bottom: '65.2%',repeat:2});}});
+            TweenMax.to("#i6", 3, {bottom: '21%',onComplete:function(){TweenMax.to("#footer", 1, {bottom: -100});}});
+
         }, 1000
     )
 })
@@ -38,11 +39,9 @@ $(window).load(function() {
 
             TweenMax.to(aDiv[this.index], 1, {height: 120});
             TweenMax.to(aDiv[this.index], 1, {opacity: 1});
-            if(aDiv[this.index].style.visibility=="hidden") {
+            if (aDiv[this.index].style.visibility == "hidden") {
                 aDiv[this.index].style.visibility = 'visible';
-            }else
-            if(aDiv[this.index].style.visibility=="visible")
-            {
+            } else if (aDiv[this.index].style.visibility == "visible") {
                 aDiv[this.index].style.visibility = 'hidden';
             }
         }
@@ -87,5 +86,31 @@ function myAddEvent(obj, ev, fn) //事件绑定
         obj.addEventListener(ev, fn,false);
     }
 }
+$(window).load(
+    function()
+    {
 
+        var aDiv = document.querySelectorAll(".list");
+        var aDiv2 = document.querySelectorAll(".footdivd")
+        for(var i=0;i<aDiv.length;i++)
+        {
+            aDiv[i].index = i;
+            aDiv[i].onmouseover=function()
+            {
+                for(var i=0;i<aDiv.length;i++)
+                {
+                    aDiv2[i].style.filter = "alpha(opacity=0)";
+                    aDiv2[i].style.opacity = 0;
+                }
+                TweenMax.to(this, 1, {top:'-51%'});
+                TweenMax.to(aDiv2[this.index], 1, { opacity: 1});
+            }
+            aDiv[i].onmouseout=function()
+            {
+                TweenMax.to(this, 1, { top:'-20%'});
+                TweenMax.to(aDiv2[this.index], 1, { opacity: 0});
+            }
+        }
+    }
+)
 
