@@ -70,8 +70,6 @@ $(window).load(function() {
                         });
                     }
                 });
-
-            ;
         }
     )
 })
@@ -89,7 +87,6 @@ function myAddEvent(obj, ev, fn) //事件绑定
 $(window).load(
     function()
     {
-
         var aDiv = document.querySelectorAll(".list");
         var aDiv2 = document.querySelectorAll(".footdivd")
         for(var i=0;i<aDiv.length;i++)
