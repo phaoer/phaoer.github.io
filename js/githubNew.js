@@ -55,7 +55,7 @@ $(window).load(function() {
                     type: 'show',
                     finished: function () {
                         $(".word2").lbyl({
-                            content: "爱好：Web，Dota",
+                            content: "爱好：Front-End，Dota",
                             speed: 50,
                             type: 'fade',
                             fadeSpeed: 50,
