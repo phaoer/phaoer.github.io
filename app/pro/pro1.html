@@ -1,0 +1,52 @@
+如今大都要用到跨域的方法请求数据，网上的方法也是各式各样，这里我重点介绍两种不同的跨域形式。
+##一.跨域请求接口
+>主要介绍两种jquery的方式
+####1.$.getJSON
+>此方法简单粗暴，如果你对ajax还算了解，推荐使用此方法，一步搞定。
+
+      $.getJSON("http://xxxxxxxxxxx/xxxxxxxx/xxxxxx/list?callback=?","name=zhangsan&id=10",function (json){})
+这个方法jquery会自动判断是否跨域，如果跨域，则jquery会以jQuery1345xxxxxxxxxxx的形式自动填充callback，并按照需求返回数据到回调函数：（如图）
+![](http://upload-images.jianshu.io/upload_images/7003250-4cb723b335920817?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+第二个部分传递的data可以按照官方格式（也就是name=xx&id=xx）来传递，也可以以json形势传递。
+####2.$.ajax
+>这个方法为什么放到第二个来说？主要是涉及到的几个参数需要与第一种方法对比解释：
+    
+    $.ajax({
+          url:"http://xxxxxxxxxxxxxxx",    //首先是url这里写上要跨域请求的地址
+          type:"get",                                //必须是get，目前跨域只支持get方法。
+          datatype:"jsonp",
+          jsonp:"mycallback", //这个jsonp是什么意思？看到第一种方法的callback没？如果你不设置jsonp，那么默认回调函数参数就是callback，但是最好别改，因为这是向服务器发送请求的函数参数名（其实就是回调函数名），服务端拿到该参数名后以"mycallback({\"userid\":0,\"username\":\"null\"})"的形式返回给客户端数据
+          jsonpcallback:"mycallback",//这里的jsonpcallback就是回调函数名，我在第一种方法中说道过，使用getJSON时，回调函数的名字由query自动填充，如果设置了就是按照你的名字返回。
+          success:function(json){    
+         //do something   
+         }
+    })
+
+##二.跨域请求文件
+>有些时候我们可能需要跨域请求一些文件，那么这个时候就没有后端的童鞋给你合作，显然我们jQuery请求接口的方式不起作用了。那么这个时候就需要用到咱们jsonp跨域的的原理了。
+####1.jsonp本质
+>是通过script标签请求数据，然后返回的数据再用一个函数来包装。
+####2.jsonp原理
+>因为咱们的src是没有跨域的限制的，所以我们通过script标签跨域请求资源的原理来间接的请求数据。
+###Code
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+	    <meta charset="UTF-8">
+	    <title>Jsonp Test</title>
+    </head>
+    <body>
+	    <script type="text/javascript">
+			    function getData(data){
+				    console.log(data.name);
+			    }
+	    </script>
+    </body>
+    <script type="text/javascript" src="test.json"></script>
+    </html>
+>这里我们定义了一个getData的方法，来获取咱们src读取的资源，相当于请求成功的回调函数。
+###test.json Code
+    getData({"name":"pwh","sex":"23"})
+>这里咱们用getData把数据包装起来，齐活儿！
+执行上述代码，即可实现咱们利用jsonp原理请求文件！

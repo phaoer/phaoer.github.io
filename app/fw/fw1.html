@@ -1,0 +1,65 @@
+##一.React
+对于一个标准的React Web应用，它的UI将会由无数个组件（component）嵌套组合而成，React是一种自上而下的渲染方式，数据传递到父组件，然后父组件传递给它的各个子组件，就这样一级一级自上而下地传递下去，从而完成UI的渲染。也就因此有了上一篇父组件，子组件之间的通信。
+>然而React仅仅是一个View
+
+如果我们在渲染过程中数据发生变化，显然光是view是无法做到的。
+最早是Flux来解决这一问题，后面衍生到ReFlux的出现，这里主要是说ReFlux。
+##二.ReFlux
+>同样是单项数据流
+同样有actions和stores
+stores监听action
+
+当执行操作的时候触发某个actions的方法，然后携带着数据参数传递到stroes中，stores执行ajax请求更新数据，更新成功后，还是通过事件机制传递到list当中，并更新UI。
+
+    var ReportAction = Reflux.createActions([
+        'getAll'
+    ]);
+    var TodoStore=Reflux.createStore({
+        listenables:[ReportAction],
+        items:[],
+        onGetAll:function(data){
+            $.getJSON("http://xxxxxxxxxx/xxxxxx/xxx/xxxxx/xxxxx?callback=?", data, function (response) {
+                console.log(response);
+                this.items.unshift(response.data.list);
+                this.trigger(this.items[0]);
+            }.bind(this));
+        }
+    });
+
+>上面是一个比较常见的Reflux的应用，在store里面我们采用listenables来监听actions。得到最新数据后调用trigger方法将数据传递到绑定的list中。
+
+
+>下面代码中我们采用mixins中Reflux.connect来直接获得最新数据，只需调用trigger数据就会自动更新到我们state指定的属性list上。当然还有Reflux.listenTo或者Reflux.connectFilter来接收新数据，这里不再一一赘述。
+
+      var TodoComponent=React.createClass({
+        mixins: [Reflux.connect(TodoStore,'list')],
+        getInitialState:function(){
+            return {list:[],num:''}
+        },
+        onChangeText:function(ev){
+            //this.setState({text:ev.target.value});
+            //最新的refs获取标签不需要getDOMNode()了
+            this.setState({num:this.refs.reftext.value})
+        },
+        onGetAll:function(){
+            var data={num:this.state.num};
+            ReportAction.getAll(data);
+            this.setState({num:''})
+        },
+
+        render:function(){
+            return (
+                    <div>
+                        <input type="text" value={this.state.num} onChange={this.onChangeText}  ref="reftext" />
+                        <button onClick={this.onGetAll}>查询</button>
+                   </div>
+            );
+        }
+    });
+
+    ReactDOM.render(<TodoComponent />,document.getElementById('app'));
+
+
+
+
+
