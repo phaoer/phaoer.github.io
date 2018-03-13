@@ -6,7 +6,7 @@ var pro2 = require("html-loader!./pro2.html");
 
 module.exports = {
 	render : function (){
-		$(".pwh-inx-left img").attr("src","http://ofad4ydvw.bkt.clouddn.com/io/mine.jpg");
+		$(".pwh-inx-left img").attr("src","http://ofad4ydvw.bkt.clouddn.com/io/pro.jpg");
 		$(".pwh-inx-left h2").html("JS疑难");
 		$(".pwh-body-content-right").html(pro);
 		$("#pro").addClass("pwh-this");

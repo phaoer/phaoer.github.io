@@ -2,8 +2,8 @@ var wap=require("html-loader!./wap.html");
 
 module.exports = {
 	render : function (){
-		$(".pwh-inx-left img").attr("src","http://ofad4ydvw.bkt.clouddn.com/io/mine.jpg");
-		$(".pwh-inx-left h2").html("JS疑难");
+		$(".pwh-inx-left img").attr("src","http://ofad4ydvw.bkt.clouddn.com/io/wap.jpg");
+		$(".pwh-inx-left h2").html("移动端");
 		$(".pwh-body-content-right").html(wap);
 		$("#wap").addClass("pwh-this");
 		this.bind();

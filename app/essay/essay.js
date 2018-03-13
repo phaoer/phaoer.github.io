@@ -2,8 +2,8 @@ var essay=require("html-loader!./essay.html");
 
 module.exports = {
 	render : function (){
-		$(".pwh-inx-left img").attr("src","http://ofad4ydvw.bkt.clouddn.com/io/mine.jpg");
-		$(".pwh-inx-left h2").html("JS疑难");
+		$(".pwh-inx-left img").attr("src","http://ofad4ydvw.bkt.clouddn.com/io/essay.jpg");
+		$(".pwh-inx-left h2").html("随笔");
 		$(".pwh-body-content-right").html(essay);
 		$("#essay").addClass("pwh-this");
 		this.bind();

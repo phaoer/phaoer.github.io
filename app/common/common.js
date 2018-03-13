@@ -5,7 +5,10 @@ module.exports = {
         $("body").append(html);
         $(".pwh-alert-btn0").click(function() {
             $(this).parent().parent().parent().hide();
-            eval("_this." + fun + "()");
+            if(fun != undefined)
+            {
+               eval("_this." + fun + "()");
+            }
         })
     },
     moveImg: function() {
@@ -27,6 +30,7 @@ module.exports = {
                 }, num);
             })(i, k, num);
         }
+        $("input[name=isFirst]").val(0);
     },
     gethash: function() {
         var hash = location.hash.slice(1);

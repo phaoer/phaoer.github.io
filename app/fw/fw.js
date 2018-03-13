@@ -6,7 +6,7 @@ var fw2=require("html-loader!./fw2.html");
 
 module.exports = {
 	render : function (){
-		$(".pwh-inx-left img").attr("src","http://ofad4ydvw.bkt.clouddn.com/io/mine.jpg");
+		$(".pwh-inx-left img").attr("src","http://ofad4ydvw.bkt.clouddn.com/io/fw.jpg");
 		$(".pwh-inx-left h2").html("前端框架");
 		$(".pwh-body-content-right").html(fw);
 		$("#fw").addClass("pwh-this");
