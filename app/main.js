@@ -21,16 +21,6 @@ if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
     var html = '<div style="width:100%;height:100%;position:absolute;top:0;z-index: 100;background-color: #2A2B2F;"><div style="width:80%;height:10%;position:absolute;left:50%;top:50%;margin-left:-40%;margin-top:-25%;text-align:center;animation:myalert 0.5s ease-in;-webkit-animation:myalert 0.5s ease-in;animation-fill-mode:forwards;-webkit-animation-fill-mode:forwards;"><div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">非常抱歉，实在缺乏时间来支持移动端，请用PC访问</div></div></div>';
         $("body").append(html);
 } else {
-    $("#loading .prog div").animate({ width: "10%" })
-
-    setTimeout(function() {
-        $("#loading .prog div").animate({ width: "60%" })
-    }, 1000)
-
-    setTimeout(function() {
-        $("#loading .prog div").animate({ width: "80%" });
-    }, 2000)
-
     setTimeout(function() {
         $("#loading .prog div").animate({ width: "99%" });
         setTimeout(function() {
@@ -66,6 +56,6 @@ if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
             Router.route('essay', function() {
                 essay.render();
             });
-        }, 1000)
+        }, 1500)
     }, 3000)
 }

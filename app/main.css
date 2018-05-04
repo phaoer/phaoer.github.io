@@ -18,6 +18,10 @@ li{list-style-type: none;}
     overflow: hidden;
     position: relative;
 }
+#loading{
+    width: 100%;
+    height: 100%;
+}
 .pwh-header,.pwh-body,.pwh-footer{
     overflow: hidden;
 }

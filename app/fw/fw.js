@@ -4,6 +4,8 @@ var fw1=require("html-loader!./fw1.html");
 
 var fw2=require("html-loader!./fw2.html");
 
+var fw3=require("html-loader!./fw3.html");
+
 module.exports = {
 	render : function (){
 		$(".pwh-inx-left img").attr("src","http://ofad4ydvw.bkt.clouddn.com/io/fw.jpg");
@@ -17,6 +19,7 @@ module.exports = {
 		var converter = new showdown.Converter();
 		var html1 = converter.makeHtml(fw1);
 		var html2 = converter.makeHtml(fw2);
+		var html3 = converter.makeHtml(fw3);
 		$(".back").click(function(){
 			_this.render();
 		})
@@ -27,6 +30,9 @@ module.exports = {
             }else if($(this).attr("class") == "fw2")
             {
             	$(".pwh-fw-list").html(html2);
+            }else if($(this).attr("class") == "fw3")
+            {
+            	$(".pwh-fw-list").html(html3);
             }
 		})
 		console.log("您在前端框架版块")

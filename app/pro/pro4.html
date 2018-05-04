@@ -1,0 +1,77 @@
+##一.情景
+>需求：页面中间某个部分能随着鼠标滚动而滚动，且不显示滚动条。
+##二.思路
+>如果只是考虑webkit内核那就没说的了，有css属性可以设置。但往往只有移动端开发才能这么霸道
+今天说的是兼容IE/Chrome/FireFox等主流浏览器的做法。
+
+你需要三个div即可实现，最外层div设置你需要显示的高宽以及overflow为hidden，第二层设置overflow-x。并将其宽度设置来超出最外层div，这样咱们的滚动条就会被在外层div所挡住，也就间接隐藏了滚动条也能滚动
+####code
+     <!DOCTYPE html>
+     <html lang="en">
+
+     <head>
+         <meta charset="UTF-8">
+         <title>Document</title>
+         <style type="text/css">
+         * {
+               margin: 0;
+               padding: 0;
+           }
+
+           body {
+               font: 14px/1.8 'Microsoft YaHei', '微软雅黑';
+               color: #ffffff;
+               text-align: center;
+          }
+
+          .content {
+               width: 947px;
+               height: 543px;
+               margin: 98px auto 0;
+               position: relative;
+               overflow: hidden;
+         }
+
+         .content-outer {
+              width: 968px;
+              height: 543px;
+              overflow-x: hidden;
+              overflow-y: auto;
+        }
+    </style>
+    </head>
+
+    <body>
+         <div class="content">
+            <div class="content-outer">
+                 <div class="content-inner">
+                     <!-- 你的内容 -->
+                </div>
+            </div>
+         </div>
+    </body>
+
+    </html>
+
+以上便实现了滚动条隐藏且能滚动
+
+##三.监听鼠标滚轮事件
+这里IE/Chrome的用法是一致的，滚动事件onmousewheel，判断滚动属性为e.wheelDelta，且向上滚动是+120，向下是-120
+而FireFox滚动事件DOMMouseScroll，判断滚动属性为e.detail，且向上是-3，向下是+3
+
+这里需要兼容处理一下下。
+
+    var Fun= function(e) {
+        var e = e || window.event;
+         if (e.wheelDelta) {    
+            //IE/Opera/Chrome 
+            console.log(e.wheelDelta);
+        } else if (e.detail) {
+            //FireFox
+            console.log(e.detail);
+        }
+    }
+    if (document.addEventListener) {
+        document.addEventListener('DOMMouseScroll', Fun, false);
+    } //FireFox
+    window.onmousewheel = document.onmousewheel = Fun; //IE/Opera/Chrome 

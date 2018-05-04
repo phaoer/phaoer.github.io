@@ -91,6 +91,17 @@
     </div>
 </body>
 <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $("#loading .prog div").animate({ width: "10%" })
+
+    setTimeout(function() {
+        $("#loading .prog div").animate({ width: "60%" })
+    }, 1000)
+
+    setTimeout(function() {
+        $("#loading .prog div").animate({ width: "80%" });
+    }, 2000)
+</script>
 <script type="text/javascript" src="https://cdn.staticfile.org/showdown/1.6.4/showdown.min.js"></script>
 <script type="text/javascript" src="bundle.js"></script>
 
