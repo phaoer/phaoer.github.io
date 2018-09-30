@@ -14,7 +14,7 @@ module.exports = {
     bind: function() {
         if ($("input[name=isFirst]").val() == 0) {
             for (var i = 0; i < 5; i++) {
-                var arrs = ["200px", "190px", "150px", "150px", "90px"]
+                var arrs = ["200px", "190px", "150px", "150px", "150px"]
                 var k = arrs[i];
                 var num = parseInt((i + 4) * 500);
                 (function(i, k, num) {
