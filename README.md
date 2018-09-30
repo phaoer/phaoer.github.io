@@ -4,9 +4,10 @@
 
 ## 基本架构
 
-- 基于WebPack
+- WebPack
+- 单页应用，按需加载
 - JS原生路由系统
-- 单页应用，局部刷新
+- PHP + MySql
 - Css3常见组合动画
 - 内置,MarkDown
 
