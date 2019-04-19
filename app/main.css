@@ -1,0 +1,53 @@
+#root{
+    width: 100%;
+    height: 100%;
+}
+#root > div{
+    height: 100%;
+}
+.header{
+    color: #9e9e9e;
+}
+.header span{
+    padding-right: 0.5vw;
+}
+.logo{
+    text-align: center;
+}
+.logo img{
+    width: 60%;
+}
+.pwh-list {
+    text-align: left;
+    padding: 24px;
+    min-height: 600px;
+    background: #fff
+}
+.pwh-list a:link {
+    color: #5588ff;
+}
+.pwh-list a {
+    font-size: 1vw;
+    font-weight: 600;
+    color: #5588ff;
+}
+.pwh-list li {
+    margin-bottom: 50px;
+    list-style-type: none;
+}
+.pwh-list li p {
+    margin: -3px 0 0 35px;
+    color: #a5a5a5;
+    font-size: 0.8vw;
+}
+.pwh-list .repo-icon {
+    float: left;
+    margin-top: 2px;
+    margin-right: 15px;
+    color: #666;
+}
+.octicon {
+    display: inline-block;
+    vertical-align: text-bottom;
+    fill: currentColor;
+}
