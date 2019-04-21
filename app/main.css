@@ -17,6 +17,7 @@
 .logo img{
     width: 60%;
 }
+
 .pwh-list {
     text-align: left;
     padding: 24px;
@@ -27,7 +28,7 @@
     color: #5588ff;
 }
 .pwh-list a {
-    font-size: 1vw;
+    font-size: 0.18rem;
     font-weight: 600;
     color: #5588ff;
 }
@@ -38,7 +39,7 @@
 .pwh-list li p {
     margin: -3px 0 0 35px;
     color: #a5a5a5;
-    font-size: 0.8vw;
+    font-size: 0.14rem;
 }
 .pwh-list .repo-icon {
     float: left;

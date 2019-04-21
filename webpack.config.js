@@ -62,6 +62,7 @@ module.exports = {
         new webpack.optimize.OccurrenceOrderPlugin(),
         // new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.SplitChunksPlugin({
+            // chunks: 'all',   当设置为initial和all时所有来自node_modules的模块会被分配到vendors缓存组，至少两次的会被分配到default
             cacheGroups: {
                 default: {
                     minChunks: 2,
