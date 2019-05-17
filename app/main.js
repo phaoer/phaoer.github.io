@@ -12,33 +12,49 @@ class App extends Component{
     constructor(props){
         super(props);
         this.state = {
-            info:true,
-            content : ''
+            content : '<h2 class="hi-words1">Hi stranger,</h2><h3 class="hi-words2">Welcome to my personal website,</h3><h3 class="hi-words3">Click on the trigger in the upper right corner to view the menu.</h3><h3 class="hi-words4">Made by Ant Design ©2019</h3>',
+            siderStatus:true,   //侧边栏是否收起
+            backBtn:'none'    //back按钮显示控制
         }
         this.switchTab = this.switchTab.bind(this);
         this.contentRender = this.contentRender.bind(this);
+        this.backMenu = this.backMenu.bind(this);
         this.requestType = ["pro","fw","wap","essay"];
         this.cache = {};
-        this.defaultItem = {
+        this.defaultItem = {    //默认的栏目
             key:1
         };
+        this.nowPosition = {    //当前位置，随默认栏目一致
+            key:1
+        }
     }
 
     componentDidMount(){
-        this.switchTab(this.defaultItem);
+        // this.switchTab(this.defaultItem);
     }
 
     switchTab(obj){
         const _this = this;
         let type = this.requestType[obj.key - 1];
-        if(this.cache[type]){
+        this.nowPosition.key = obj.key;   //记录当前栏目
+        this.setState({
+            backBtn:'none'
+        })
+        if(this.cache[type]){            //如果请求过该栏目的资源，则用缓存的数据
             _this.menuRender(type,this.cache[type]);
             return false;
         }
         $.getJSON('https://phaoer.imroc.io:8080/index.php/githubio/index?callback=?',{type:type},function(res){
-            _this.cache[type] = res;
+            _this.cache[type] = res;      //将数据缓存
             _this.menuRender(type,res);
         });
+    }
+
+    backMenu(){
+        this.setState({
+            backBtn:'none'
+        })
+        this.menuRender(this.requestType[this.nowPosition["key"] - 1],this.cache[this.requestType[this.nowPosition["key"] - 1]]);     //根据记录的当前目录返回
     }
 
     menuRender(type,res){
@@ -54,12 +70,18 @@ class App extends Component{
 
     contentRender(e){
         const {cache} = this;
+        const back = ''
         const converter = new showdown.Converter();
         if(e.target.id.indexOf("pro") > -1 || e.target.id.indexOf("fw") > -1 || e.target.id.indexOf("wap") > -1 || e.target.id.indexOf("essay") > -1){
             this.setState({
-                content:converter.makeHtml(cache[e.target.getAttribute('type')]["list"][e.target.getAttribute('item')]["content"])
+                content:(converter.makeHtml(cache[e.target.getAttribute('type')]["list"][e.target.getAttribute('item')]["content"]) + back),
+                backBtn:'inline-block'
             })
         }
+    }
+
+    test(){
+        console.log(1)
     }
 
 	render(){
@@ -67,11 +89,13 @@ class App extends Component{
             <div>
                 <Layout style={{ height: '100%'}}>
                     <Sider
+                    width="150"
                     breakpoint="lg"
                     collapsedWidth="0"
+                    // collapsed={this.state.siderStatus}
                     >
                     <div className="logo"><img src="./resource/img/pwh.png" /></div>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} onClick={this.switchTab}>
+                    <Menu theme="dark" mode="inline" onClick={this.switchTab}>
                         <Menu.Item key="1">
                         <Icon type="code" />
                         <span className="nav-text">JS疑难</span>
@@ -91,8 +115,17 @@ class App extends Component{
                     </Menu>
                     </Sider>
                     <Layout>
-                    <Header className="header"  style={{ background: '#fff'}}> <span>Created by Irwin Pu</span> <a href="https://github.com/phaoer/phaoer.github.io" style={{ color: '#325d36'}}><svg height="24" className="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fillRule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></Header>
+                    <Header className="header"  style={{ background: '#fff',padding:'0 0 0 50px'}}>
+                        <span>Created by Irwin Pu</span> 
+                        <a href="https://github.com/phaoer/phaoer.github.io" style={{ color: '#325d36'}}>
+                            <svg height="24" className="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true">
+                                <path fillRule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+                                </path>
+                            </svg>
+                        </a>
+                    </Header>
                     <Content style={{ margin: '24px 16px 0' }}>
+                        <Icon type="arrow-left" className="back" style={{display:this.state.backBtn}} onClick={this.backMenu} />
                         <div className="pwh-list pwh-pro-list" dangerouslySetInnerHTML={{__html: this.state.content}} onClick={this.contentRender}></div>
                     </Content>
                     </Layout>
