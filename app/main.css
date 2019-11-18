@@ -3,7 +3,7 @@
     height: 100%;
 }
 #root > div{
-    min-height: 100%;
+    height: 100%;
 }
 .header{
     color: #9e9e9e;
@@ -99,8 +99,6 @@
     100% {opacity: 1;}
 }
 .hi-words4{
-    width: 4.5rem;
-    position: absolute;
     margin:2rem 0 0 -5rem;
     animation: d 0.5s linear 7s forwards;
 }
