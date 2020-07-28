@@ -1,24 +1,2589 @@
 <!DOCTYPE html>
-<html lang="en">
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Irwin Pu</title>
-    <script type="text/javascript">
-        var deviceWidth = document.documentElement.clientWidth;
-        var script = document.createElement("script");
-        if (deviceWidth > 750) deviceWidth = 750;
-        document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
-    </script>
-</head>
-<body>
-    <div id="root">
-        
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="phaoer的个人博客" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Phaoer">
+<meta property="og:url" content="https://phaoer.github.io/index.html">
+<meta property="og:site_name" content="Phaoer">
+<meta property="og:description" content="web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。">
+<meta property="article:author" content="Irwin">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phaoer.github.io/"/>
+
+
+
+
+
+  <title>Phaoer</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Phaoer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/bye-jquery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/bye-jquery/" itemprop="url">为什么放弃jQuery</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:25:15+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/jquery/" itemprop="url" rel="index">
+                    <span itemprop="name">jquery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>首先，直接操作dom的编程方式已经成为过去，数据驱动才是正途！<br>其次，不一定非要舍弃jQuery，只是可以，选择权在自己手上！<br>下面只是就事论事</p>
+</blockquote>
+<h1 id="落幕"><a href="#落幕" class="headerlink" title="落幕"></a>落幕</h1><blockquote>
+<p>2018年7月 全球最大的同性交友社区（Github）被微软收购后的 52 天，改版并放弃了 jQuery 。这一举动让我等搬运工陷入了沉思。</p>
+</blockquote>
+<h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>随着ECMAScript标准的更新，原生js已经可代替jQuery，给我babel一个面子，不要再说兼容不支持的话！<br>下面举两个比较常用的方面来说明：</p>
+<blockquote>
+<ul>
+<li>jQuery Api可以使用原生轻松实现</li>
+<li>使用 fetch 来代替 ajax；<br>Fetch API 是基于 Promise 设计，更符合目前的异步解决方案。什么是目前的异步解决方案？翻看上一篇async &amp; await</li>
+</ul>
+</blockquote>
+<h1 id="具体实现对比（部分）"><a href="#具体实现对比（部分）" class="headerlink" title="具体实现对比（部分）"></a>具体实现对比（部分）</h1><blockquote>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2></blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jq</span></span><br><span class="line">$(<span class="string">"#a .b"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Native</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">"#a .b"</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//jq</span></span><br><span class="line"> $(selector).append(html);</span><br><span class="line"> <span class="comment">//prepend</span></span><br><span class="line"> <span class="comment">//before</span></span><br><span class="line"> <span class="comment">//after</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//Native</span></span><br><span class="line"> <span class="built_in">document</span>.querySelectorAll(selector).insertAdjacentHTML(<span class="string">"beforeend"</span>, html);</span><br><span class="line"><span class="comment">//beforebegin 开始标签之前 before</span></span><br><span class="line"><span class="comment">//afterbegin  开始标签之后 prepend</span></span><br><span class="line"><span class="comment">//beforeend  结束标签之前 append</span></span><br><span class="line"><span class="comment">//afterbegin  结束标签之后 after</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="类操作"><a href="#类操作" class="headerlink" title="类操作"></a>类操作</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//jq</span></span><br><span class="line"> $(selector).addClass(className);</span><br><span class="line"> <span class="comment">//hasClass</span></span><br><span class="line"> <span class="comment">//removeClass</span></span><br><span class="line"> <span class="comment">//toggleClass</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//Native</span></span><br><span class="line"> <span class="built_in">document</span>.querySelectorAll(selector).classList.add(className, className, className...);</span><br><span class="line"><span class="comment">//contains(className) 检测是否存在</span></span><br><span class="line"><span class="comment">//removeClass(className, className, className...) 删除</span></span><br><span class="line"><span class="comment">//toggle(className, true|false) 切换</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jq</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    <span class="comment">//.................</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Native</span></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line"> <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> req(url, &#123;<span class="attr">headers</span>: &#123;<span class="attr">Accept</span>: <span class="string">"text/html"</span>&#125;&#125;);</span><br><span class="line">    <span class="keyword">if</span>(......)&#123;</span><br><span class="line">       .......</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">req</span>(<span class="params">url, data</span>) </span>&#123;    <span class="comment">//自己封装，仅供参考</span></span><br><span class="line">  <span class="keyword">let</span> sendurl = url;</span><br><span class="line">  <span class="keyword">let</span> setting = &#123;</span><br><span class="line">      method: data.type ? data.type : <span class="string">"get"</span>,</span><br><span class="line">      headers: <span class="keyword">new</span> Headers(&#123;</span><br><span class="line">          <span class="string">"Accept"</span>: <span class="string">"application/json, text/javascript, */*; q=0.01"</span>,</span><br><span class="line">          <span class="string">"Pragma"</span>: <span class="string">"no-cache"</span>,</span><br><span class="line">          <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>,</span><br><span class="line">          <span class="string">"X-Requested-With"</span>: <span class="string">"XMLHttpRequest"</span></span><br><span class="line">  &#125;),</span><br><span class="line">  credentials: <span class="string">"include"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(data.headers)&#123;</span><br><span class="line">    <span class="keyword">const</span> headers = setting.headers;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> attr <span class="keyword">in</span> data.headers)&#123;</span><br><span class="line">        <span class="keyword">if</span>(headers.has(attr))&#123;</span><br><span class="line">            headers.set(attr, data.headers[attr]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            headers.append(attr, data.headers[attr]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (setting.method == <span class="string">"post"</span>) &#123;</span><br><span class="line">    setting.body = data.param ? paramData(data.param) : <span class="string">""</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    sendurl = sendurl + (data.param ? <span class="string">"?"</span> + paramData(data.param) : <span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> fetch(sendurl, setting).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (response.status &gt;= <span class="number">200</span> &amp;&amp; response.status &lt; <span class="number">300</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(response.statusText);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">const</span> accept = setting.headers.get(<span class="string">"accept"</span>);</span><br><span class="line">     <span class="keyword">if</span>(accept.includes(<span class="string">"/json"</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> response.json();</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span>(accept.includes(<span class="string">"/html"</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> response.text();</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="原生实现类jQuery的库"><a href="#原生实现类jQuery的库" class="headerlink" title="原生实现类jQuery的库"></a>原生实现类jQuery的库</h1><blockquote>
+<p>上手才是关键，下面实现了部分jQuery的Api（代码构建编译部分省略），可能功能有所差异，但是就是这个味儿~</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test"</span> <span class="attr">actid</span>=<span class="string">"111"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="class"><span class="keyword">class</span> <span class="title">xy</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">constructor</span>(selector)&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.dom = <span class="built_in">document</span>.querySelectorAll(selector);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.length = <span class="built_in">document</span>.querySelectorAll(selector).length;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    eq(index)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.dom = [<span class="keyword">this</span>.dom[index]];</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> <span class="keyword">this</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    attr(name)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> <span class="keyword">this</span>.dom[<span class="number">0</span>].getAttribute(name);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    children(index)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> childrenList = [];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; <span class="keyword">this</span>.dom.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            childrenList.push(<span class="keyword">this</span>.dom[i].children);</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> arr = [];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; childrenList.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            arr.push(index != <span class="literal">undefined</span> ? childrenList[i][index] : childrenList[i]);</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> arr.length &gt; <span class="number">1</span> ? arr : arr[<span class="number">0</span>];</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    append(htmlStr)&#123;</span><br><span class="line"><span class="actionscript">        <span class="comment">// for(let i = 0;i &lt; this.dom.length;i++)&#123;</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">//     this.dom[i].insertAdjacentHTML("beforeend", htmlStr);</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">// &#125;</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.insertAdjacentHTML('beforeend', '"</span> + htmlStr + <span class="string">"')"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    html(htmlStr)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.innerHTML = '"</span> + htmlStr.replace(<span class="regexp">/\s*/g</span>,<span class="string">""</span>) + <span class="string">"'"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    remove()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.parentNode.removeChild(dom)"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    addClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.classFun(<span class="string">"add"</span>, className);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    removeClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.classFun(<span class="string">"remove"</span>, className);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    toggleClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.classList.toggle('"</span> + className + <span class="string">"')"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    classFun(order, className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> classArr = className.split(<span class="string">" "</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> code = <span class="string">"dom.classList."</span> + order + <span class="string">"("</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; classArr.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            code += <span class="string">"'"</span> + classArr[i] + <span class="string">"',"</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        code = code.substr(0, code.length - 1);</span><br><span class="line"><span class="actionscript">        code += <span class="string">")"</span>;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(code);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    circulationFun(code)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; <span class="keyword">this</span>.dom.length;i++)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"dom"</span>, <span class="string">"i"</span>, code)(<span class="keyword">this</span>.dom[i], i);</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="comment">//你可以不停的去扩展</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">$xy</span>(<span class="params">selector</span>)</span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> <span class="keyword">new</span> xy(selector);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">$xy(<span class="string">".test"</span>).attr(<span class="string">"actid"</span>);</span></span><br><span class="line"><span class="actionscript"><span class="comment">//output 111</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/nginx-node-statistics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/nginx-node-statistics/" itemprop="url">Nginx搭配Node来构建统计系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:24:59+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><blockquote>
+<p>一个互联网企业少不了对自身业务的数据访问量的监控和分析。统计行业，如今CNZZ和百度作为两大巨头，是第一优先选择。</p>
+</blockquote>
+<p>但是这两方的覆盖面积太广，难免有时候会有些“疏漏”：</p>
+<ul>
+<li>CNZZ和百度统计经常数据不一致</li>
+<li>经常出现数据缺失（比如对于站点根目录的PV,UV访问）</li>
+</ul>
+<p>作为企业肯定是对于自身业务的数据是第一关注点，那么数据准确率和迭代速度就成为了优先选择。</p>
+<h1 id="统计系统v1-0-0"><a href="#统计系统v1-0-0" class="headerlink" title="统计系统v1.0.0"></a>统计系统v1.0.0</h1><h2 id="数据统计前端规则"><a href="#数据统计前端规则" class="headerlink" title="数据统计前端规则"></a>数据统计前端规则</h2><blockquote>
+<p>这里主要是说日志收集和处理方向，统计规则我说了，反正就是围绕cookies和localStorage再添加各种限制展开。有兴趣的可以看我的repo=&gt;<a href="https://github.com/phaoer/Pure_statistics" target="_blank" rel="noopener"> Pure_statistics </a>，这里讲述了对PV和UV的收集规则。</p>
+</blockquote>
+<h2 id="日志收集和处理"><a href="#日志收集和处理" class="headerlink" title="日志收集和处理"></a>日志收集和处理</h2><ul>
+<li>用静态资源作为“载体”</li>
+<li>rsyslog解析并推送到MySQL</li>
+</ul>
+<p>这就是统计系统的雏形</p>
+<p>不过久而久之就出现了瓶颈，rsyslog不灵活，迭代过程十分痛苦。</p>
+<h1 id="取其精华，去其糟粕"><a href="#取其精华，去其糟粕" class="headerlink" title="取其精华，去其糟粕"></a>取其精华，去其糟粕</h1><blockquote>
+<p>保留Nginx处理静态资源访问的优势，用对字符串十分友好的Node来处理日志，解析字段。<br>虽然Nginx和Node都是基于事件驱动的服务模型，但是不得不承认Nginx对于静态访问的处理是优于Node的。<br>像普遍情况专门有一台NodeServer，在拓展业务上可以用Nginx做一个反向代理​，实现动静分离，发挥其各自的优势。​</p>
+</blockquote>
+<h1 id="进一步优化"><a href="#进一步优化" class="headerlink" title="进一步优化"></a>进一步优化</h1><h2 id="nginx-conf"><a href="#nginx-conf" class="headerlink" title="nginx.conf"></a>nginx.conf</h2><blockquote>
+<p>其实我们在处理日志的时候只需要去处理我们“载体”相关的日志，那么我们就得将统计日志和普通日志分离。</p>
+</blockquote>
+<p>这里我介绍一种配置路由的方式来分离日志</p>
+<ul>
+<li>将你的载体放在某一个目录下，比如/tongji/</li>
+<li>利用location的普通字符匹配规则去匹配载体访问</li>
+<li>匹配后修改日志路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location ^~ &#x2F;tongji&#x2F; &#123;</span><br><span class="line">    if ($time_iso8601 ~ &quot;(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)&quot;) &#123;</span><br><span class="line">         set $time $1$2$3;</span><br><span class="line">    &#125;</span><br><span class="line">    access_log  路径马赛克&#x2F;$time-access.log  static;</span><br><span class="line">    # static 规则按需配置.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样在解析日志的时候可以避免冗余日志，节约是美德呀<del>~</del><br>当然你还可以做很多事，比如匹配站点，避免非自己业务的访问干扰数据精确度等等</p>
+<blockquote>
+<p>当然，如果你司足够壕，当我没说。</p>
+</blockquote>
+<h2 id="Node处理程序"><a href="#Node处理程序" class="headerlink" title="Node处理程序"></a>Node处理程序</h2><blockquote>
+<p>剩下来的事情就是用Node去读日志了<br>createReadStream创建一个可读流交给<a href="http://nodejs.cn/api/readline.html" target="_blank" rel="noopener"> readline </a>逐行读取处理就行了，剩下的这就是JavaScript开发者的拿手戏了 =&gt; 字符串解析</p>
+</blockquote>
+<blockquote>
+<p>请注意，node在处理大文件或者未知内存文件大小的时候千万不要使用readFile，会突破V8内存限制。<br>推荐使用stream + pipe去处理，其不受V8限制，如果不设计字符串的操作还可以纯粹用buffer去操作，当然此时便是受物理内存的限制了。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">const</span> readline = <span class="built_in">require</span>(<span class="string">'readline'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">'cost-time'</span>);</span><br><span class="line"><span class="keyword">const</span> rl = readline.createInterface(&#123;</span><br><span class="line">    input: fs.createReadStream(<span class="string">'路径马赛克/20200221-access.log'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"></span><br><span class="line">rl.on(<span class="string">'line'</span>, (line) =&gt; &#123;</span><br><span class="line">    <span class="comment">//你自己的业务逻辑</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">rl.on(<span class="string">'close'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'cost-time'</span>);    <span class="comment">//假吧意思看个耗时</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/php-contentType/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/php-contentType/" itemprop="url">PHP对于不同的Content-Type取值的处理方式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:23:55+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HTTP协议-（Hyper-Text-Transfer-Protocol）"><a href="#HTTP协议-（Hyper-Text-Transfer-Protocol）" class="headerlink" title="HTTP协议 （Hyper Text Transfer Protocol）"></a>HTTP协议 （Hyper Text Transfer Protocol）</h1><blockquote>
+<p>HTTP是一个基于TCP/IP通信协议来传递数据，包括html文件、图像、结果等，即是一个客户端和服务器端请求和应答的标准。</p>
+</blockquote>
+<h2 id="HTTP协议特点"><a href="#HTTP协议特点" class="headerlink" title="HTTP协议特点"></a>HTTP协议特点</h2><ul>
+<li>http无连接：限制每次连接只处理一个请求，服务端完成客户端的请求后，即断开连接。（传输速度快，减少不必要的连接，但也意味着每一次访问都要建立一次连接，效率降低）</li>
+<li>http无状态：对于事务处理没有记忆能力。每一次请求都是独立的，不记录客户端任何行为。（优点解放服务器，但可能每次请求会传输大量重复的内容信息）</li>
+<li>客户端/服务端模型：客户端支持web浏览器或其他任何客户端，服务器通常是nginx或者apache等</li>
+<li>简单快速</li>
+<li>灵活：可以传输任何类型的数据</li>
+</ul>
+<h2 id="一次HTTP请求过程"><a href="#一次HTTP请求过程" class="headerlink" title="一次HTTP请求过程"></a>一次HTTP请求过程</h2><blockquote>
+<p>域名 =》DNS域名解析 =》TCP三次握手建立连接 =》传输http报文 =》四次挥手断开连接</p>
+</blockquote>
+<h3 id="TCP三次握手过程"><a href="#TCP三次握手过程" class="headerlink" title="TCP三次握手过程"></a>TCP三次握手过程</h3><ul>
+<li>第一次握手客户端需要发送一个syn=1告诉服务端需要联机，并且会同时发送一个随机生成的顺序号码（seq）。</li>
+<li>第二次握手由服务端发起，服务端需要回复客户端一个确认ACK，这个值为第一次客户端生成的顺序号码加1，另外也生成一个随机顺序号码给到客户端。</li>
+<li>第三次握手由客户端收到第二次握手的消息后，回复服务端一个确认消息ACK，这个值为服务端的顺序号码加1，也会发送一个seq。<blockquote>
+<p>第一次握手，是客户端需要确认自己发消息没问题，服务端收到消息以后证明自己收消息没问题，这时他还需要证明自己发消息没问题所以他发起第二次握手。<br>客户端收到第二次握手的消息后确认了自己的发消息和收消息都没问题，但这时候服务端只知道自己收消息没有问题，他第二次发出的消息他并不知道客户端是否成功接收了。<br>所以有了第三次握手，告诉服务端我收到了，你发消息没问题。这时，就证明了客户端和服务端双方的收发都没有问题。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h3><blockquote>
+<p>一个HTTP请求报文由请求行（request line）、请求头部（header）和请求体（body）组成。</p>
+</blockquote>
+<ul>
+<li>请求行：请求方法、请求地址和协议版本</li>
+<li>请求头：主要说Content-Type（请求的与实体对应的MIME信息）<ul>
+<li>常见取值 ：<br>application/x-www-form-urlencoded （使用jquery发送ajax请求会默认类型）<br>application/json<br>multipart/form-data （传输文件固定类型）</li>
+<li>后端如何接收：（PHP）<br>取值为application/x-www-data-urlencoded情况下$_POST 和  php://input均有值。<br>取值为 application/json  时$_POST无值。<br>取值为multipart/form-data 时php://input无值。此时应该用$_POST来获取字段，$_FILES 来获取上传的文件信息</li>
+</ul>
+</li>
+<li>请求体：<ul>
+<li>常见类型 ：<br>application/x-www-form-urlencoded ：a=1&amp;b=2<br>application/json ：”{“a”:1,”b”:2}”</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h3><blockquote>
+<p>HTTP响应报文主要由状态行、响应头、及响应数据组成。</p>
+</blockquote>
+<ul>
+<li>状态行：协议版本，状态码，状态码描述。</li>
+<li>响应头：主要说Content-Type<ul>
+<li>常见值 ：<br>text/html ： HTML格式<br>text/plain ：纯文本格式<br>text/xml ：  XML格式<br>image/gif ：gif图片格式<br>image/jpeg ：jpg图片格式<br>image/png：png图片格式<h3 id="四次挥手断开"><a href="#四次挥手断开" class="headerlink" title="四次挥手断开"></a>四次挥手断开</h3><blockquote>
+<p>通过前面，我们已经知道ACK是用来应答的，SYN是用来代表连接的。而这里的FIN报文就是代表断开连接的，当主动方没有数据再需要传输给对方时，会向对方发起FIN报文，但这时候被动方不会立马断开连接，他只会回复一个ACK告诉主动方你发的FIN报文我收到了，很可能不会立马关闭，因为他可能还没处理完请求，可能还有消息需要发送，这时主动方进入FIN_WAIT_2状态。等被动发也没有消息需要发送了，这时候才会也发一个FIN给主动方，主动方回复以后，连接断开。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="COOKIE"><a href="#COOKIE" class="headerlink" title="COOKIE"></a>COOKIE</h1><blockquote>
+<p>Http 协议中引入了 cookie 技术，用来解决 http 协议无状态的问题。通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态；Cookie会根据从服务器端发送的响应报文内的一个叫做 Set-Cookie 的首部字段信息，通知客户端保存 Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后发送出去。后端以 session 这样的机制来保存服务端的对象状态。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/async-await/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/async-await/" itemprop="url">异步解决方案async & await 及在Gulp和WebPack中的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:23:44+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">构建工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<ul>
+<li>async &amp; await 是目前为止最好的异步解决方案</li>
+<li>从回调函数的形式 =》es6提出的promise =》es8提出的async &amp; await</li>
+<li>async &amp; await将异步处理做到了极致 =&gt; 用同步代码的方式来处理异步</li>
+</ul>
+</blockquote>
+<h1 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h1><p>下面我们来简单的看一个示例：存在异步请求A和B，当A的返回值为success执行B</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> A = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">              setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                    resolve(<span class="string">"success"</span>);</span><br><span class="line">              &#125;,<span class="number">3000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> B = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">              setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                    resolve(<span class="string">"done"</span>);</span><br><span class="line">                    <span class="comment">//reject("error");</span></span><br><span class="line">              &#125;,<span class="number">1000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Promise + then</span></span><br><span class="line">A().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (res == <span class="string">"success"</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> B();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"error"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//async</span></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> a = <span class="keyword">await</span> A();</span><br><span class="line">        <span class="keyword">if</span> (a == <span class="string">"success"</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> b = <span class="keyword">await</span> B();</span><br><span class="line">            <span class="built_in">console</span>.log(b);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"error"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>从上面的示例可以看到async &amp; await的优势：</p>
+<ul>
+<li>处理我们常遇到的条件判别和中间值显得异常清晰</li>
+<li>处理逻辑不需要再新建匿名函数，大大减少代码量，结构清晰</li>
+<li>错误捕获可以使用try/catch结构轻松捕获</li>
+</ul>
+<blockquote>
+<p>好处说完了，但是因为大佬是es8的新特性，浏览器还没支持。因此下面会介绍怎么在最常用的两种构建工具（gulp和webpack）中配合babel来真正的在我们的生产环境使用它</p>
+</blockquote>
+<h1 id="在构建工具中的使用"><a href="#在构建工具中的使用" class="headerlink" title="在构建工具中的使用"></a>在构建工具中的使用</h1><h2 id="webpack篇"><a href="#webpack篇" class="headerlink" title="webpack篇"></a>webpack篇</h2><p>需要用到的包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i --save-dev webpack webpack-cli babel-loader babel-core babel-preset-env babel-plugin-transform-runtime</span><br><span class="line">npm i --save babel-runtime</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>webpack遵循commonJs规范，所以我们完全不需要去单独处理各模块的依赖。<br>在这个模块化的年代，或许这也是我更钟爱webpack的原因吧</p>
+</blockquote>
+<h3 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry:&#123;</span><br><span class="line">        main: __dirname + <span class="string">"/index.js"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output:&#123;</span><br><span class="line">        path: __dirname + <span class="string">"/dist"</span>,</span><br><span class="line">        filename: <span class="string">"index.bundle.js"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">                use: &#123;</span><br><span class="line">                    loader: <span class="string">"babel-loader"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a>.babelrc</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//babel 配置</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"transform-runtime"</span>],       <span class="comment">//注意plugin 优先级高于presets</span></span><br><span class="line">  <span class="attr">"presets"</span>: [</span><br><span class="line">    [<span class="string">"env"</span>]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Gulp篇"><a href="#Gulp篇" class="headerlink" title="Gulp篇"></a>Gulp篇</h2><h3 id="正确姿势"><a href="#正确姿势" class="headerlink" title="正确姿势"></a>正确姿势</h3><blockquote>
+<p>这是gulp + browserify正确使用方式，如若你是gulp新手请参照下面的简单版本<br>这里先讲述正确使用方法</p>
+</blockquote>
+<p>你需要用到的包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i --save-dev gulp gulp-uglify gulp-buffer vinyl-source-stream babelify babel-core babel-preset-env babel-plugin-transform-runtime browserify</span><br><span class="line">npm i --save babel-runtime</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里babel-runtime相当于是我们的polyfill，我们使用transform-runtime来动态的去引入需要的部分，避免污染</p>
+</blockquote>
+<p>很多人会疑问为什么会使用到browserify？下面敲重点：</p>
+<blockquote>
+<ul>
+<li>这得从babel谈起，通俗点说，babel可以将浏览器还没支持的es的新写法编译为浏览器支持的语法。</li>
+<li>而es中新增的api则不会被转换，这时候我们就得引入polyfill解决。</li>
+<li>而babel转换的代码其实是遵循commonJs规范的，浏览器环境显然不支持，因此再用browserify处理各模块间的关系即可。</li>
+</ul>
+</blockquote>
+<p>然后又有人问了gulp-buffer vinyl-source-stream是什么鬼？下面还是重点：<br>这里我只做基本的介绍，这属于gulp的高级技巧，想刨根问底的童鞋请先了解以下知识</p>
+<ul>
+<li><a href="http://nodejs.cn/api/buffer.html#buffer_buffer" target="_blank" rel="noopener">buffer</a></li>
+<li><a href="http://nodejs.cn/api/stream.html#stream_stream" target="_blank" rel="noopener">stream（流）</a></li>
+<li><a href="https://www.gulpjs.com.cn/" target="_blank" rel="noopener">gulp</a></li>
+</ul>
+<p>​下面是简单介绍​：</p>
+<blockquote>
+<ul>
+<li>首先，gulp使用了<a href="https://github.com/wearefractal/vinyl-fs" target="_blank" rel="noopener">vinyl-fs</a>，而vinyl-fs使用的核心是vinyl，vinyl 可以创建一个文件描述对象，通过接口可以取得该文件所对应的数据（Buffer类型）、cwd路径、文件名等等。</li>
+<li>因此按照我们入乡随俗的道理，要想使用gulp是不是得把可读流转换为vinyl file object？那么vinyl-source-stream（可以将普通流转换为vinyl file object stream），vinyl-source-buffer（可以将普通流转换为vinyl file object buffer）它们就来了，按需使用即可。</li>
+<li>vinyl file object拥有一个属性来表示里面是buffer还是流，gulp默认使用buffer。像一些gulp的插件也是基于buffer的实现（比如gulp-uglify），因此gulp-buffer它来了。反之基于流的插件也可以使用gulp-streamify转换成流再进行处理。</li>
+</ul>
+</blockquote>
+<h4 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//gulpfile.js</span></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">  babelify = <span class="built_in">require</span>(<span class="string">'babelify'</span>),</span><br><span class="line">  notify = <span class="built_in">require</span>(<span class="string">'gulp-notify'</span>),     <span class="comment">//按需使用</span></span><br><span class="line">  browserify = <span class="built_in">require</span>(<span class="string">'browserify'</span>),</span><br><span class="line">  buffer = <span class="built_in">require</span>(<span class="string">'gulp-buffer'</span>),   <span class="comment">//vinyl-buffer也可</span></span><br><span class="line">  uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</span><br><span class="line">  source = <span class="built_in">require</span>(<span class="string">'vinyl-source-stream'</span>);   <span class="comment">//vinyl-source-buffer  按需使用</span></span><br><span class="line"></span><br><span class="line">  gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    browserify(<span class="string">'./index.js'</span>)</span><br><span class="line">    .transform(<span class="string">"babelify"</span>, &#123;<span class="attr">plugins</span>: [<span class="string">"transform-runtime"</span>],<span class="attr">presets</span>: [[<span class="string">"env"</span>]]&#125;)     <span class="comment">//babel处理</span></span><br><span class="line">    .bundle()       <span class="comment">//处理模块依赖</span></span><br><span class="line">    .pipe(source(<span class="string">"index.js"</span>))      <span class="comment">//转换为vinyl文件对象</span></span><br><span class="line">    .pipe(buffer())          <span class="comment">//转换为buffer以便进行代码压缩</span></span><br><span class="line">    .pipe(uglify())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./dist'</span>))</span><br><span class="line">    .pipe(notify(&#123;</span><br><span class="line">        message: <span class="string">'javascript compile complete'</span></span><br><span class="line">    &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="简单版本，不推荐"><a href="#简单版本，不推荐" class="headerlink" title="简单版本，不推荐"></a><del>简单版本，不推荐</del></h3><blockquote>
+<p><a href="[http://www.github.com/deepak1556/gulp-browserify]">gulp-browserify</a>已经被官方拉入黑名单，作者也停止维护了。新手入门可以使用</p>
+</blockquote>
+<p>你需要用到的包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i --save-dev gulp gulp-babel babel-core babel-preset-env babel-plugin-transform-runtime gulp-browserify</span><br><span class="line">npm i --save babel-runtime</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>gulp-browserify来自动处理模块依赖</p>
+</blockquote>
+<h4 id="gulpfile-js-1"><a href="#gulpfile-js-1" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//gulpfile.js</span></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">  babel = <span class="built_in">require</span>(<span class="string">'gulp-babel'</span>),</span><br><span class="line">  notify = <span class="built_in">require</span>(<span class="string">'gulp-notify'</span>),</span><br><span class="line">  browserify = <span class="built_in">require</span>(<span class="string">'gulp-browserify'</span>);</span><br><span class="line"></span><br><span class="line">  gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   gulp.src(<span class="string">'./index.js'</span>)</span><br><span class="line">       .pipe(babel())</span><br><span class="line">       .pipe(browserify())</span><br><span class="line">       .pipe(gulp.dest(<span class="string">'./dist'</span>))</span><br><span class="line">       .pipe(notify(&#123;</span><br><span class="line">        message: <span class="string">'javascript compile complete'</span></span><br><span class="line">      &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel 配置同webpack篇</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考文章：<br><a href="https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9" target="_blank" rel="noopener">6-reasons-why-javascripts-async-await-blows-promises</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/webpack-contentBase-publicPath/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/webpack-contentBase-publicPath/" itemprop="url">webpack配置中的contentBase和publicPath</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:23:27+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">构建工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>前言：<br>这里主要介绍output中的publicPath和devServer中的contentBase和publicPath<br>首先明白两点，</p>
+</blockquote>
+<ul>
+<li>在webpack.config.js文件中，output配置只在production环境下起效，devServer只在development环境下有效。</li>
+<li>devServer运行下所编译的文件皆存在于内存中，不会改变本地文件。在服务运行中如果内存中找不到想要的文件时，devServer 会根据文件的路径尝试去本地磁盘上找，如果这样还找不到才会 404</li>
+</ul>
+<h1 id="output-publicPath"><a href="#output-publicPath" class="headerlink" title="output.publicPath"></a>output.publicPath</h1><p>我们最常接触的output的配置是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">      path: __dirname + <span class="string">"/build"</span>,</span><br><span class="line">      filename: <span class="string">"[name].bundle.js"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>那么这里publicPath是用来干嘛的？<br>其实publicPath被webpack的插件（url-loader，html-webpack-plugin）用于在production环境下更新引用的静态资源的url。</p>
+<h2 id="栗子："><a href="#栗子：" class="headerlink" title="栗子："></a>栗子：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">      .........</span><br><span class="line">      publicPath:<span class="string">'https://a.cdn.com/'</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>那么当你执行打包过后你的静态资源路径就会被加上publicPath的路径</p>
+<h3 id="development"><a href="#development" class="headerlink" title="development:"></a>development:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.div&#123;</span><br><span class="line">    background:url(./<span class="number">1.</span>png) center top no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="production"><a href="#production" class="headerlink" title="production:"></a>production:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.div&#123;</span><br><span class="line">    background:url(https:<span class="comment">//a.cdn.com/1.png) center top no-repeat;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="devServer-contentBase"><a href="#devServer-contentBase" class="headerlink" title="devServer.contentBase"></a>devServer.contentBase</h1><p><a href="https://webpack.js.org/configuration/dev-server/#" target="_blank" rel="noopener">dev-server</a></p>
+<blockquote>
+<p>引用官网的话就是：<br>告诉本地服务从哪里提供内容且只有在您想要提供静态文件时才需要这样做</p>
+</blockquote>
+<p>其实就是index.html所在的目录</p>
+<h1 id="devServer-publicPath"><a href="#devServer-publicPath" class="headerlink" title="devServer.publicPath"></a>devServer.publicPath</h1><p>当启动devServer的时候，文件也会被编译，上面说到它只存在于内存中。<br>publicPath其实就是指定外部访问编译文件的路径</p>
+<h2 id="栗子：-1"><a href="#栗子：-1" class="headerlink" title="栗子："></a>栗子：</h2><h3 id="devServer配置"><a href="#devServer配置" class="headerlink" title="devServer配置"></a>devServer配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    publicPath:<span class="string">'/build/'</span>,</span><br><span class="line">    inline: <span class="literal">true</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="index页面"><a href="#index页面" class="headerlink" title="index页面"></a>index页面</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"build/main.bundle.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>那么当我们的devServer启动的时候做了哪些事儿：</p>
+<ul>
+<li><p>首先加载contentPath下面的index.html（由于没有设置），则访问的便是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//localhost:8080/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加载index.html里的静态资源，由于设置了publicPath，那么编译后的文件提供给外部的访问路径就是contentPath + publicPath，也就是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//localhost:8080/build/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>由于在内存中找到了该文件则不去读取硬盘中的文件</p>
+</li>
+</ul>
+<h1 id="注意项"><a href="#注意项" class="headerlink" title="注意项"></a>注意项</h1><blockquote>
+<p>需要注意的一点是：<br>当你在项目中用到了html-webpack-plugin的时候，请保证output和devServer的publicPath路径一致<br>因为html-webpack-plugin在嵌入静态资源的时候使用的是output的publicPath，会导致在devServer运行的时候加载资源报错</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/antd-load/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/antd-load/" itemprop="url">Antd 按需加载并使用自定义样式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:23:00+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">构建工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="按需加载"><a href="#按需加载" class="headerlink" title="按需加载"></a>按需加载</h1><h2 id="为什么要按需加载？"><a href="#为什么要按需加载？" class="headerlink" title="为什么要按需加载？"></a>为什么要按需加载？</h2><ul>
+<li>在使用antd的组件时会自动加载css</li>
+<li>大大减少打包后的文件体积</li>
+</ul>
+<p>按照官网的介绍使用<a href="https://github.com/ant-design/babel-plugin-import" target="_blank" rel="noopener">babel-plugin-loader</a>即可实现，这里就不赘述</p>
+<h2 id="按需加载同时使用自定义样式"><a href="#按需加载同时使用自定义样式" class="headerlink" title="按需加载同时使用自定义样式"></a>按需加载同时使用自定义样式</h2><p>这里需要用到三个loader</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev style-loader css-loader url-loader</span><br></pre></td></tr></table></figure>
+
+<h2 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h2><p>在配置的时候我们得写两套样式处理规则，分别处理antd样式和自己的样式</p>
+<h3 id="处理Antd样式"><a href="#处理Antd样式" class="headerlink" title="处理Antd样式"></a>处理Antd样式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"style-loader"</span>,</span><br><span class="line">       &#125;,</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"css-loader"</span>,</span><br><span class="line">         options: &#123;</span><br><span class="line">              importLoaders: <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    ],</span><br><span class="line">  exclude: <span class="regexp">/app/</span>,    <span class="comment">//这里要将自己的排除在规则外</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="处理自己的样式"><a href="#处理自己的样式" class="headerlink" title="处理自己的样式"></a>处理自己的样式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"style-loader"</span>,</span><br><span class="line">       &#125;,</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"css-loader"</span>,</span><br><span class="line">       &#125;</span><br><span class="line">    ],</span><br><span class="line">  exclude: <span class="regexp">/node_modules/</span>,    <span class="comment">//这里要将Antd的样式排除</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里还需要注意的是在配置entry的时候，因为我们的antd已经按需加载了，所以无需再重复打包</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/yeoman-gulp-webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/yeoman-gulp-webpack/" itemprop="url">用Yeoman + gulp + webpack 来管理你的前端项目</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:22:25+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">构建工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>Yeoman：前端脚手架，快速搭建前端开发环境，优化工作流~<br>Gulp：工程化构建工具，基于task来处理任务<br>Webpack：最常见的前端构建工具，类似与gulp，但不如gulp灵活，专注于代码打包编译</p>
+</blockquote>
+<p>OK，主人公们介绍完了，该篇主要说明三个工具的基本用法，安装配置自己解决。</p>
+<h2 id="Yeoman"><a href="#Yeoman" class="headerlink" title="Yeoman"></a>Yeoman</h2><blockquote>
+<p>Q:</p>
+</blockquote>
+<ul>
+<li>在写东西的时候经常会遇到一些重复性的操作和代码，苦于Ctrl+c</li>
+<li>人数较多的前端团队10个人拥有十种代码风格，十种项目结构，后期维护及其繁琐</li>
+</ul>
+<p>——使用Yeoman 达到One Code Style One Directory Structure</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g yo</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><pre><code>yeoman 提供很多generator，可以直接使用</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir project-name</span><br><span class="line"><span class="built_in">cd</span> project-name</span><br><span class="line">yo</span><br></pre></td></tr></table></figure>
+
+<p>按照提示选择需要的模板就行了，这里主要说一说怎么私人订制<del>~</del>嘻嘻</p>
+<h3 id="创建自己的generator"><a href="#创建自己的generator" class="headerlink" title="创建自己的generator"></a>创建自己的generator</h3><p>yeoman官方提供了generator-generator 来帮助我们自定义生成器，良心啊<del>~</del></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g generator-generator</span><br><span class="line">yo generator</span><br></pre></td></tr></table></figure>
+
+<p>我们需要做的就是在index.js中来创造我们自己的generator</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">const</span> Generator = <span class="built_in">require</span>(<span class="string">'yeoman-generator'</span>);</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>);</span><br><span class="line"><span class="keyword">const</span> yosay = <span class="built_in">require</span>(<span class="string">'yosay'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Generator</span> </span>&#123;</span><br><span class="line">prompting() &#123;</span><br><span class="line">    <span class="comment">// Have Yeoman greet the user.</span></span><br><span class="line">    <span class="keyword">this</span>.log(</span><br><span class="line">    yosay(<span class="string">`Welcome to the tiptop <span class="subst">$&#123;chalk.red(<span class="string">'generator-xy'</span>)&#125;</span> generator!`</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> prompts = [</span><br><span class="line">    &#123;</span><br><span class="line">    type: <span class="string">'confirm'</span>,</span><br><span class="line">    name: <span class="string">'someAnswer'</span>,</span><br><span class="line">    message: <span class="string">'Would you like to enable this option?'</span>,</span><br><span class="line">    <span class="keyword">default</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.prompt(prompts).then(<span class="function"><span class="params">props</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// To access props later use this.props.someAnswer;</span></span><br><span class="line">    <span class="keyword">this</span>.props = props;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">writing() &#123;</span><br><span class="line">    <span class="keyword">this</span>.fs.copy(</span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'dummyfile.txt'</span>),</span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'dummyfile.txt'</span>)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">install() &#123;</span><br><span class="line">    <span class="keyword">this</span>.installDependencies();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到核心的流程是在一个继承了generator的类当中<br>其实这里generator一共提供了 initializing，prompting，configuring，default，writing，conflicts，install，end这几个函数</p>
+<blockquote>
+<p>Prompting()方法是执行前的过渡，实现与用户的交互，你可以在prompts问题集中定义一些问题，比如你叫啥，干啥，弄啥，家里几口人，人均几亩地………..然后将用户输入的内容保存在this.props中，方便以后调用。</p>
+</blockquote>
+<h4 id="我们自己来写一个generator"><a href="#我们自己来写一个generator" class="headerlink" title="我们自己来写一个generator"></a>我们自己来写一个generator</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">prompting() &#123;</span><br><span class="line">        <span class="comment">// Have Yeoman greet the user.</span></span><br><span class="line">        <span class="keyword">this</span>.log(</span><br><span class="line">        yosay(<span class="string">`Welcome to the tiptop <span class="subst">$&#123;chalk.red(<span class="string">'generator-xy'</span>)&#125;</span> generator!`</span>)</span><br><span class="line">    );</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.prompt([&#123;</span><br><span class="line">    type    : <span class="string">'input'</span>,</span><br><span class="line">    name    : <span class="string">'appname'</span>,</span><br><span class="line">    message : <span class="string">'input your project  name'</span>,</span><br><span class="line">    <span class="keyword">default</span> : <span class="keyword">this</span>.appname     </span><br><span class="line">&#125;</span><br><span class="line">]).then(<span class="function">(<span class="params">answers</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.log(<span class="string">'appname ：'</span>, answers.appname);</span><br><span class="line">    <span class="keyword">this</span>.props = answers;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在后面的方法中，我们便可以通过this.props.appname来获取到输入的项目名称</p>
+<p>我们在原来的基础上定义一个defaults方法来生成用户输入的目录</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> mkdirp = <span class="built_in">require</span>(<span class="string">'mkdirp'</span>);</span><br><span class="line"></span><br><span class="line">defaults () &#123;           </span><br><span class="line"><span class="keyword">if</span> (path.basename(<span class="keyword">this</span>.destinationPath()) !== <span class="keyword">this</span>.props.appname) &#123; <span class="comment">//判断是否存在该目录</span></span><br><span class="line">    <span class="keyword">this</span>.log(</span><br><span class="line">    <span class="string">'Your generator must be inside a folder named '</span> + <span class="keyword">this</span>.props.appname + <span class="string">'\n'</span> +</span><br><span class="line">    <span class="string">'I\'ll automatically create this folder.'</span></span><br><span class="line">    );</span><br><span class="line">    mkdirp(<span class="keyword">this</span>.props.appname); <span class="comment">// 即 mkdir -p 创建该目录</span></span><br><span class="line">    <span class="keyword">this</span>.destinationRoot(<span class="keyword">this</span>.destinationPath(<span class="keyword">this</span>.props.appname));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="writing"><a href="#writing" class="headerlink" title="writing"></a>writing</h4><p>writing方法用来书写创建工程文件的步骤<br>在这之前我们首先在template文件夹下创建一个public目录，里面创建如下文件作为咱们这个初级教程的全部内容</p>
+<p>开始写writing方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">writing() &#123;</span><br><span class="line">mkdirp(<span class="string">'css'</span>);      <span class="comment">//创建css文件夹</span></span><br><span class="line">mkdirp(<span class="string">'js'</span>);      <span class="comment">//创建js文件夹</span></span><br><span class="line"><span class="keyword">this</span>.fs.copy(     <span class="comment">//调用方法将模板的内容创建到根目录</span></span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'public/index.html'</span>),       <span class="comment">//模板文件地址 </span></span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'index.html'</span>),          <span class="comment">//创建在根目录</span></span><br><span class="line">),</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.fs.copy(</span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'public/index.css'</span>),</span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'css/index.css'</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.fs.copy(</span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'public/index.js'</span>),</span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'js/index.js'</span>)</span><br><span class="line">);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="install"><a href="#install" class="headerlink" title="install"></a>install</h4><p>最后install方法，官方的api说的很清楚this.installDependencies()，即是用来安装我们项目依赖的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">install() &#123;</span><br><span class="line">  <span class="keyword">this</span>.npmInstall([<span class="string">'jquery'</span>], &#123; <span class="string">'save-dev'</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里就安装一个jquery作为说明即可。<br>最后我们在根目录执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm link</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以在全局使用该generator了</p>
+<p>然后切换到开发目录，执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yo xy</span><br></pre></td></tr></table></figure>
+
+<p>然后你就可以开始编码了，so easy今后所有这种类型的项目一个命令几秒钟就可以开始愉快的编码，而且代码风格统一<del>~</del></p>
+<h2 id="Gulp-Webpack"><a href="#Gulp-Webpack" class="headerlink" title="Gulp+Webpack"></a>Gulp+Webpack</h2><blockquote>
+<p>这里把Gulp和Webpack放到一起来说。<br>博主最早是只用了webpack来构建自己的项目，后来加入Gulp对其进行整合，发现配合食用，口感更佳呀<br>核心依然是plugin</p>
+</blockquote>
+<blockquote>
+<p>Webpack出口文件即Gulp入口文件</p>
+</blockquote>
+<p>这里也只是讲如何写一个初略的gulpfile.js</p>
+<p>核心便是task,src,start,watch等api，详细说明见官网<a href="https://www.gulpjs.com.cn/docs/api/" target="_blank" rel="noopener">Gulp Api</a><br>基本工作流程：</p>
+<ul>
+<li>通过gulp.src()方法获取到我们想要处理的文件流(<a href="https://github.com/wearefractal/vinyl-fs" target="_blank" rel="noopener">Vinyl files</a> 的 <a href="http://nodejs.org/api/stream.html" target="_blank" rel="noopener">stream</a>)，</li>
+<li>把文件流通过pipe方法导入到gulp的插件中进行处理，比如调用concat方法合并所有css，再调用minify()压缩css。（具体插件用法，<a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm官网</a>均有介绍）</li>
+<li>把处理后的流再通过pipe方法导入到gulp.dest()中，最后把流中的内容写入到文件中</li>
+</ul>
+<h3 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//加载外挂：自动瞄准，无后座，锁血，大挪移.......~~~</span></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">minify=<span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>);</span><br><span class="line">autoprefixer = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>),</span><br><span class="line">jshint = <span class="built_in">require</span>(<span class="string">'gulp-jshint'</span>),</span><br><span class="line">uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</span><br><span class="line">imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>),</span><br><span class="line">clean = <span class="built_in">require</span>(<span class="string">'gulp-clean'</span>),</span><br><span class="line">concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>),</span><br><span class="line">notify = <span class="built_in">require</span>(<span class="string">'gulp-notify'</span>),</span><br><span class="line">cache = <span class="built_in">require</span>(<span class="string">'gulp-cache'</span>),</span><br><span class="line">livereload = <span class="built_in">require</span>(<span class="string">'gulp-livereload'</span>),</span><br><span class="line">fileinclude = <span class="built_in">require</span>(<span class="string">'gulp-file-include'</span>),</span><br><span class="line">webpack = <span class="built_in">require</span>(<span class="string">'gulp-webpack'</span>);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">gulp.src(<span class="string">'src/css/*.css'</span>)</span><br><span class="line">    .pipe(concat(<span class="string">'main.css'</span>))</span><br><span class="line">    .pipe(minify())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'dist/css'</span>));</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'scripts'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> gulp.src(<span class="string">'src/entry.js'</span>)</span><br><span class="line">  .pipe(webpack( <span class="built_in">require</span>(<span class="string">'./webpack.config.js'</span>) ))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'dist/js'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'images'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> gulp.src(<span class="string">'src/images/**/*'</span>)</span><br><span class="line">  .pipe(cache(imagemin(&#123; <span class="attr">optimizationLevel</span>: <span class="number">3</span>, <span class="attr">progressive</span>: <span class="literal">true</span>, <span class="attr">interlaced</span>: <span class="literal">true</span> &#125;)))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'dist/images'</span>))</span><br><span class="line">  .pipe(notify(&#123; <span class="attr">message</span>: <span class="string">'Images compile complete'</span> &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> gulp.src(<span class="string">'src/**/*.html'</span>)</span><br><span class="line">  .pipe(fileinclude(&#123;</span><br><span class="line">    prefix: <span class="string">'@@'</span>,</span><br><span class="line">    basepath: <span class="string">'@file'</span></span><br><span class="line">  &#125;))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'dist/'</span>))</span><br><span class="line">  .pipe(notify(&#123; <span class="attr">message</span>: <span class="string">'html compile complete'</span> &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'clean'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> gulp.src([<span class="string">'dist/css'</span>, <span class="string">'dist/js'</span>, <span class="string">'dist/images'</span>], &#123;<span class="attr">read</span>: <span class="literal">false</span>&#125;)</span><br><span class="line">   .pipe(clean());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'clean'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   gulp.start(<span class="string">'css'</span>,<span class="string">'scripts'</span>, <span class="string">'images'</span>, <span class="string">'html'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/css/**/*.css'</span>, [<span class="string">'css'</span>]);</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/js/**/*.js'</span>, [<span class="string">'scripts'</span>]);</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/images/**/*'</span>, [<span class="string">'images'</span>]);</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/**/*.html'</span>, [<span class="string">'html'</span>]) ;</span><br><span class="line">   </span><br><span class="line">   livereload.listen();</span><br><span class="line">   gulp.watch([<span class="string">'dist/**'</span>]).on(<span class="string">'change'</span>, livereload.changed);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>插件的话按需自取，这里我用的插件是包含了处理所有文件的。可以酌情增减</li>
+<li>gulp.task第一个参数为任务名，gulp task-name 即可执行对应的任务，这里需要解释的就是对于js的处理。刚才说过webpack的出口文件就是gulp的入口文件，这里我们用到了gulp-webpack包来优化。</li>
+<li>在默认任务这里执行编译之前调用gulp.clean清空上一次的编译结果</li>
+<li>这里使用了livereload插件，需要配置Chrome（美中不足，显然没有webpack-dev-server实在啊）</li>
+<li>运行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gulp</span><br><span class="line">gulp watch</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/react-reflux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/react-reflux/" itemprop="url">设计模式之ReFlux</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:22:08+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Reflux-Version-6-4-1"><a href="#Reflux-Version-6-4-1" class="headerlink" title="Reflux Version 6.4.1"></a>Reflux Version 6.4.1</h2><ul>
+<li>单向数据流思想</li>
+<li>Flux进阶版</li>
+</ul>
+<p><strong>相比于Flux，在Reflux中除去了Dispatcher，即在Reflux中每一个Action就是一个Publisher，每一个Store就是一个Listener，因此我们可以在store中指定监听某一个Action，一旦Action触发则调用绑定的方法来修改数据</strong></p>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">  <span class="string">"babel-core"</span>: <span class="string">"^6.26.0"</span>,</span><br><span class="line">  <span class="string">"babel-loader"</span>: <span class="string">"^7.1.2"</span>,</span><br><span class="line">  <span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">  <span class="string">"babel-preset-react"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">  <span class="string">"webpack"</span>: <span class="string">"^3.6.0"</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">  <span class="string">"react"</span>: <span class="string">"^15.6.2"</span>,</span><br><span class="line">  <span class="string">"react-dom"</span>: <span class="string">"^15.6.2"</span>,</span><br><span class="line">  <span class="string">"react-router"</span>: <span class="string">"^2.4.1"</span>,</span><br><span class="line">  <span class="string">"reflux"</span>: <span class="string">"^6.4.1"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Reflux <span class="keyword">from</span> <span class="string">"reflux"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Actions <span class="keyword">from</span> <span class="string">'../app/action/actions'</span>; <span class="comment">//这里我是将Action和Store分开了，实际开发中建议这样，方便管理。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Stores <span class="keyword">from</span> <span class="string">'../app/store/stores'</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建Actions"><a href="#创建Actions" class="headerlink" title="创建Actions"></a>创建Actions</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Actions = Reflux.createActions([<span class="string">'action1'</span>,<span class="string">'action2'</span>]);</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建Stores"><a href="#创建Stores" class="headerlink" title="创建Stores"></a>创建Stores</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stores</span> <span class="keyword">extends</span> <span class="title">Reflux</span>.<span class="title">Store</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">super</span>();          <span class="comment">//切记先调用super方法，Es6中子类没有this</span></span><br><span class="line">        <span class="keyword">this</span>.state = &#123;          <span class="comment">//初始值，和react一样</span></span><br><span class="line">            name: <span class="string">'Irwin Pu'</span>,</span><br><span class="line">            sex:<span class="string">'male'</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">this</span>.listenables = Actions;     <span class="comment">//监听action,每个action都会自动注册一个on + actionname的方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    onAction1()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'name:'</span> + <span class="keyword">this</span>.state.name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    onAction2()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'sex:'</span> + <span class="keyword">this</span>.state.sex);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="挂载Stores"><a href="#挂载Stores" class="headerlink" title="挂载Stores"></a>挂载Stores</h3><p>这里我是最喜欢的，reflux给我们提供了一个Reflux.Component类，而且继承了React.Component，唯一区别就是Reflux.Component会将Store中的state自动添加到当前组件的state中，nice啊<del>~</del><br>需要注意一点的就是在调用componentWillMount和componentWillUnmount时候。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">Reflux</span>.<span class="title">Component</span></span>&#123; </span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.state = &#123;&#125;;                 <span class="comment">//store会将它的state加到组件的state里面去</span></span><br><span class="line">        <span class="keyword">this</span>.store = Stores;       		<span class="comment">//assign Stores  (可用数组assign多个)</span></span><br><span class="line">        <span class="comment">// this.storeKeys = ['name'];  // 设置后只有name会被添加到state当中</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillMount()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Hello Reflux'</span>);</span><br><span class="line">        <span class="keyword">super</span>.componentWillMount();   <span class="comment">//官方文档提到直接调用会覆盖reflux.Component的方法,这里调用父类react的componentWillMount</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="keyword">this</span>.state.name;</span><br><span class="line">        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Welcome &#123;name&#125; <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'button'</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> () =&gt;</span> &#123;Actions.action1()&#125; &#125; value='click' /&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/react-redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/react-redux/" itemprop="url">redux</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:22:02+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>你可能不需要Redux，那就别瞎搞！！！<br>Redux 的适用场景：多交互、多数据源。</p>
+</blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>三个点：action，view，state。</p>
+<p>在Redux中 一个 State 对应一个 View。只要 State 相同，View 就相同。而且State 是View导致的。</p>
+<p>简单的来说就是用户接触不到State ，只能在View的层面，操作View通过Action发出通知，从而改变State。</p>
+<p>当Store 收到 Action 以后，会返回一个新的 State，来改变View。这个过程就叫做 Reducer，且它是一个函数，是一个<a href="http://blog.csdn.net/hongweigg/article/details/44035283" target="_blank" rel="noopener">纯函数</a></p>
+<blockquote>
+<p>重要：Action只是通知我要改变了，而Reducer才是告诉你怎么去改变，告诉你怎么做才符合社会主义核心价值观，告诉你怎么才无愧于一个当代青年人。</p>
+</blockquote>
+<blockquote>
+<p>Redux中的state是Redux自己的数据，React通过store.getState来获取，store.dispatch来修改</p>
+</blockquote>
+<h2 id="combineReducers"><a href="#combineReducers" class="headerlink" title="combineReducers"></a>combineReducers</h2><blockquote>
+<p>由于整个应用只有一个 State 对象，包含所有数据，对于大型应用来说，这个 State 必然十分庞大，导致 Reducer 函数也十分庞大</p>
+</blockquote>
+<ul>
+<li>拆分reducer<br>将不同的action交给不同的函数来计算，最后合成一个reducer<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> defaultState = &#123;</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">    otherdata:<span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> count = <span class="function">(<span class="params">count = defaultState.count,action</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'increase'</span>:</span><br><span class="line">        <span class="keyword">return</span> count + <span class="number">1</span> ;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">return</span> count</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> otherdata = <span class="function">(<span class="params">otherdata = defaultState.otherdata,action</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'reduce'</span>:</span><br><span class="line">        <span class="keyword">return</span> otherdata - <span class="number">1</span> ;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">return</span> otherdata</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> combineReducers(&#123;</span><br><span class="line">    count,</span><br><span class="line">    otherdata</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="MiddleWare"><a href="#MiddleWare" class="headerlink" title="MiddleWare"></a>MiddleWare</h2><p>实际项目中涉及到很多异步操作，那么在Redux要实现异步，得依靠中间键，中间键如果是非必须的话尽量使用现成的中间键。自己造轮子。。。。。。。。。。你懂得~</p>
+<p>一般我们要想添加其他功能选择是在发送Action的时候添加，那就是我们的store.dispatch方法上做文章。<br>但是store.dispatch作为Action的载体只能接受一个对象，我们添加不了其他功能。</p>
+<p>这里就需要用到redux-thunk中间键。</p>
+<p>使用方法：命令行在目录下执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save redux-thunk</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">'redux-thunk'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>使用过后store.dispatch这个方法可以接受一个函数作为参数，ok，可以搞事了！<br>废话不多说<br>实践才是检验真理的唯一标准。</p>
+<p>这里只是很简略的介绍了Redux，基本的使用方法请参照<a href="http://cn.redux.js.org/" target="_blank" rel="noopener">Redux中文网</a>  </p>
+<h2 id="React-Redux"><a href="#React-Redux" class="headerlink" title="React-Redux"></a>React-Redux</h2><h3 id="为什么要使用React-Redux"><a href="#为什么要使用React-Redux" class="headerlink" title="为什么要使用React-Redux"></a>为什么要使用React-Redux</h3><ul>
+<li>redux为我们解决了什么？<ul>
+<li>使用了redux我们在数据传递从下到上的传递不需要一层一层的上报，redux就相当于一个战略指挥中心，你只需要告诉redux，然后让redux去重新计划（渲染）</li>
+</ul>
+</li>
+<li>redux渲染<ul>
+<li>首先我们得调用store.getState()方法获取到改变后的state，然后再赋值到this.props属性上，然而这只得到了数据。我们知道react的重新渲染需要调用setState方法，而redux则提供了store.subscribe(render)方法，一旦state改变即调用render方法重新渲染</li>
+</ul>
+</li>
+<li>redux没有解决的问题<ul>
+<li>使用了redux解决了向上传递的问题，但是向下的传递依然是一层一层的，无法直接通知到某个子组件，解决的方案也有，就是：</li>
+<li>在父组件利用store.getState()获取值</li>
+<li>在通过原生react的方式一层层往下传递</li>
+</ul>
+</li>
+</ul>
+<p>而react-redux恰好解决了这个问题。</p>
+<h3 id="React-Redux解决数据下发的问题"><a href="#React-Redux解决数据下发的问题" class="headerlink" title="React-Redux解决数据下发的问题"></a>React-Redux解决数据下发的问题</h3><ul>
+<li>组件通过在connect时的mapStateToProps函数中映射state值即可直接通过this.props.xxx获取到值</li>
+<li>组件通过在connect时的mapStateToProps函数中映射相同的state，即可实现不同组件数据共享</li>
+</ul>
+<p>在React-Redux中所有组件分为UI组件（presentational component）和容器组件（container component）两大类<br>UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑</p>
+<p>另外React-Redux 提供connect方法，用于从 UI 组件生成容器组件</p>
+<p>connect方法有两个参数mapStateToProps和mapDispatchToProps</p>
+<h3 id="mapStateToProps：映射Redux-state到组件的属性"><a href="#mapStateToProps：映射Redux-state到组件的属性" class="headerlink" title="mapStateToProps：映射Redux state到组件的属性"></a>mapStateToProps：映射Redux state到组件的属性</h3><ul>
+<li>mapStateToProps会订阅 Store，每当state更新的时候，就会自动执行，重新计算 UI 组件的参数，从而触发 UI 组件的重新渲</li>
+</ul>
+<h3 id="mapDispatchToProps：映射Redux-actions到组件的属性"><a href="#mapDispatchToProps：映射Redux-actions到组件的属性" class="headerlink" title="mapDispatchToProps：映射Redux actions到组件的属性"></a>mapDispatchToProps：映射Redux actions到组件的属性</h3><ul>
+<li>mapDispatchToProps用来建立 UI 组件的参数到store.dispatch方法的映射</li>
+<li>它可以是一个函数，也可以是一个对象。如果mapDispatchToProps是一个函数，会得到dispatch和ownProps（容器组件的props对象）</li>
+<li>定义了 UI 组件的参数怎样发出 Action</li>
+</ul>
+<blockquote>
+<p>需要获取store值的组件或者发送action的组件都需要connect</p>
+</blockquote>
+<p>当容器组件生成过后React-Redux提供了<Provider>组件，让容器组件拿到state。然后在将根组件包起来，这样所有的根组件就能够拿到state了。<br>像这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(  </span><br><span class="line">&lt;Provider store=&#123;store&#125;&gt;  </span><br><span class="line">    &lt;App /&gt;  </span><br><span class="line">&lt;<span class="regexp">/Provider&gt;,  </span></span><br><span class="line"><span class="regexp">document.getElementById('root')  </span></span><br><span class="line"><span class="regexp">)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：这里App并不能直接获得store中的数据，必须通过connect生成ui组件，才能通过this.props.xxx获取。<br>那么子组件之间的共享就必须在两个组件connect时的mapStateToProps函数中映射同样的state</p>
+</blockquote>
+<h3 id="简单说一下bindActionCreators"><a href="#简单说一下bindActionCreators" class="headerlink" title="简单说一下bindActionCreators"></a>简单说一下bindActionCreators</h3><blockquote>
+<p>bindActionCreators是redux官方提供的自动合并action并发送dispatch的方法</p>
+</blockquote>
+<p>code：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> actions <span class="keyword">from</span> <span class="string">'./actions.js'</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapDispatchToProps</span>(<span class="params">dispatch</span>)</span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        actions:bindActionCreators(actions,dispatch)</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样的做法便捷，但是带来的问题是action合并过后，某个组件要发送action时，那么actions就必须要一层一层的往下传，所以不建议使用</p>
+<h2 id="Do-it"><a href="#Do-it" class="headerlink" title="Do it"></a>Do it</h2><p>使用webpack来构建</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">    <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">    <span class="attr">"start"</span>: <span class="string">"webpack --mode production"</span>,</span><br><span class="line">    <span class="attr">"dev"</span>: <span class="string">"webpack --watch --mode development"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-core"</span>: <span class="string">"^6.26.0"</span>,</span><br><span class="line">    <span class="attr">"babel-loader"</span>: <span class="string">"^7.1.2"</span>,</span><br><span class="line">    <span class="attr">"babel-preset-env"</span>: <span class="string">"^1.7.0"</span>,</span><br><span class="line">    <span class="attr">"babel-preset-react"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="attr">"css-loader"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line">    <span class="attr">"style-loader"</span>: <span class="string">"^0.21.0"</span>,</span><br><span class="line">    <span class="attr">"url-loader"</span>: <span class="string">"^1.0.1"</span>,</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^4.15.1"</span>,</span><br><span class="line">    <span class="attr">"webpack-cli"</span>: <span class="string">"^3.0.8"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"react"</span>: <span class="string">"^16.8.3"</span>,</span><br><span class="line">    <span class="attr">"react-dom"</span>: <span class="string">"^16.8.3"</span>,</span><br><span class="line">    <span class="attr">"react-redux"</span>: <span class="string">"^6.0.1"</span>,</span><br><span class="line">    <span class="attr">"redux"</span>: <span class="string">"^4.0.1"</span>,</span><br><span class="line">    <span class="attr">"redux-thunk"</span>: <span class="string">"^2.3.0"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目目录："><a href="#项目目录：" class="headerlink" title="项目目录："></a>项目目录：</h3><p>这里建议将action和reducer分离开来，因为项目较大的话，你可能会有很多种不同的action或者reducer，方便后期维护。</p>
+<h3 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createStore , applyMiddleware&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Provider, connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">'redux-thunk'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> actions <span class="keyword">from</span> <span class="string">'./actions.js'</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer.js'</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Top <span class="keyword">from</span> <span class="string">'./common/Top.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Content <span class="keyword">from</span> <span class="string">'./common/Content.js'</span> </span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./main.css'</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;  </span><br><span class="line">    render() &#123;  </span><br><span class="line">        <span class="keyword">const</span> &#123;onGetDataClick,list&#125; = <span class="keyword">this</span>.props;</span><br><span class="line">        <span class="keyword">let</span> name = <span class="string">"XXX系统"</span>;  </span><br><span class="line">        <span class="keyword">return</span> (  </span><br><span class="line">            &lt;div&gt;  </span><br><span class="line">                &lt;Top name=&#123;name&#125; /&gt;</span><br><span class="line">                &lt;button onClick=&#123;onGetDataClick&#125;&gt;Get&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">                &lt;Content data=&#123;list&#125; /</span>&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;  </span></span><br><span class="line"><span class="regexp">        );  </span></span><br><span class="line"><span class="regexp">    &#125;  </span></span><br><span class="line"><span class="regexp">&#125;  </span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">let store = createStore(reducer,applyMiddleware(thunk));        /</span><span class="regexp">/使用中间键</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">function mapStateToProps(state) &#123;          /</span><span class="regexp">/将Redux state映射到组件的属性</span></span><br><span class="line"><span class="regexp">    return &#123; </span></span><br><span class="line"><span class="regexp">             list : state.list</span></span><br><span class="line"><span class="regexp">           &#125;  </span></span><br><span class="line"><span class="regexp">&#125;  </span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">function mapDispatchToProps(dispatch)&#123;         /</span><span class="regexp">/定义事件的action</span></span><br><span class="line"><span class="regexp">    return&#123;  </span></span><br><span class="line"><span class="regexp">        onGetDataClick:()=&gt;dispatch(actions.getDataAction),  </span></span><br><span class="line"><span class="regexp">    &#125;  </span></span><br><span class="line"><span class="regexp">&#125;  </span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">App = connect(mapStateToProps, mapDispatchToProps)(App)   /</span><span class="regexp">/绑定到App组件</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">ReactDOM.render(  </span></span><br><span class="line"><span class="regexp">    &lt;Provider store=&#123;store&#125;&gt;  </span></span><br><span class="line"><span class="regexp">        &lt;App /</span>&gt;  </span><br><span class="line">    &lt;<span class="regexp">/Provider&gt;,  </span></span><br><span class="line"><span class="regexp">    document.getElementById('root')  </span></span><br><span class="line"><span class="regexp">)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="actions-js"><a href="#actions-js" class="headerlink" title="actions.js"></a>actions.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getDataAction = <span class="function">(<span class="params">dispatch</span>) =&gt;</span> &#123;  </span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">    	url:<span class="string">"xxxxxxxxxxxxxxxxxxxxxxxx"</span>,</span><br><span class="line">    	type:<span class="string">"post"</span>,</span><br><span class="line">    	dataType:<span class="string">"json"</span>,</span><br><span class="line">    	data:&#123;&#125;,</span><br><span class="line">    	success:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">                   dispatch(&#123;<span class="attr">type</span>:<span class="string">"RES_SUCCESS"</span>,<span class="attr">data</span>:data&#125;)</span><br><span class="line">    	&#125;，</span><br><span class="line">        error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                  dispatch(&#123;<span class="attr">type</span>:<span class="string">"RES_ERROR"</span>&#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        compelet:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                  dispatch(&#123;<span class="attr">type</span>:<span class="string">"RES_COMPELET"</span>&#125;)</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">export</span> &#123;getDataAction&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们dispatch第一次执行咱们的请求，根据不同状态再发送Action来触发 Reducer </p>
+<h3 id="reducer-js"><a href="#reducer-js" class="headerlink" title="reducer.js"></a>reducer.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> initialState = &#123;  </span><br><span class="line">    list:[] </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (state = initialState, action) =&gt; &#123;  </span><br><span class="line">    <span class="keyword">switch</span> (action.type) &#123;  </span><br><span class="line">        <span class="keyword">case</span> <span class="string">'RES_ERROR'</span>:  </span><br><span class="line">            <span class="keyword">return</span> &#123;  </span><br><span class="line">                 list:<span class="string">"Error"</span></span><br><span class="line">            &#125;  </span><br><span class="line">        <span class="keyword">case</span> <span class="string">'RES_COMPELET'</span>:  </span><br><span class="line">            <span class="keyword">return</span> &#123;  </span><br><span class="line">                 list:<span class="string">"Compelet"</span></span><br><span class="line">            &#125; </span><br><span class="line">        <span class="keyword">case</span> <span class="string">'RES_SUCCESS'</span>:</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                list:action.data</span><br><span class="line">            &#125; </span><br><span class="line">        <span class="keyword">default</span>:  </span><br><span class="line">            <span class="keyword">return</span> initialState;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Reduce中我们接收到一个Action，然后返回一个State，然后映射到组件的属性上，实现View的更新</p>
+<h3 id="Content-js"><a href="#Content-js" class="headerlink" title="Content.js"></a>Content.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">          &lt;div className=<span class="string">"content"</span>&gt;</span><br><span class="line">              &lt;table id=<span class="string">"managelist"</span>&gt;</span><br><span class="line">                &lt;thead&gt;</span><br><span class="line">                  &lt;tr&gt; <span class="comment">//此处不可省略tr，不然react会抛出警告</span></span><br><span class="line">                      &lt;th&gt;XXX&lt;<span class="regexp">/th&gt;</span></span><br><span class="line"><span class="regexp">                      &lt;th&gt;XXX&lt;/</span>th&gt;</span><br><span class="line">                      &lt;th&gt;XXX&lt;<span class="regexp">/th&gt;</span></span><br><span class="line"><span class="regexp">                  &lt;/</span>tr&gt;</span><br><span class="line">                &lt;<span class="regexp">/thead&gt;</span></span><br><span class="line"><span class="regexp">                &lt;tbody&gt;</span></span><br><span class="line"><span class="regexp">                    &#123;this.props.data.map(function(item,index)&#123;</span></span><br><span class="line"><span class="regexp">                     return (</span></span><br><span class="line"><span class="regexp">                            ...............................</span></span><br><span class="line"><span class="regexp">                    )&#125;)&#125;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>tbody&gt;</span><br><span class="line">              &lt;<span class="regexp">/table&gt; </span></span><br><span class="line"><span class="regexp">          &lt;/</span>div&gt;</span><br><span class="line">        );</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/react-performs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/react-performs/" itemprop="url">React 之性能优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:21:49+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="包含父子组件的Tab切换"><a href="#包含父子组件的Tab切换" class="headerlink" title="包含父子组件的Tab切换"></a>包含父子组件的Tab切换</h1><p>当我们将tab切换分离到子组件时很多人喜欢这样写</p>
+<h2 id="父组件："><a href="#父组件：" class="headerlink" title="父组件："></a>父组件：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.type = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> tabSwitch()&#123;</span><br><span class="line">     <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">           <span class="comment">//change state</span></span><br><span class="line">     &#125;)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">  render()&#123;</span><br><span class="line">  	<span class="keyword">return</span> (</span><br><span class="line">       	  &lt;Tab renderFun=&#123;<span class="keyword">this</span>.tabSwitch&#125; type=&#123;<span class="keyword">this</span>.type&#125;  /&gt;</span><br><span class="line">  	)</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;App /&gt;,</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="子组件："><a href="#子组件：" class="headerlink" title="子组件："></a>子组件：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Tab</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">	  <span class="keyword">super</span>(props);</span><br><span class="line">	  <span class="keyword">this</span>.state = &#123;</span><br><span class="line">	    tab:[<span class="string">'tab1'</span>,<span class="string">'tab2'</span>],</span><br><span class="line">	    current:<span class="keyword">this</span>.props.type</span><br><span class="line">	  &#125;;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tabSwitch(index)&#123;</span><br><span class="line">	  <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">	    current:index</span><br><span class="line">	  &#125;,() =&gt; &#123;</span><br><span class="line">	  	<span class="keyword">this</span>.props.renderFun(<span class="keyword">this</span>.state.current);</span><br><span class="line">	  &#125;)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	render()&#123;</span><br><span class="line">    <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">  	<span class="keyword">return</span> (</span><br><span class="line">       &lt;div className=<span class="string">'tab'</span>&gt;</span><br><span class="line">       	   &#123; <span class="keyword">this</span>.state.tab.map(<span class="function"><span class="keyword">function</span>(<span class="params">ele,index</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span> <span class="attr">className</span>=<span class="string">&#123;</span>'<span class="attr">tab_</span>' + <span class="attr">index</span> + ' ' + (<span class="attr">_this.state.current</span> == <span class="string">index</span> ? '<span class="attr">tab_active</span>'<span class="attr">:</span>'')&#125; <span class="attr">onClick</span>=<span class="string">&#123;_this.tabSwitch.bind(_this,index)&#125;</span>&gt;</span>&#123;ele&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">             &#125;)</span><br><span class="line">           &#125;</span><br><span class="line">       &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  	)</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样的写法实现功能是没问题。当我们切换tab时，将点击的tab栏目传递给父组件，父组件改变state去重新渲染tab列表。但是这里虽然功能实现，但是写法上说不太react。</p>
+<blockquote>
+<p>我们在子组件点击的时候，setState改变了current，子组件重新渲染，然后回调点击的tab给父组件，父组件执行setState会开始更新过程，这时候父组件的shouldComponentUpdate返回的肯定是true，<br>此时按照componentWillUpdate-》render-》componentDidUpdate，父组件完成了更新过程，由于父组件的渲染，所以子组件也开始更新过程，<br>此时由于newProps == this.props，所以子组件的shouldComponentUpdate返回false，更新过程终止。</p>
+</blockquote>
+<h1 id="比较正规的写法："><a href="#比较正规的写法：" class="headerlink" title="比较正规的写法："></a>比较正规的写法：</h1><blockquote>
+<p>React建议将关系到渲染的数据保存在state中。这里能勾关系到渲染的就是这个type了。因为type的改变会导致我们的列表改变</p>
+</blockquote>
+<h2 id="父组件：-1"><a href="#父组件：-1" class="headerlink" title="父组件："></a>父组件：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">          type:<span class="number">0</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> tabSwitch(index)&#123;</span><br><span class="line">     <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">          type:index</span><br><span class="line">     &#125;)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">  render()&#123;</span><br><span class="line">  	<span class="keyword">return</span> (</span><br><span class="line">       	  &lt;Tab renderFun=&#123;<span class="keyword">this</span>.tabSwitch&#125; type=&#123;<span class="keyword">this</span>.state.type&#125;  /&gt;</span><br><span class="line">  	)</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;App /&gt;,</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="子组件：-1"><a href="#子组件：-1" class="headerlink" title="子组件："></a>子组件：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Tab</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">	  <span class="keyword">super</span>(props);</span><br><span class="line">	  <span class="keyword">this</span>.state = &#123;</span><br><span class="line">	    tab:[<span class="string">'tab1'</span>,<span class="string">'tab2'</span>],</span><br><span class="line">	  &#125;;</span><br><span class="line">          <span class="keyword">this</span>.current = <span class="keyword">this</span>.props.type;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tabSwitch(index)&#123;</span><br><span class="line">	 <span class="keyword">this</span>.current = index;</span><br><span class="line">	 <span class="keyword">this</span>.props.renderFun(index);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	render()&#123;</span><br><span class="line">    <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">  	<span class="keyword">return</span> (</span><br><span class="line">       &lt;div className=<span class="string">'tab'</span>&gt;</span><br><span class="line">       	   &#123; <span class="keyword">this</span>.state.tab.map(<span class="function"><span class="keyword">function</span>(<span class="params">ele,index</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span> <span class="attr">className</span>=<span class="string">&#123;</span>'<span class="attr">tab_</span>' + <span class="attr">index</span> + ' ' + (<span class="attr">_this.current</span> == <span class="string">index</span> ? '<span class="attr">tab_active</span>'<span class="attr">:</span>'')&#125; <span class="attr">onClick</span>=<span class="string">&#123;_this.tabSwitch.bind(_this,index)&#125;</span>&gt;</span>&#123;ele&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">             &#125;)</span><br><span class="line">           &#125;</span><br><span class="line">       &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  	)</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Irwin</p>
+              <p class="site-description motion-element" itemprop="description">web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phaoer" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:phaoer@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
-<script src="https://cdn.staticfile.org/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/showdown/1.6.4/showdown.min.js"></script>
-<script src="build/vendor.bundle.js"></script>
-<script src="build/main.bundle.js"></script>

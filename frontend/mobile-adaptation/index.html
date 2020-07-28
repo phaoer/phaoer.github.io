@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="移动端,css," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 目前的移动端适配大致分为两个流派1.通过media去做不同屏幕的css hack2.Rem高清适配方案  Media123@media only screen and (min-width: 320px) and (max-width: 639px)&amp;#123;    .....&amp;#125;  缺陷 在大屏手机会觉得页面稍小，小屏手机页面稍大 如果做复杂一点的页面@media查询会非常的多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小谈移动端自适应">
+<meta property="og:url" content="https://phaoer.github.io/frontend/mobile-adaptation/index.html">
+<meta property="og:site_name" content="Phaoer">
+<meta property="og:description" content="前言 目前的移动端适配大致分为两个流派1.通过media去做不同屏幕的css hack2.Rem高清适配方案  Media123@media only screen and (min-width: 320px) and (max-width: 639px)&amp;#123;    .....&amp;#125;  缺陷 在大屏手机会觉得页面稍小，小屏手机页面稍大 如果做复杂一点的页面@media查询会非常的多">
+<meta property="article:published_time" content="2020-07-28T09:06:40.000Z">
+<meta property="article:modified_time" content="2020-07-28T11:36:35.828Z">
+<meta property="article:author" content="Irwin">
+<meta property="article:tag" content="移动端">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phaoer.github.io/frontend/mobile-adaptation/"/>
+
+
+
+
+
+  <title>小谈移动端自适应 | Phaoer</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Phaoer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/mobile-adaptation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小谈移动端自适应</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T17:06:40+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>目前的移动端适配大致分为两个流派<br>1.通过media去做不同屏幕的css hack<br>2.Rem高清适配方案</p>
+</blockquote>
+<h1 id="Media"><a href="#Media" class="headerlink" title="Media"></a>Media</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">min-width:</span> <span class="number">320px</span>) <span class="keyword">and</span> (<span class="attribute">max-width:</span> <span class="number">639px</span>)&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h3><ul>
+<li>在大屏手机会觉得页面稍小，小屏手机页面稍大</li>
+<li>如果做复杂一点的页面@media查询会非常的多</li>
+<li>Dom上的元素如果要和背景图片结合位置不好确定</li>
+</ul>
+<h1 id="Rem"><a href="#Rem" class="headerlink" title="Rem"></a>Rem</h1><p>基于Rem的适配方法，动态改变1rem的值（html font-size的值）来达到适配。这种适配方法也有两种类型，分别以网易和淘宝为例（其实差别不大）</p>
+<blockquote>
+<p>重要：在非根元素下1rem的值相当于根元素的font-size大小。rem适配的原理是等比缩放！！！一般根据宽度</p>
+</blockquote>
+<h3 id="网易流程如下："><a href="#网易流程如下：" class="headerlink" title="网易流程如下："></a>网易流程如下：</h3><ul>
+<li><p>确定基础稿，假设基础稿宽度为640px。</p>
+</li>
+<li><p>在640px的基础稿下，假设一个按钮的宽度为150px，刚才我们说了，rem适配的原理是等比缩放。那么怎么去等比，我们就借助rem这个媒介，我们还提到一般是根据宽度去做缩放，那么我们把rem的计算和宽度建立上联系不就行了？网易的做法是在计算1rem值的时候根据屏幕宽度比来计算。</p>
+</li>
+<li><p>我们设置在640px的基础稿下1rem = 100px。那么这个按钮的宽度就应该为1.5rem（为什么设置100？其实任何值都行，只是100方便与与计算）。</p>
+</li>
+<li><p>那么这个视觉稿做成的网页在其他屏幕上怎么去适配呢？我们不知道其他屏幕到底多大呀~这就是我们设置基础稿的原因。再一次强调rem的原理是等比缩放。那么在640的屏幕下1.5rem为按钮的宽度，那么当网页到了320px的屏幕下呢？根据等比缩放原则=》640/320 = 100 / 当前页面1rem的值。</p>
+</li>
+</ul>
+<h3 id="代码实现也就是："><a href="#代码实现也就是：" class="headerlink" title="代码实现也就是："></a>代码实现也就是：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.documentElement.style.fontSize = deviceWidth / <span class="number">6.4</span> + <span class="string">'px'</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这样在没个页面安装基准稿等比缩放算出来的1rem的值就能达到页面的适配</p>
+</blockquote>
+<h3 id="淘宝流程如下："><a href="#淘宝流程如下：" class="headerlink" title="淘宝流程如下："></a>淘宝流程如下：</h3><ul>
+<li><p>前期步骤和网易一样都是设置先设置基准稿</p>
+</li>
+<li><p>淘宝还考虑了dpr的影响，一般基准稿是基于iphone的，而iphone这种retina屏幕的dpr为2</p>
+</li>
+<li><p>淘宝的做法就是动态的去设置meta来缩放，以达到高清适配的目的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meta.setAttribute(<span class="string">'content'</span>,<span class="string">'initial-scale='</span>+<span class="number">1</span>/dpr +<span class="string">', maximum-scale='</span>+<span class="number">1</span>/dpr +<span class="string">', minimum-scale='</span>+<span class="number">1</span>/dpr +<span class="string">', user-scalable=no'</span>);</span><br></pre></td></tr></table></figure>
+<p>这里对页面进行了缩放，就会涉及到图片失帧的问题，所以得用2倍图3倍图写css hack解决，还有一点就是页面根据dpr做了缩放，所以在计算1rem的值的时候得乘上dpr值</p>
+</li>
+<li><p>那么这里计算rem与网易的区别就出来了，网易是在计算1rem值的时候根据屏幕宽度比来计算，而淘宝的1rem值都是屏幕宽的10份，它在计算1rem的值的时候其实是将元素宽度和屏幕宽度建立联系来计算的。所以淘宝的高清适配方案放在网易上也是可行的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dpr = <span class="built_in">window</span>.devicePixelRatio || <span class="number">1</span>, scale = <span class="number">1</span> / dpr;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> docEle = <span class="built_in">document</span>.documentElement;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> deviceWidth = docEle.clientWidth;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> metaEle = <span class="built_in">document</span>.querySelector(<span class="string">'meta[name="viewport"]'</span>);</span><br><span class="line"></span><br><span class="line">metaEle.setAttribute(<span class="string">'content'</span>, <span class="string">'width='</span> + dpr * deviceWidth + <span class="string">',initial-scale='</span> + scale + <span class="string">',maximum-scale='</span> + scale + <span class="string">', minimum-scale='</span> + scale + <span class="string">',user-scalable=no'</span>);</span><br><span class="line"></span><br><span class="line">docEle.setAttribute(<span class="string">'data-dpr'</span>, dpr);     <span class="comment">//css hack</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (deviceWidth &gt; <span class="number">750</span>) deviceWidth = <span class="number">750</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.documentElement.style.fontSize = deviceWidth * dpr / <span class="number">7.5</span> + <span class="string">'px'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接下来就是计算1rem的值，也就是 基准值（1rem=clientwidth*dpr/10。这里说过任何值都行）</p>
+</li>
+<li><p>之后布局所用到的位置单位全部用Rem代替（这就和网易的不同了。若有一个750px的div，假设我们算出来的1rem的为50，那么该div的宽度就该写为15rem）转换公式rem=px/ 基准值，这里如果你自己用这种方法的话会发现当你要将px转化为rem时，计算会很麻烦，但是前端构建的强大，less，sass能轻松解决。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" rel="tag"># 移动端</a>
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/frontend/ajax/" rel="prev" title="Ajax 跨域请求">
+                Ajax 跨域请求 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Irwin</p>
+              <p class="site-description motion-element" itemprop="description">web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phaoer" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:phaoer@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Media"><span class="nav-number">2.</span> <span class="nav-text">Media</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺陷"><span class="nav-number">2.0.1.</span> <span class="nav-text">缺陷</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rem"><span class="nav-number">3.</span> <span class="nav-text">Rem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网易流程如下："><span class="nav-number">3.0.1.</span> <span class="nav-text">网易流程如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现也就是："><span class="nav-number">3.0.2.</span> <span class="nav-text">代码实现也就是：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#淘宝流程如下："><span class="nav-number">3.0.3.</span> <span class="nav-text">淘宝流程如下：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

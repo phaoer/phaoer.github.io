@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="phaoer的个人博客" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Phaoer">
+<meta property="og:url" content="https://phaoer.github.io/page/2/index.html">
+<meta property="og:site_name" content="Phaoer">
+<meta property="og:description" content="web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。">
+<meta property="article:author" content="Irwin">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phaoer.github.io/page/2/"/>
+
+
+
+
+
+  <title>Phaoer</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Phaoer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/wx-miniprogrames-login/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/wx-miniprogrames-login/" itemprop="url">微信小程序 获取用户信息登录（PHP）详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:21:19+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">微信小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一-前端"><a href="#一-前端" class="headerlink" title="一 前端"></a>一 前端</h1><blockquote>
+<p>微信小程序以数据驱动的理念以及类jsx语法的形式，以高集成高度封装的方式开辟了H5新理念。</p>
+</blockquote>
+<h2 id="navigation传参"><a href="#navigation传参" class="headerlink" title="navigation传参"></a>navigation传参</h2><p>和一般的链接带参数一样’?data=xxx&amp;list=xxx’，参数可以在onLoad函数的回调里获得</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onLoad:<span class="function"><span class="keyword">function</span>(<span class="params">option</span>)</span>&#123;</span><br><span class="line">       <span class="comment">//console.log(option.data);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="获取属性值"><a href="#获取属性值" class="headerlink" title="获取属性值"></a>获取属性值</h2><p>由于在小程序以数据驱动作为基本理念。我们要尽量避免去操作Dom。<br>组件的属性以data-param = “xxx”的形式写入，当该组件绑定了事件处理函数bindtap（不会阻止事件冒泡）或catchtap时，如bindtap = “tapName”，可以同过该函数获取该组件的一些信息，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tapName:<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取到的返回值如下（部分省略）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    <span class="string">"target"</span>: &#123;</span><br><span class="line">    <span class="string">"id"</span>: <span class="string">"cid"</span>,</span><br><span class="line">    <span class="string">"dataset"</span>:  &#123;</span><br><span class="line">        <span class="string">"param"</span>:<span class="string">"xxx"</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;,</span><br><span class="line">    <span class="string">"currentTarget"</span>:  &#123;</span><br><span class="line">    <span class="string">"id"</span>: <span class="string">"cid"</span>,</span><br><span class="line">    <span class="string">"dataset"</span>: &#123;</span><br><span class="line">        <span class="string">"param"</span>:<span class="string">"xxx"</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line">     ........</span><br></pre></td></tr></table></figure>
+<p>这里需要注意的事，当获取某个组件的属性的值的时候，请使用event.currentTarget.dataset.param。当该事件没有阻止事件冒泡的时候，target和currentTarget（相当于this）的值是不一样的。</p>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>小程序在使用动画的时候：</p>
+<ul>
+<li>组件上写入animation属性</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;View animation=<span class="string">"&#123;&#123;move&#125;&#125;"</span>&gt;&lt;<span class="regexp">/View&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>js中创建animation实例</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">page(&#123;</span><br><span class="line">    data:&#123;</span><br><span class="line">       move:<span class="string">''</span></span><br><span class="line">     &#125;,<span class="attr">createAnimation</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">           <span class="keyword">this</span>.animation = wx.createAnimation(&#123;</span><br><span class="line">                duration: <span class="number">1000</span>,</span><br><span class="line">                timingFunction: <span class="string">'linear'</span>,</span><br><span class="line">        &#125;);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>export导出动画并传递给animation属性</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">creatAction:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">this</span>.createAnimation();</span><br><span class="line">     <span class="keyword">this</span>.animation.top(<span class="string">'50rpx'</span>).left(<span class="string">'50rpx'</span>).step();</span><br><span class="line">     <span class="comment">//step() 来表示一组动画完成</span></span><br><span class="line">     <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">         move : <span class="keyword">this</span>.animation.export();</span><br><span class="line">     &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><p>js中经常遇到显示隐藏等功能，这里有两种方法</p>
+<ul>
+<li>wx:if条件渲染<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">View</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;isShow&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">View</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>当isShow为ture是该View会被渲染<br>条件还可以if else配合使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">View</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;num&gt;1&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">View</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">View</span> <span class="attr">wx:elif</span>=<span class="string">"&#123;&#123;num&lt;1&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">View</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">View</span> <span class="attr">wx:else</span>&gt;</span><span class="tag">&lt;/<span class="name">View</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>hidden属性<br>用法相似</li>
+</ul>
+<blockquote>
+<p>如何抉择：<br>如果需要频繁切换的情景下，用 hidden ，反之则 用wx:if 。</p>
+</blockquote>
+<h1 id="二-后端（PHP）"><a href="#二-后端（PHP）" class="headerlink" title="二 后端（PHP）"></a>二 后端（PHP）</h1><h2 id="session问题"><a href="#session问题" class="headerlink" title="session问题"></a>session问题</h2><p>小程序没有cookie，所以session机制也就不适用，当遇到接口需要检测登录状态时就没办法了。<br>解决方法：<br>我们可以将sessionid下发至前端，每次请求再在head中设置好sessionid，即可解决</p>
+<h2 id="wx-getUserInfo接口改动"><a href="#wx-getUserInfo接口改动" class="headerlink" title="wx.getUserInfo接口改动"></a>wx.getUserInfo接口改动</h2><p>不再主动呼出授权框，需要前端自己引导用户授权，按钮：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">'getinfo'</span> <span class="attr">open-type</span>=<span class="string">"getUserInfo"</span> <span class="attr">bindgetuserinfo</span>=<span class="string">"goauth_info"</span> <span class="attr">binderror</span>=<span class="string">"goauth_error"</span>&gt;</span>确认授权<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="获取unionid"><a href="#获取unionid" class="headerlink" title="获取unionid"></a>获取unionid</h2><p>官方文档上说的还是比较清楚的</p>
+<ul>
+<li>1.调用接口<a href="https://developers.weixin.qq.com/miniprogram/dev/api/open.html" target="_blank" rel="noopener">wx.getUserInfo</a>，从解密数据中获取UnionID。注意本接口需要用户授权，请开发者妥善处理用户拒绝授权后的情况。</li>
+<li>2.如果开发者帐号下存在<strong>同主体的</strong>公众号，并且该用户已经关注了该公众号。开发者可以直接通过<a href="https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html" target="_blank" rel="noopener">wx.login</a>获取到该用户UnionID，无须用户再次授权。</li>
+<li>3.如果开发者帐号下存在<strong>同主体的</strong>公众号或移动应用，并且该用户已经授权登录过该公众号或移动应用。开发者也可以直接通过<a href="https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html" target="_blank" rel="noopener">wx.login</a>获取到该用户UnionID，无须用户再次授权。</li>
+</ul>
+<p>也就是说如果是2,3种情况，我们调用接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;api.weixin.qq.com&#x2F;sns&#x2F;jscode2session?appid&#x3D;APPID&amp;secret&#x3D;SECRET&amp;js_code&#x3D;&#39;.$code.&#39;&amp;grant_type&#x3D;authorization_code</span><br></pre></td></tr></table></figure>
+
+<p>可以直接拿到unionid</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"openid"</span>: <span class="string">"OPENID"</span>,</span><br><span class="line">  <span class="attr">"session_key"</span>: <span class="string">"SESSIONKEY"</span>,</span><br><span class="line">  <span class="attr">"unionid"</span>: <span class="string">"UNIONID"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是第1种情况<br>这我我们需要采用算法将<a href="https://developers.weixin.qq.com/miniprogram/dev/api/open.html" target="_blank" rel="noopener">wx.getUserInfo</a>接口获取到的私密信息encryptedData，iv和session_key传递给后端进行解密获得unionid<br>PHP写法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">"wxBizDataCrypt.php"</span>;</span><br><span class="line">$appid = <span class="string">'APPID'</span>;</span><br><span class="line">$sessionKey = $_SESSION[<span class="string">"sk"</span>];</span><br><span class="line">$encryptedData = $_POST[<span class="string">"encryptedData"</span>];</span><br><span class="line">$iv = $_POST[<span class="string">"iv"</span>];</span><br><span class="line"></span><br><span class="line">$pc = <span class="keyword">new</span> WXBizDataCrypt($appid, $sessionKey);</span><br><span class="line">$errCode = $pc-&gt;decryptData($encryptedData, $iv, $data );</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>($errCode == <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">echo</span> $data;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     <span class="keyword">echo</span> $errCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数据验证"><a href="#数据验证" class="headerlink" title="数据验证"></a>数据验证</h2><p>通常我们在使用unionid在和自己的业务关联时，都会考虑有效性。但公众号的token有效性验证接口无法用于小程序<br>不过我们可以通过<a href="https://developers.weixin.qq.com/miniprogram/dev/api/open.html" target="_blank" rel="noopener">wx.getUserInfo</a>接口获取到的参数rawData和signature传给后端，将rawData和session_key进行哈希加密，与signature进行比对来确保数据的有效性</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(hash(<span class="string">'sha1'</span>,$rawData.$session_key) === $signature)</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">echo</span>  <span class="string">'验证通过'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/react-refs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/react-refs/" itemprop="url">React之Refs</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:20:33+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Refs是什么"><a href="#Refs是什么" class="headerlink" title="Refs是什么"></a>Refs是什么</h1><blockquote>
+<p>引用官方的话：<br>Refs 提供了一种访问在 render 方法中创建的 DOM 节点或 React 元素的方式。</p>
+</blockquote>
+<h1 id="为什么需要Refs"><a href="#为什么需要Refs" class="headerlink" title="为什么需要Refs"></a>为什么需要Refs</h1><blockquote>
+<p>在常规的 React 数据流中，<a href="http://www.css88.com/docs/components-and-props.html" target="_blank" rel="noopener">props</a> 是父组件与子组件交互的唯一方式。要修改子元素，你需要用新的 props 去重新渲染子元素。然而，在少数情况下，你需要在常规数据流外强制修改子元素。被修改的子元素可以是 React 组件实例，或者是一个 DOM 元素。在这种情况下，React 提供了解决办法。</p>
+</blockquote>
+<h1 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h1><h2 id="第一种用法"><a href="#第一种用法" class="headerlink" title="第一种用法"></a>第一种用法</h2><blockquote>
+<p>String 类型的 Refs</p>
+</blockquote>
+<p>这种使用方法是老版本的用法，当然在16.4.1更新后，明确说了该种方法的Refs存在问题，所以为了不给自己埋坑，建议不要使用这种方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">       value:<span class="string">""</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">this</span>.refs.myinput.focus();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  render()&#123;</span><br><span class="line">  	<span class="keyword">var</span> str = &#123;</span><br><span class="line">  		<span class="string">"width"</span>:<span class="number">220</span>,</span><br><span class="line">  	    <span class="string">"textAlign"</span>:<span class="string">"center"</span>,</span><br><span class="line">  		<span class="string">"margin"</span>:<span class="string">"auto"</span></span><br><span class="line">  	&#125;</span><br><span class="line">  	<span class="keyword">return</span> (</span><br><span class="line">       &lt;div style=&#123;str&#125;&gt;</span><br><span class="line">       	  &lt;input type=<span class="string">"text"</span> ref=<span class="string">"myinput"</span> /&gt; </span><br><span class="line">       &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  	)</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125; </span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">    &lt;App /</span>&gt;,</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>这个例子，当在第一次渲染后，input将会获得焦点。</p>
+<h2 id="第二种用法"><a href="#第二种用法" class="headerlink" title="第二种用法"></a>第二种用法</h2><blockquote>
+<p>下面我们改写下例子，来介绍第二种用法：创建 Refs</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      text: <span class="string">'我是初始值'</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  subHandleClick()&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">text</span>: <span class="string">'我被父组件调用了，改变了内容！'</span>&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;<span class="keyword">this</span>.state.text&#125;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class Parent extends Component &#123;</span></span><br><span class="line"><span class="regexp">  constructor(props) &#123;</span></span><br><span class="line"><span class="regexp">    super(props);</span></span><br><span class="line"><span class="regexp">    this.test = React.createRef();     </span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  handleClick()&#123;</span></span><br><span class="line"><span class="regexp">    console.log(this.test.current);</span></span><br><span class="line"><span class="regexp">    this.test.current.subHandleClick();</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  render()&#123;</span></span><br><span class="line"><span class="regexp">    return(</span></span><br><span class="line"><span class="regexp">      &lt;div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;input</span></span><br><span class="line"><span class="regexp">          type="button"</span></span><br><span class="line"><span class="regexp">          value="父组件调用子组件方法"</span></span><br><span class="line"><span class="regexp">          onClick=&#123;this.handleClick.bind(this)&#125;</span></span><br><span class="line"><span class="regexp">        /</span>&gt;</span><br><span class="line">        &lt;Child ref=&#123;<span class="keyword">this</span>.test&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">  &lt;Parent/</span>&gt;, </span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>这里说明一下refs值得类型：<br>首先ref的值取决于节点的类型:</p>
+<ul>
+<li>当 ref 属性被用于一个普通的 HTML 元素时，React.createRef() 将接收底层 DOM 元素作为它的 current 属性以创建 ref </li>
+<li>当 ref 属性被用于一个自定义类组件时，ref 对象将接收该组件已挂载的实例作为它的 current 。</li>
+<li>你不能在函数式组件上使用 ref 属性，因为它们没有实例。</li>
+</ul>
+<h2 id="第三种用法"><a href="#第三种用法" class="headerlink" title="第三种用法"></a>第三种用法</h2><blockquote>
+<p>第三种：回调函数用法</p>
+</blockquote>
+<ul>
+<li>React 也支持另一种设置 ref 的方式，称为“回调 ref”，更加细致地控制何时 ref 被设置和解除。</li>
+<li>不同于传递 createRef() 创建的 ref 属性，你会传递一个函数。这个函数接受 React 组件的实例或 HTML DOM 元素作为参数，以存储它们并使它们能被其他地方访问。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomTextInput</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.textInput = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.setTextInputRef = <span class="function"><span class="params">element</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.textInput = element;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.focusTextInput = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 直接使用原生 API 使 text 输入框获得焦点</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.textInput) <span class="keyword">this</span>.textInput.focus();</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="comment">// 渲染后文本框自动获得焦点</span></span><br><span class="line">    <span class="keyword">this</span>.focusTextInput();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// 使用 `ref` 的回调将 text 输入框的 DOM 节点存储到 React</span></span><br><span class="line">    <span class="comment">// 实例上（比如 this.textInput）</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=<span class="string">"text"</span></span><br><span class="line">          ref=&#123;<span class="keyword">this</span>.setTextInputRef&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=<span class="string">"button"</span></span><br><span class="line">          value=<span class="string">"Focus the text input"</span></span><br><span class="line">          onClick=&#123;<span class="keyword">this</span>.focusTextInput&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">    &lt;CustomTextInput/</span>&gt;,</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/js-basis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/js-basis/" itemprop="url">JS基础及基本算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:19:33+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="js基础"><a href="#js基础" class="headerlink" title="js基础"></a>js基础</h1><h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>都知道JS存在三种作用域，即全局，函数，块级。其实是没有块级作用域的，但我们可以通过闭包来实现它。</p>
+</blockquote>
+<h3 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h3><blockquote>
+<p>很好理解，在函数内部声明的变量在函数调用后会销毁</p>
+</blockquote>
+<h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><p>在if，while，for等代码体用{}包括的，成为块级作用域，但是在JS中没这说法。<br>比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line">alert(i)   <span class="comment">//    9</span></span><br></pre></td></tr></table></figure>
+<p>问题出来了，按理说正常情况是控制台输出0~9，弹出undefined，但是alert出来的却是9，</p>
+<blockquote>
+<p>那这足以说明咱们的JS是不存在块级作用域的，块里面的变量是被挂载在window上的。</p>
+</blockquote>
+<p>那么这会引发一个问题，看下面代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrs=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    arrs[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">arrs[<span class="number">0</span>]   <span class="comment">//   9</span></span><br><span class="line">arrs[<span class="number">1</span>]   <span class="comment">//   9</span></span><br><span class="line"><span class="comment">//..........</span></span><br></pre></td></tr></table></figure>
+
+<p>这里你不管执行 第几个函数都是打印9，原因有两个，第一因为JS中不存在块级作用域，i的声明是挂载在window上的，再一个，函数在执行的时候获取到的i为循环最后一次+1的i，所以恒定为9。<br>解决办法：利用闭包虚构一个块级作用域，并将i的值传入。</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><ul>
+<li>函数的传参是传入的复制值</li>
+<li>闭包其实就是能获取到函数内部变量的函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">var</span> n = <span class="number">999</span>;</span><br><span class="line">          a2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                n++;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a1());    <span class="comment">//   999</span></span><br><span class="line">a2();</span><br><span class="line"><span class="built_in">console</span>.log(a1());    <span class="comment">// 1000</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="闭包的两个主要作用："><a href="#闭包的两个主要作用：" class="headerlink" title="闭包的两个主要作用："></a>闭包的两个主要作用：</h3><ul>
+<li>获取函数内部的变量</li>
+<li>使函数内部的变量不被回收<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrs=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">        arrs[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)(i)  <span class="comment">//将循环的i的值传入</span></span><br><span class="line">&#125;</span><br><span class="line">arrs[<span class="number">0</span>]   <span class="comment">//   0</span></span><br><span class="line">arrs[<span class="number">1</span>]   <span class="comment">//   1</span></span><br><span class="line"><span class="comment">//..........</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>此时当函数执行的时候会拿到这个立即执行函数的i的值，而立即执行函数的值是for循环传入的，所以就能正常输出0~9。</p>
+<h2 id="JavaScript数据类型"><a href="#JavaScript数据类型" class="headerlink" title="JavaScript数据类型"></a>JavaScript数据类型</h2><blockquote>
+<p>分为基本类型和引用类型<br>值类型(基本类型)：<br>字符串（String）、数字(Number)、布尔(Boolean)、空（Null）、未定义（Undefined）、Symbol<br>引用数据类型：<br>对象(Object)、数组(Array)、函数(Function)</p>
+</blockquote>
+<p>判断数据类型的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [];</span><br></pre></td></tr></table></figure>
+
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> arr)   <span class="comment">// object    对于复杂类型的对象只能返回object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>)   <span class="comment">// object</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>)   <span class="comment">// true    可以判断变量的引用类型</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a>Object.prototype.toString.call()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.toString.call(arr) == <span class="string">"[object Array]"</span>;     <span class="comment">//基本类型和引用类型都可以得到</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="undefined和null的区别"><a href="#undefined和null的区别" class="headerlink" title="undefined和null的区别"></a>undefined和null的区别</h2><p>null表示”没有对象”，即该处不应该有值。典型用法是：</p>
+<ul>
+<li>作为函数的参数，表示该函数的参数不是对象。</li>
+<li>作为对象原型链的终点。    </li>
+<li>释放内存</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="built_in">Object</span>.prototype)    <span class="comment">// null</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">41</span>,<span class="number">54</span>,] </span><br><span class="line">arr = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<p>undefined表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是：</p>
+<ul>
+<li>变量被声明了，但没有赋值时，就等于undefined。</li>
+<li>调用函数时，应该提供的参数没有提供，该参数等于undefined。</li>
+<li>对象没有赋值的属性，该属性的值为undefined。</li>
+<li>函数没有返回值时，默认返回undefined。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">undefined</span>);  <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>);  <span class="comment">//object</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="literal">undefined</span>));<span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="number">10</span>+<span class="literal">undefined</span>));<span class="comment">//NaN</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="literal">null</span>));<span class="comment">//0</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="number">10</span>+<span class="literal">null</span>));<span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Boolean与条件判断"><a href="#Boolean与条件判断" class="headerlink" title="Boolean与条件判断"></a>Boolean与条件判断</h2><blockquote>
+<p>首先明白两点</p>
+</blockquote>
+<ul>
+<li>只有false，””，0，null，NaN，undefined会被转换成false。</li>
+<li>任何类型的数据在与布尔值比较时都会被转换为number类型。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="literal">false</span>));  <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="string">"false"</span>));  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>其实我们的if语句的条件没有运算符的情况下就是执行了Boolean操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(x)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">Boolean</span>(x))</span><br></pre></td></tr></table></figure>
+
+<p>那么能看懂下面的东西就对这块掌握的比较好了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>([]));      <span class="comment">//0</span></span><br><span class="line"><span class="built_in">console</span>.log([] ? <span class="literal">true</span> : <span class="literal">false</span>);   <span class="comment">//true     if语句同等效果</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(&#123;&#125;));      <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; ? <span class="literal">true</span> : <span class="literal">false</span>);   <span class="comment">//true     if语句同等效果</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="literal">false</span>);    <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; == <span class="literal">false</span>);    <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h2><blockquote>
+<p>Symbol是由ES6规范引入的一项新特性，它的功能类似于一种标识唯一性的ID<br>创建方式:<br>Symbol()</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="built_in">Symbol</span>(<span class="string">'username'</span>)</span><br></pre></td></tr></table></figure>
+<p>特性一：每一次创建的Symbol都是唯一的，就算描述一致</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>(<span class="string">"username"</span>) === <span class="built_in">Symbol</span>(<span class="string">"username"</span>));   <span class="comment">//  false</span></span><br></pre></td></tr></table></figure>
+
+<p>特性二：可以作为对象的属性，只能以[]方式访问</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="built_in">Symbol</span>(<span class="string">'username'</span>);   </span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">   [name]: <span class="string">'张三'</span>,  </span><br><span class="line">   age: <span class="number">18</span>,</span><br><span class="line">   sex: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">   age: <span class="number">18</span>,</span><br><span class="line">   sex: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line">obj[name] = <span class="string">'张三'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj[name]);   <span class="comment">//张三</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.name);   <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>特性三：可以被外部访问，但不能被枚举</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="built_in">Symbol</span>(<span class="string">'username'</span>);   </span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">   [name]: <span class="string">'张三'</span>,  </span><br><span class="line">   age: <span class="number">18</span>,</span><br><span class="line">   sex: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj[name]);   <span class="comment">//Symbol只能以[]方式访问</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj)   <span class="comment">//  返回一个由obj所有自身属性的属性名（不包括不可枚举属性也不包括Symbol值作为名称的属性）组成的数组   ['age', 'sex'] </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> p <span class="keyword">in</span> obj) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(p)   <span class="comment">// 分别会输出：'age' 和 'sex'</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj)   <span class="comment">// 返回一个由obj所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组    ['age', 'sex']</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertySymbols(obj))   <span class="comment">//   [Symbol(username)]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Reflect</span>.ownKeys(obj) <span class="comment">// 返回一个由obj所有自身属性的属性名（包括不可枚举属性和Symbol值作为名称的属性）组成的数组 [Symbol(username), 'age', 'title']</span></span><br></pre></td></tr></table></figure>
+
+<p>全局Symbol，使用Symbol.for可以保证创建的symbol唯一</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.for(<span class="string">"username"</span>) === <span class="built_in">Symbol</span>.for(<span class="string">"username"</span>));   <span class="comment">//  true</span></span><br></pre></td></tr></table></figure>
+<h2 id="Bind函数"><a href="#Bind函数" class="headerlink" title="Bind函数"></a>Bind函数</h2><p>下面是MDN的bind函数实现，这里对下面的一些写法进行剖析。</p>
+<blockquote>
+<p>bind做了什么？</p>
+</blockquote>
+<ul>
+<li>调用bind，就会返回一个新的函数。</li>
+<li>新的函数里面的this就指向bind的第一个参数，同时this后面的参数会提前传给这个新的函数。调用该新的函数时，再传递的参数会放到预置的参数后一起传递进新函数。</li>
+</ul>
+<p>实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) &#123;</span><br><span class="line">		<span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span> (<span class="params">oThis</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">'function'</span>) &#123;</span><br><span class="line">				<span class="comment">// closest thing possible to the ECMAScript 5</span></span><br><span class="line">				<span class="comment">// internal IsCallable function</span></span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Function.prototype.bind - what is trying to be bound is not callable'</span>);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> aArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>),</span><br><span class="line">				fToBind = <span class="keyword">this</span>,</span><br><span class="line">				fNOP = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">				fBound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">					<span class="comment">// this instanceof fBound === true时,说明返回的fBound被当做new的构造函数调用</span></span><br><span class="line">					<span class="keyword">return</span> fToBind.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> fBound ?</span><br><span class="line">						<span class="keyword">this</span> :</span><br><span class="line">						oThis,</span><br><span class="line">						<span class="comment">// 获取调用时(fBound)的传参.bind 返回的函数入参往往是这么传递的</span></span><br><span class="line">						aArgs.concat(<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)));</span><br><span class="line">				&#125;;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// 维护原型关系</span></span><br><span class="line">			<span class="keyword">if</span> (<span class="keyword">this</span>.prototype) &#123;</span><br><span class="line">				<span class="comment">// Function.prototype doesn't have a prototype property</span></span><br><span class="line">				fNOP.prototype = <span class="keyword">this</span>.prototype;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 下行的代码使fBound.prototype是fNOP的实例,因此</span></span><br><span class="line">			<span class="comment">// 返回的fBound若作为new的构造函数,new生成的新对象作为this传入fBound,新对象的__proto__就是fNOP的实例</span></span><br><span class="line">			fBound.prototype = <span class="keyword">new</span> fNOP();</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> fBound;</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Array.prototype.slice.call(arguments, 1)</p>
+<blockquote>
+<p>我们都知道arguments是一个类数组对象，所以这里调用数组的slice方法给arguments使用。因为arguments能像访问数组的形式进行访问（arguments[0]），且具有length属性，因此我们可以得到返回的一个有length长度的数组。<br>后面传入参数1，是slice(start, end)中的一个参数start，表示从arguments的小标为1，即第二个参数开始切割。 这里是将bind函数的参数数组取出来，第一个参数不要（就是不要oThis）也就是要被绑定方法的那个对象</p>
+</blockquote>
+</li>
+<li><p>fNOP和fBound函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设bind过程如下</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">this</span>.name = <span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = a.bind(oThis);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>正常调用bind函数<br>返回一个新函数，该函数的this指向调用bind方法的一个参数。即代码里的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bind函数内部解析</span></span><br><span class="line">fToBind = <span class="keyword">this</span>;   <span class="comment">//这里的this就是a;</span></span><br><span class="line">fToBind.apply(oThis,........................)  <span class="comment">//这里便是将oThis替换a函数的this;</span></span><br><span class="line"><span class="keyword">return</span> fBound;    <span class="comment">//即b的this便是指向oThis;</span></span><br></pre></td></tr></table></figure>
+<p>到这里正常调用bind并传参就完成了</p>
+</li>
+<li><p>bind返回的函数作为构造函数的情况。首先我们得理解new做了什么，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> fun();</span><br><span class="line"><span class="comment">//实际操作</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.__proto__ = Foo.prototype;</span><br><span class="line">fun.call(o);</span><br></pre></td></tr></table></figure>
+<p>这里可以看到，当fun被当做构造函数执行时，fun的this指向的是o，且o可以访问fun的原型的属性。</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fNOP = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; ;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">this</span>.prototype) &#123;</span><br><span class="line">  <span class="comment">// 规避Function.prototype没有prototype属性</span></span><br><span class="line">  fNOP.prototype = <span class="keyword">this</span>.prototype;    <span class="comment">// 构造新函数，将a函数的prototype做一个中转防止原型链污染</span></span><br><span class="line">&#125;</span><br><span class="line">fBound.prototype = <span class="keyword">new</span> fNOP();</span><br></pre></td></tr></table></figure>
+<p>这样便兼容了新函数作为构造函数的情况。<br>这里有一个疑问，为什么新函数的要继承a函数的原型，以下是mdn的解释：</p>
+<blockquote>
+<p>bind() 函数会创建一个新绑定函数（bound function，BF）。绑定函数是一个exotic function object（怪异函数对象，ECMAScript 2015中的术语），它包装了原函数对象。调用绑定函数通常会导致执行包装函数。</p>
+</blockquote>
+<h2 id="基本算法"><a href="#基本算法" class="headerlink" title="基本算法"></a>基本算法</h2><h3 id="冒泡算法"><a href="#冒泡算法" class="headerlink" title="冒泡算法"></a>冒泡算法</h3><blockquote>
+<p>作为经典入门算法之一，因为其每轮的比较都会确认一个最大（最小）的数，就像冒出来一样而得名。</p>
+</blockquote>
+<h4 id="设计思路："><a href="#设计思路：" class="headerlink" title="设计思路："></a>设计思路：</h4><ul>
+<li>确定程序执行次数</li>
+<li>两两比较，按照规定交换位置</li>
+</ul>
+<h4 id="程序实现"><a href="#程序实现" class="headerlink" title="程序实现"></a>程序实现</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">10</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">25</span>,<span class="number">1000</span>,<span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>,len=arr.length;i&lt;len<span class="number">-1</span>;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>;j&lt;len<span class="number">-1</span>-i;j++) &#123; </span><br><span class="line">          <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">let</span> tem = arr[j];</span><br><span class="line">                arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">                arr[j+<span class="number">1</span>] = tem;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort(arr))  <span class="comment">//[1, 5, 6, 10, 25, 1000]</span></span><br></pre></td></tr></table></figure>
+
+<p>按照上面的数组来说就是<br>第一轮…….<br>第一次：10和5比较，交互位置，此时数组为[5,10,6,25,1000,1]<br>第二次：10和6比较，交换位置，此时数组为[5,6,10,25,1000,1]<br>…………………………………………..<br>第length-1次：此时数组为[5,6,10,25,1,1000]<br>可以看到我们已经确定了一个最大数1000，那么接下来就将[5,6,10,25,1]继续执行第二轮<br>第二轮…….<br>第length-1轮…….得到最终排好序的数组</p>
+<p>冒泡算法效率低，我们在此基础上尽量的去优化其效率<br>重点解释两个地方</p>
+<h5 id="外层循环次数length-1"><a href="#外层循环次数length-1" class="headerlink" title="外层循环次数length-1"></a>外层循环次数length-1</h5><ul>
+<li>按照我们的算法设计逻辑，因为每一次都会有一个数被确定，所以当执行了l-1轮，就剩最后一个数。自然是最小（最大）的，所以无需再执行<h5 id="内层循环次数length-1-i"><a href="#内层循环次数length-1-i" class="headerlink" title="内层循环次数length-1-i"></a>内层循环次数length-1-i</h5></li>
+<li>首先一个数组两两比较需要的次数为length-1次，上面我们说到每轮都会确定一个数，那么确定的数无需进行比较所以再-i</li>
+</ul>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><blockquote>
+<p>类似与冒泡，不同的是每轮确定一个最小（最大）的数，再将其依次安放</p>
+</blockquote>
+<h4 id="程序实现-1"><a href="#程序实现-1" class="headerlink" title="程序实现"></a>程序实现</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">10</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">25</span>,<span class="number">1000</span>,<span class="number">1</span>];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> len = arr.length;</span><br><span class="line">      <span class="keyword">let</span> minIndex, temp;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        minIndex = i;   <span class="comment">//当前位置设置为最小</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (arr[j] &lt; arr[minIndex]) &#123;      <span class="comment">//检查其他位置上有无比设定的最小位置更小的</span></span><br><span class="line">            minIndex = j;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(minIndex != i)&#123;     <span class="comment">//当前位置不是最小值就交换</span></span><br><span class="line">            temp = arr[i];</span><br><span class="line">            arr[i] = arr[minIndex];</span><br><span class="line">            arr[minIndex] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(selectSort(arr))  <span class="comment">//[1, 5, 6, 10, 25, 1000]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><blockquote>
+<p>确定一个中间值，和其他元素进行比较，小的放左边数组，大的放右边数组。再递归左边的数组和右边的数组，最后合并</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">10</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">25</span>,<span class="number">1000</span>,<span class="number">1</span>];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(arr.length &lt;=<span class="number">1</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> arr;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> c = arr[<span class="number">0</span>],leftArr=[],rightArr=[];</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">          <span class="keyword">if</span>(arr[i] &gt; c)&#123;</span><br><span class="line">            rightArr.push(arr[i]);</span><br><span class="line">          &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            leftArr.push(arr[i]);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> [].concat(quickSort(leftArr),c,quickSort(rightArr));</span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(quickSort(arr))  <span class="comment">//[1, 5, 6, 10, 25, 1000]</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/ajax/" itemprop="url">Ajax 跨域请求</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T17:19:41+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/jquery/" itemprop="url" rel="index">
+                    <span itemprop="name">jquery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>如今大都要用到跨域的方法请求数据，网上的方法也是各式各样，这里我重点介绍两种不同的跨域形式。</p>
+</blockquote>
+<h2 id="跨域请求接口"><a href="#跨域请求接口" class="headerlink" title="跨域请求接口"></a>跨域请求接口</h2><blockquote>
+<p>主要介绍两种jquery的方式</p>
+</blockquote>
+<h3 id="getJSON"><a href="#getJSON" class="headerlink" title="$.getJSON"></a>$.getJSON</h3><blockquote>
+<p>此方法简单粗暴，如果你对ajax还算了解，推荐使用此方法，一步搞定。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.getJSON(<span class="string">"http://xxxxxxxxxxx/xxxxxxxx/xxxxxx/list?callback=?"</span>,<span class="string">"name=zhangsan&amp;id=10"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">json</span>)</span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这个方法jquery会自动判断是否跨域，如果跨域，则jquery会以jQuery1345xxxxxxxxxxx的形式自动填充callback，后端获取到这一串名，直接执行，你在回调函数就能收到后端返回的数据</p>
+<blockquote>
+<p>第二个部分传递的data可以按照官方格式（也就是name=xx&amp;id=xx）来传递，也可以以json形势传递。</p>
+</blockquote>
+<h3 id="ajax"><a href="#ajax" class="headerlink" title="$.ajax"></a>$.ajax</h3><blockquote>
+<p>这个方法为什么放到第二个来说？主要是涉及到的几个参数需要与第一种方法对比解释：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">      url:<span class="string">"http://xxxxxxxxxxxxxxx"</span>,</span><br><span class="line">      type:<span class="string">"get"</span>,    <span class="comment">//必须是get，jsonp跨域只支持get方法。</span></span><br><span class="line">      datatype:<span class="string">"jsonp"</span>,</span><br><span class="line">      jsonp:<span class="string">"callback"</span>, <span class="comment">//这个jsonp是什么意思？看到第一种方法的callback没？如果你不设置jsonp，那么默认回调函数参数名就是callback，但是最好别改，因为这是向服务器发送请求的函数参数名，服务端拿到该参数的值value后以"value(&#123;\"userid\":0,\"username\":\"null\"&#125;)"的形式返回给客户端数据</span></span><br><span class="line">      jsonpcallback:<span class="string">"mycallback"</span>,<span class="comment">//这里的jsonpcallback就是回调函数名，我在第一种方法中说道过，使用getJSON时，回调函数的名字由query自动填充，如果设置了就是按照你的名字返回。即可以在success方法外调用该函数获得返回值</span></span><br><span class="line">      success:<span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;    </span><br><span class="line">        <span class="comment">//do something   </span></span><br><span class="line">         &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="跨域请求文件"><a href="#跨域请求文件" class="headerlink" title="跨域请求文件"></a>跨域请求文件</h2><blockquote>
+<p>有些时候我们可能需要跨域请求一些文件，那么这个时候就没有后端的童鞋给你合作，显然我们jQuery请求接口的方式不起作用了。那么这个时候就需要用到咱们jsonp跨域的的原理了。</p>
+</blockquote>
+<h3 id="jsonp本质"><a href="#jsonp本质" class="headerlink" title="jsonp本质"></a>jsonp本质</h3><blockquote>
+<p>是通过script标签请求数据，然后返回的数据再用一个函数来包装。</p>
+</blockquote>
+<h3 id="jsonp原理"><a href="#jsonp原理" class="headerlink" title="jsonp原理"></a>jsonp原理</h3><blockquote>
+<p>因为咱们的src是没有跨域的限制的，所以我们通过script标签跨域请求资源的原理来间接的请求数据。</p>
+</blockquote>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">title</span>&gt;</span>Jsonp Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">getData</span><span class="params">(data)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(data.name);</span></span><br><span class="line">        &#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"test.json"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里我们定义了一个getData的方法，来获取咱们src读取的资源，相当于请求成功的回调函数。</p>
+</blockquote>
+<h3 id="test-json-Code"><a href="#test-json-Code" class="headerlink" title="test.json Code"></a>test.json Code</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getData(&#123;<span class="string">"name"</span>:<span class="string">"pwh"</span>,<span class="string">"sex"</span>:<span class="string">"23"</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里咱们用getData把数据包装起来，齐活儿！<br>执行上述代码，即可实现咱们利用jsonp原理请求文件！</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/mobile-adaptation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/mobile-adaptation/" itemprop="url">小谈移动端自适应</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T17:06:40+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>目前的移动端适配大致分为两个流派<br>1.通过media去做不同屏幕的css hack<br>2.Rem高清适配方案</p>
+</blockquote>
+<h1 id="Media"><a href="#Media" class="headerlink" title="Media"></a>Media</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">min-width:</span> <span class="number">320px</span>) <span class="keyword">and</span> (<span class="attribute">max-width:</span> <span class="number">639px</span>)&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h3><ul>
+<li>在大屏手机会觉得页面稍小，小屏手机页面稍大</li>
+<li>如果做复杂一点的页面@media查询会非常的多</li>
+<li>Dom上的元素如果要和背景图片结合位置不好确定</li>
+</ul>
+<h1 id="Rem"><a href="#Rem" class="headerlink" title="Rem"></a>Rem</h1><p>基于Rem的适配方法，动态改变1rem的值（html font-size的值）来达到适配。这种适配方法也有两种类型，分别以网易和淘宝为例（其实差别不大）</p>
+<blockquote>
+<p>重要：在非根元素下1rem的值相当于根元素的font-size大小。rem适配的原理是等比缩放！！！一般根据宽度</p>
+</blockquote>
+<h3 id="网易流程如下："><a href="#网易流程如下：" class="headerlink" title="网易流程如下："></a>网易流程如下：</h3><ul>
+<li><p>确定基础稿，假设基础稿宽度为640px。</p>
+</li>
+<li><p>在640px的基础稿下，假设一个按钮的宽度为150px，刚才我们说了，rem适配的原理是等比缩放。那么怎么去等比，我们就借助rem这个媒介，我们还提到一般是根据宽度去做缩放，那么我们把rem的计算和宽度建立上联系不就行了？网易的做法是在计算1rem值的时候根据屏幕宽度比来计算。</p>
+</li>
+<li><p>我们设置在640px的基础稿下1rem = 100px。那么这个按钮的宽度就应该为1.5rem（为什么设置100？其实任何值都行，只是100方便与与计算）。</p>
+</li>
+<li><p>那么这个视觉稿做成的网页在其他屏幕上怎么去适配呢？我们不知道其他屏幕到底多大呀~这就是我们设置基础稿的原因。再一次强调rem的原理是等比缩放。那么在640的屏幕下1.5rem为按钮的宽度，那么当网页到了320px的屏幕下呢？根据等比缩放原则=》640/320 = 100 / 当前页面1rem的值。</p>
+</li>
+</ul>
+<h3 id="代码实现也就是："><a href="#代码实现也就是：" class="headerlink" title="代码实现也就是："></a>代码实现也就是：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.documentElement.style.fontSize = deviceWidth / <span class="number">6.4</span> + <span class="string">'px'</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这样在没个页面安装基准稿等比缩放算出来的1rem的值就能达到页面的适配</p>
+</blockquote>
+<h3 id="淘宝流程如下："><a href="#淘宝流程如下：" class="headerlink" title="淘宝流程如下："></a>淘宝流程如下：</h3><ul>
+<li><p>前期步骤和网易一样都是设置先设置基准稿</p>
+</li>
+<li><p>淘宝还考虑了dpr的影响，一般基准稿是基于iphone的，而iphone这种retina屏幕的dpr为2</p>
+</li>
+<li><p>淘宝的做法就是动态的去设置meta来缩放，以达到高清适配的目的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meta.setAttribute(<span class="string">'content'</span>,<span class="string">'initial-scale='</span>+<span class="number">1</span>/dpr +<span class="string">', maximum-scale='</span>+<span class="number">1</span>/dpr +<span class="string">', minimum-scale='</span>+<span class="number">1</span>/dpr +<span class="string">', user-scalable=no'</span>);</span><br></pre></td></tr></table></figure>
+<p>这里对页面进行了缩放，就会涉及到图片失帧的问题，所以得用2倍图3倍图写css hack解决，还有一点就是页面根据dpr做了缩放，所以在计算1rem的值的时候得乘上dpr值</p>
+</li>
+<li><p>那么这里计算rem与网易的区别就出来了，网易是在计算1rem值的时候根据屏幕宽度比来计算，而淘宝的1rem值都是屏幕宽的10份，它在计算1rem的值的时候其实是将元素宽度和屏幕宽度建立联系来计算的。所以淘宝的高清适配方案放在网易上也是可行的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dpr = <span class="built_in">window</span>.devicePixelRatio || <span class="number">1</span>, scale = <span class="number">1</span> / dpr;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> docEle = <span class="built_in">document</span>.documentElement;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> deviceWidth = docEle.clientWidth;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> metaEle = <span class="built_in">document</span>.querySelector(<span class="string">'meta[name="viewport"]'</span>);</span><br><span class="line"></span><br><span class="line">metaEle.setAttribute(<span class="string">'content'</span>, <span class="string">'width='</span> + dpr * deviceWidth + <span class="string">',initial-scale='</span> + scale + <span class="string">',maximum-scale='</span> + scale + <span class="string">', minimum-scale='</span> + scale + <span class="string">',user-scalable=no'</span>);</span><br><span class="line"></span><br><span class="line">docEle.setAttribute(<span class="string">'data-dpr'</span>, dpr);     <span class="comment">//css hack</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (deviceWidth &gt; <span class="number">750</span>) deviceWidth = <span class="number">750</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.documentElement.style.fontSize = deviceWidth * dpr / <span class="number">7.5</span> + <span class="string">'px'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接下来就是计算1rem的值，也就是 基准值（1rem=clientwidth*dpr/10。这里说过任何值都行）</p>
+</li>
+<li><p>之后布局所用到的位置单位全部用Rem代替（这就和网易的不同了。若有一个750px的div，假设我们算出来的1rem的为50，那么该div的宽度就该写为15rem）转换公式rem=px/ 基准值，这里如果你自己用这种方法的话会发现当你要将px转化为rem时，计算会很麻烦，但是前端构建的强大，less，sass能轻松解决。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Irwin</p>
+              <p class="site-description motion-element" itemprop="description">web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phaoer" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:phaoer@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="js基础作用域前言 都知道JS存在三种作用域，即全局，函数，块级。其实是没有块级作用域的，但我们可以通过闭包来实现它。  函数作用域 很好理解，在函数内部声明的变量在函数调用后会销毁  块级作用域在if，while，for等代码体用{}包括的，成为块级作用域，但是在JS中没这说法。比如 1234for(var i&#x3D;0;i&lt;10;i++)&amp;#123;    console.log(i);&amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS基础及基本算法">
+<meta property="og:url" content="https://phaoer.github.io/frontend/js-basis/index.html">
+<meta property="og:site_name" content="Phaoer">
+<meta property="og:description" content="js基础作用域前言 都知道JS存在三种作用域，即全局，函数，块级。其实是没有块级作用域的，但我们可以通过闭包来实现它。  函数作用域 很好理解，在函数内部声明的变量在函数调用后会销毁  块级作用域在if，while，for等代码体用{}包括的，成为块级作用域，但是在JS中没这说法。比如 1234for(var i&#x3D;0;i&lt;10;i++)&amp;#123;    console.log(i);&amp;#1">
+<meta property="article:published_time" content="2020-07-28T10:19:33.000Z">
+<meta property="article:modified_time" content="2020-07-28T11:36:55.745Z">
+<meta property="article:author" content="Irwin">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phaoer.github.io/frontend/js-basis/"/>
+
+
+
+
+
+  <title>JS基础及基本算法 | Phaoer</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Phaoer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/js-basis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS基础及基本算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:19:33+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="js基础"><a href="#js基础" class="headerlink" title="js基础"></a>js基础</h1><h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>都知道JS存在三种作用域，即全局，函数，块级。其实是没有块级作用域的，但我们可以通过闭包来实现它。</p>
+</blockquote>
+<h3 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h3><blockquote>
+<p>很好理解，在函数内部声明的变量在函数调用后会销毁</p>
+</blockquote>
+<h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><p>在if，while，for等代码体用{}包括的，成为块级作用域，但是在JS中没这说法。<br>比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line">alert(i)   <span class="comment">//    9</span></span><br></pre></td></tr></table></figure>
+<p>问题出来了，按理说正常情况是控制台输出0~9，弹出undefined，但是alert出来的却是9，</p>
+<blockquote>
+<p>那这足以说明咱们的JS是不存在块级作用域的，块里面的变量是被挂载在window上的。</p>
+</blockquote>
+<p>那么这会引发一个问题，看下面代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrs=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    arrs[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">arrs[<span class="number">0</span>]   <span class="comment">//   9</span></span><br><span class="line">arrs[<span class="number">1</span>]   <span class="comment">//   9</span></span><br><span class="line"><span class="comment">//..........</span></span><br></pre></td></tr></table></figure>
+
+<p>这里你不管执行 第几个函数都是打印9，原因有两个，第一因为JS中不存在块级作用域，i的声明是挂载在window上的，再一个，函数在执行的时候获取到的i为循环最后一次+1的i，所以恒定为9。<br>解决办法：利用闭包虚构一个块级作用域，并将i的值传入。</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><ul>
+<li>函数的传参是传入的复制值</li>
+<li>闭包其实就是能获取到函数内部变量的函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">var</span> n = <span class="number">999</span>;</span><br><span class="line">          a2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                n++;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a1());    <span class="comment">//   999</span></span><br><span class="line">a2();</span><br><span class="line"><span class="built_in">console</span>.log(a1());    <span class="comment">// 1000</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="闭包的两个主要作用："><a href="#闭包的两个主要作用：" class="headerlink" title="闭包的两个主要作用："></a>闭包的两个主要作用：</h3><ul>
+<li>获取函数内部的变量</li>
+<li>使函数内部的变量不被回收<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrs=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">        arrs[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)(i)  <span class="comment">//将循环的i的值传入</span></span><br><span class="line">&#125;</span><br><span class="line">arrs[<span class="number">0</span>]   <span class="comment">//   0</span></span><br><span class="line">arrs[<span class="number">1</span>]   <span class="comment">//   1</span></span><br><span class="line"><span class="comment">//..........</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>此时当函数执行的时候会拿到这个立即执行函数的i的值，而立即执行函数的值是for循环传入的，所以就能正常输出0~9。</p>
+<h2 id="JavaScript数据类型"><a href="#JavaScript数据类型" class="headerlink" title="JavaScript数据类型"></a>JavaScript数据类型</h2><blockquote>
+<p>分为基本类型和引用类型<br>值类型(基本类型)：<br>字符串（String）、数字(Number)、布尔(Boolean)、空（Null）、未定义（Undefined）、Symbol<br>引用数据类型：<br>对象(Object)、数组(Array)、函数(Function)</p>
+</blockquote>
+<p>判断数据类型的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [];</span><br></pre></td></tr></table></figure>
+
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> arr)   <span class="comment">// object    对于复杂类型的对象只能返回object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>)   <span class="comment">// object</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>)   <span class="comment">// true    可以判断变量的引用类型</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a>Object.prototype.toString.call()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.toString.call(arr) == <span class="string">"[object Array]"</span>;     <span class="comment">//基本类型和引用类型都可以得到</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="undefined和null的区别"><a href="#undefined和null的区别" class="headerlink" title="undefined和null的区别"></a>undefined和null的区别</h2><p>null表示”没有对象”，即该处不应该有值。典型用法是：</p>
+<ul>
+<li>作为函数的参数，表示该函数的参数不是对象。</li>
+<li>作为对象原型链的终点。    </li>
+<li>释放内存</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="built_in">Object</span>.prototype)    <span class="comment">// null</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">41</span>,<span class="number">54</span>,] </span><br><span class="line">arr = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<p>undefined表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是：</p>
+<ul>
+<li>变量被声明了，但没有赋值时，就等于undefined。</li>
+<li>调用函数时，应该提供的参数没有提供，该参数等于undefined。</li>
+<li>对象没有赋值的属性，该属性的值为undefined。</li>
+<li>函数没有返回值时，默认返回undefined。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">undefined</span>);  <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>);  <span class="comment">//object</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="literal">undefined</span>));<span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="number">10</span>+<span class="literal">undefined</span>));<span class="comment">//NaN</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="literal">null</span>));<span class="comment">//0</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="number">10</span>+<span class="literal">null</span>));<span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Boolean与条件判断"><a href="#Boolean与条件判断" class="headerlink" title="Boolean与条件判断"></a>Boolean与条件判断</h2><blockquote>
+<p>首先明白两点</p>
+</blockquote>
+<ul>
+<li>只有false，””，0，null，NaN，undefined会被转换成false。</li>
+<li>任何类型的数据在与布尔值比较时都会被转换为number类型。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="literal">false</span>));  <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="string">"false"</span>));  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>其实我们的if语句的条件没有运算符的情况下就是执行了Boolean操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(x)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">Boolean</span>(x))</span><br></pre></td></tr></table></figure>
+
+<p>那么能看懂下面的东西就对这块掌握的比较好了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>([]));      <span class="comment">//0</span></span><br><span class="line"><span class="built_in">console</span>.log([] ? <span class="literal">true</span> : <span class="literal">false</span>);   <span class="comment">//true     if语句同等效果</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(&#123;&#125;));      <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; ? <span class="literal">true</span> : <span class="literal">false</span>);   <span class="comment">//true     if语句同等效果</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="literal">false</span>);    <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; == <span class="literal">false</span>);    <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h2><blockquote>
+<p>Symbol是由ES6规范引入的一项新特性，它的功能类似于一种标识唯一性的ID<br>创建方式:<br>Symbol()</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="built_in">Symbol</span>(<span class="string">'username'</span>)</span><br></pre></td></tr></table></figure>
+<p>特性一：每一次创建的Symbol都是唯一的，就算描述一致</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>(<span class="string">"username"</span>) === <span class="built_in">Symbol</span>(<span class="string">"username"</span>));   <span class="comment">//  false</span></span><br></pre></td></tr></table></figure>
+
+<p>特性二：可以作为对象的属性，只能以[]方式访问</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="built_in">Symbol</span>(<span class="string">'username'</span>);   </span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">   [name]: <span class="string">'张三'</span>,  </span><br><span class="line">   age: <span class="number">18</span>,</span><br><span class="line">   sex: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">   age: <span class="number">18</span>,</span><br><span class="line">   sex: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line">obj[name] = <span class="string">'张三'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj[name]);   <span class="comment">//张三</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.name);   <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>特性三：可以被外部访问，但不能被枚举</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="built_in">Symbol</span>(<span class="string">'username'</span>);   </span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">   [name]: <span class="string">'张三'</span>,  </span><br><span class="line">   age: <span class="number">18</span>,</span><br><span class="line">   sex: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj[name]);   <span class="comment">//Symbol只能以[]方式访问</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj)   <span class="comment">//  返回一个由obj所有自身属性的属性名（不包括不可枚举属性也不包括Symbol值作为名称的属性）组成的数组   ['age', 'sex'] </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> p <span class="keyword">in</span> obj) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(p)   <span class="comment">// 分别会输出：'age' 和 'sex'</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj)   <span class="comment">// 返回一个由obj所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组    ['age', 'sex']</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertySymbols(obj))   <span class="comment">//   [Symbol(username)]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Reflect</span>.ownKeys(obj) <span class="comment">// 返回一个由obj所有自身属性的属性名（包括不可枚举属性和Symbol值作为名称的属性）组成的数组 [Symbol(username), 'age', 'title']</span></span><br></pre></td></tr></table></figure>
+
+<p>全局Symbol，使用Symbol.for可以保证创建的symbol唯一</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.for(<span class="string">"username"</span>) === <span class="built_in">Symbol</span>.for(<span class="string">"username"</span>));   <span class="comment">//  true</span></span><br></pre></td></tr></table></figure>
+<h2 id="Bind函数"><a href="#Bind函数" class="headerlink" title="Bind函数"></a>Bind函数</h2><p>下面是MDN的bind函数实现，这里对下面的一些写法进行剖析。</p>
+<blockquote>
+<p>bind做了什么？</p>
+</blockquote>
+<ul>
+<li>调用bind，就会返回一个新的函数。</li>
+<li>新的函数里面的this就指向bind的第一个参数，同时this后面的参数会提前传给这个新的函数。调用该新的函数时，再传递的参数会放到预置的参数后一起传递进新函数。</li>
+</ul>
+<p>实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) &#123;</span><br><span class="line">		<span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span> (<span class="params">oThis</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">'function'</span>) &#123;</span><br><span class="line">				<span class="comment">// closest thing possible to the ECMAScript 5</span></span><br><span class="line">				<span class="comment">// internal IsCallable function</span></span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Function.prototype.bind - what is trying to be bound is not callable'</span>);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> aArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>),</span><br><span class="line">				fToBind = <span class="keyword">this</span>,</span><br><span class="line">				fNOP = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">				fBound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">					<span class="comment">// this instanceof fBound === true时,说明返回的fBound被当做new的构造函数调用</span></span><br><span class="line">					<span class="keyword">return</span> fToBind.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> fBound ?</span><br><span class="line">						<span class="keyword">this</span> :</span><br><span class="line">						oThis,</span><br><span class="line">						<span class="comment">// 获取调用时(fBound)的传参.bind 返回的函数入参往往是这么传递的</span></span><br><span class="line">						aArgs.concat(<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)));</span><br><span class="line">				&#125;;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// 维护原型关系</span></span><br><span class="line">			<span class="keyword">if</span> (<span class="keyword">this</span>.prototype) &#123;</span><br><span class="line">				<span class="comment">// Function.prototype doesn't have a prototype property</span></span><br><span class="line">				fNOP.prototype = <span class="keyword">this</span>.prototype;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 下行的代码使fBound.prototype是fNOP的实例,因此</span></span><br><span class="line">			<span class="comment">// 返回的fBound若作为new的构造函数,new生成的新对象作为this传入fBound,新对象的__proto__就是fNOP的实例</span></span><br><span class="line">			fBound.prototype = <span class="keyword">new</span> fNOP();</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> fBound;</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Array.prototype.slice.call(arguments, 1)</p>
+<blockquote>
+<p>我们都知道arguments是一个类数组对象，所以这里调用数组的slice方法给arguments使用。因为arguments能像访问数组的形式进行访问（arguments[0]），且具有length属性，因此我们可以得到返回的一个有length长度的数组。<br>后面传入参数1，是slice(start, end)中的一个参数start，表示从arguments的小标为1，即第二个参数开始切割。 这里是将bind函数的参数数组取出来，第一个参数不要（就是不要oThis）也就是要被绑定方法的那个对象</p>
+</blockquote>
+</li>
+<li><p>fNOP和fBound函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设bind过程如下</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">this</span>.name = <span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = a.bind(oThis);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>正常调用bind函数<br>返回一个新函数，该函数的this指向调用bind方法的一个参数。即代码里的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bind函数内部解析</span></span><br><span class="line">fToBind = <span class="keyword">this</span>;   <span class="comment">//这里的this就是a;</span></span><br><span class="line">fToBind.apply(oThis,........................)  <span class="comment">//这里便是将oThis替换a函数的this;</span></span><br><span class="line"><span class="keyword">return</span> fBound;    <span class="comment">//即b的this便是指向oThis;</span></span><br></pre></td></tr></table></figure>
+<p>到这里正常调用bind并传参就完成了</p>
+</li>
+<li><p>bind返回的函数作为构造函数的情况。首先我们得理解new做了什么，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> fun();</span><br><span class="line"><span class="comment">//实际操作</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.__proto__ = Foo.prototype;</span><br><span class="line">fun.call(o);</span><br></pre></td></tr></table></figure>
+<p>这里可以看到，当fun被当做构造函数执行时，fun的this指向的是o，且o可以访问fun的原型的属性。</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fNOP = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; ;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">this</span>.prototype) &#123;</span><br><span class="line">  <span class="comment">// 规避Function.prototype没有prototype属性</span></span><br><span class="line">  fNOP.prototype = <span class="keyword">this</span>.prototype;    <span class="comment">// 构造新函数，将a函数的prototype做一个中转防止原型链污染</span></span><br><span class="line">&#125;</span><br><span class="line">fBound.prototype = <span class="keyword">new</span> fNOP();</span><br></pre></td></tr></table></figure>
+<p>这样便兼容了新函数作为构造函数的情况。<br>这里有一个疑问，为什么新函数的要继承a函数的原型，以下是mdn的解释：</p>
+<blockquote>
+<p>bind() 函数会创建一个新绑定函数（bound function，BF）。绑定函数是一个exotic function object（怪异函数对象，ECMAScript 2015中的术语），它包装了原函数对象。调用绑定函数通常会导致执行包装函数。</p>
+</blockquote>
+<h2 id="基本算法"><a href="#基本算法" class="headerlink" title="基本算法"></a>基本算法</h2><h3 id="冒泡算法"><a href="#冒泡算法" class="headerlink" title="冒泡算法"></a>冒泡算法</h3><blockquote>
+<p>作为经典入门算法之一，因为其每轮的比较都会确认一个最大（最小）的数，就像冒出来一样而得名。</p>
+</blockquote>
+<h4 id="设计思路："><a href="#设计思路：" class="headerlink" title="设计思路："></a>设计思路：</h4><ul>
+<li>确定程序执行次数</li>
+<li>两两比较，按照规定交换位置</li>
+</ul>
+<h4 id="程序实现"><a href="#程序实现" class="headerlink" title="程序实现"></a>程序实现</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">10</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">25</span>,<span class="number">1000</span>,<span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>,len=arr.length;i&lt;len<span class="number">-1</span>;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>;j&lt;len<span class="number">-1</span>-i;j++) &#123; </span><br><span class="line">          <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">let</span> tem = arr[j];</span><br><span class="line">                arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">                arr[j+<span class="number">1</span>] = tem;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort(arr))  <span class="comment">//[1, 5, 6, 10, 25, 1000]</span></span><br></pre></td></tr></table></figure>
+
+<p>按照上面的数组来说就是<br>第一轮…….<br>第一次：10和5比较，交互位置，此时数组为[5,10,6,25,1000,1]<br>第二次：10和6比较，交换位置，此时数组为[5,6,10,25,1000,1]<br>…………………………………………..<br>第length-1次：此时数组为[5,6,10,25,1,1000]<br>可以看到我们已经确定了一个最大数1000，那么接下来就将[5,6,10,25,1]继续执行第二轮<br>第二轮…….<br>第length-1轮…….得到最终排好序的数组</p>
+<p>冒泡算法效率低，我们在此基础上尽量的去优化其效率<br>重点解释两个地方</p>
+<h5 id="外层循环次数length-1"><a href="#外层循环次数length-1" class="headerlink" title="外层循环次数length-1"></a>外层循环次数length-1</h5><ul>
+<li>按照我们的算法设计逻辑，因为每一次都会有一个数被确定，所以当执行了l-1轮，就剩最后一个数。自然是最小（最大）的，所以无需再执行<h5 id="内层循环次数length-1-i"><a href="#内层循环次数length-1-i" class="headerlink" title="内层循环次数length-1-i"></a>内层循环次数length-1-i</h5></li>
+<li>首先一个数组两两比较需要的次数为length-1次，上面我们说到每轮都会确定一个数，那么确定的数无需进行比较所以再-i</li>
+</ul>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><blockquote>
+<p>类似与冒泡，不同的是每轮确定一个最小（最大）的数，再将其依次安放</p>
+</blockquote>
+<h4 id="程序实现-1"><a href="#程序实现-1" class="headerlink" title="程序实现"></a>程序实现</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">10</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">25</span>,<span class="number">1000</span>,<span class="number">1</span>];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> len = arr.length;</span><br><span class="line">      <span class="keyword">let</span> minIndex, temp;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        minIndex = i;   <span class="comment">//当前位置设置为最小</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (arr[j] &lt; arr[minIndex]) &#123;      <span class="comment">//检查其他位置上有无比设定的最小位置更小的</span></span><br><span class="line">            minIndex = j;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(minIndex != i)&#123;     <span class="comment">//当前位置不是最小值就交换</span></span><br><span class="line">            temp = arr[i];</span><br><span class="line">            arr[i] = arr[minIndex];</span><br><span class="line">            arr[minIndex] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(selectSort(arr))  <span class="comment">//[1, 5, 6, 10, 25, 1000]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><blockquote>
+<p>确定一个中间值，和其他元素进行比较，小的放左边数组，大的放右边数组。再递归左边的数组和右边的数组，最后合并</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">10</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">25</span>,<span class="number">1000</span>,<span class="number">1</span>];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(arr.length &lt;=<span class="number">1</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> arr;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> c = arr[<span class="number">0</span>],leftArr=[],rightArr=[];</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">          <span class="keyword">if</span>(arr[i] &gt; c)&#123;</span><br><span class="line">            rightArr.push(arr[i]);</span><br><span class="line">          &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            leftArr.push(arr[i]);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> [].concat(quickSort(leftArr),c,quickSort(rightArr));</span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(quickSort(arr))  <span class="comment">//[1, 5, 6, 10, 25, 1000]</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/frontend/ajax/" rel="next" title="Ajax 跨域请求">
+                <i class="fa fa-chevron-left"></i> Ajax 跨域请求
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/frontend/react-refs/" rel="prev" title="React之Refs">
+                React之Refs <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Irwin</p>
+              <p class="site-description motion-element" itemprop="description">web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phaoer" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:phaoer@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js基础"><span class="nav-number">1.</span> <span class="nav-text">js基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">1.1.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作用域"><span class="nav-number">1.1.2.</span> <span class="nav-text">函数作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块级作用域"><span class="nav-number">1.1.3.</span> <span class="nav-text">块级作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">1.2.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项："><span class="nav-number">1.2.1.</span> <span class="nav-text">注意事项：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的两个主要作用："><span class="nav-number">1.2.2.</span> <span class="nav-text">闭包的两个主要作用：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript数据类型"><span class="nav-number">1.3.</span> <span class="nav-text">JavaScript数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#typeof"><span class="nav-number">1.3.1.</span> <span class="nav-text">typeof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instanceof"><span class="nav-number">1.3.2.</span> <span class="nav-text">instanceof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-prototype-toString-call"><span class="nav-number">1.3.3.</span> <span class="nav-text">Object.prototype.toString.call()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined和null的区别"><span class="nav-number">1.4.</span> <span class="nav-text">undefined和null的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boolean与条件判断"><span class="nav-number">1.5.</span> <span class="nav-text">Boolean与条件判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Symbol"><span class="nav-number">1.6.</span> <span class="nav-text">Symbol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bind函数"><span class="nav-number">1.7.</span> <span class="nav-text">Bind函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本算法"><span class="nav-number">1.8.</span> <span class="nav-text">基本算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡算法"><span class="nav-number">1.8.1.</span> <span class="nav-text">冒泡算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设计思路："><span class="nav-number">1.8.1.1.</span> <span class="nav-text">设计思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序实现"><span class="nav-number">1.8.1.2.</span> <span class="nav-text">程序实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#外层循环次数length-1"><span class="nav-number">1.8.1.2.1.</span> <span class="nav-text">外层循环次数length-1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内层循环次数length-1-i"><span class="nav-number">1.8.1.2.2.</span> <span class="nav-text">内层循环次数length-1-i</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序"><span class="nav-number">1.8.2.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序实现-1"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">程序实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">1.8.3.</span> <span class="nav-text">快速排序</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

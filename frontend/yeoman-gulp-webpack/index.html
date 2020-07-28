@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="webpack,javascript,gulp,node,yeoman," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 Yeoman：前端脚手架，快速搭建前端开发环境，优化工作流~Gulp：工程化构建工具，基于task来处理任务Webpack：最常见的前端构建工具，类似与gulp，但不如gulp灵活，专注于代码打包编译  OK，主人公们介绍完了，该篇主要说明三个工具的基本用法，安装配置自己解决。 Yeoman Q:   在写东西的时候经常会遇到一些重复性的操作和代码，苦于Ctrl+c 人数较多的前端团队10个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Yeoman + gulp + webpack 来管理你的前端项目">
+<meta property="og:url" content="https://phaoer.github.io/frontend/yeoman-gulp-webpack/index.html">
+<meta property="og:site_name" content="Phaoer">
+<meta property="og:description" content="前言 Yeoman：前端脚手架，快速搭建前端开发环境，优化工作流~Gulp：工程化构建工具，基于task来处理任务Webpack：最常见的前端构建工具，类似与gulp，但不如gulp灵活，专注于代码打包编译  OK，主人公们介绍完了，该篇主要说明三个工具的基本用法，安装配置自己解决。 Yeoman Q:   在写东西的时候经常会遇到一些重复性的操作和代码，苦于Ctrl+c 人数较多的前端团队10个">
+<meta property="article:published_time" content="2020-07-28T10:22:25.000Z">
+<meta property="article:modified_time" content="2020-07-28T11:37:35.659Z">
+<meta property="article:author" content="Irwin">
+<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="gulp">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="yeoman">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phaoer.github.io/frontend/yeoman-gulp-webpack/"/>
+
+
+
+
+
+  <title>用Yeoman + gulp + webpack 来管理你的前端项目 | Phaoer</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Phaoer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/yeoman-gulp-webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用Yeoman + gulp + webpack 来管理你的前端项目</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:22:25+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">构建工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>Yeoman：前端脚手架，快速搭建前端开发环境，优化工作流~<br>Gulp：工程化构建工具，基于task来处理任务<br>Webpack：最常见的前端构建工具，类似与gulp，但不如gulp灵活，专注于代码打包编译</p>
+</blockquote>
+<p>OK，主人公们介绍完了，该篇主要说明三个工具的基本用法，安装配置自己解决。</p>
+<h2 id="Yeoman"><a href="#Yeoman" class="headerlink" title="Yeoman"></a>Yeoman</h2><blockquote>
+<p>Q:</p>
+</blockquote>
+<ul>
+<li>在写东西的时候经常会遇到一些重复性的操作和代码，苦于Ctrl+c</li>
+<li>人数较多的前端团队10个人拥有十种代码风格，十种项目结构，后期维护及其繁琐</li>
+</ul>
+<p>——使用Yeoman 达到One Code Style One Directory Structure</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g yo</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><pre><code>yeoman 提供很多generator，可以直接使用</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir project-name</span><br><span class="line"><span class="built_in">cd</span> project-name</span><br><span class="line">yo</span><br></pre></td></tr></table></figure>
+
+<p>按照提示选择需要的模板就行了，这里主要说一说怎么私人订制<del>~</del>嘻嘻</p>
+<h3 id="创建自己的generator"><a href="#创建自己的generator" class="headerlink" title="创建自己的generator"></a>创建自己的generator</h3><p>yeoman官方提供了generator-generator 来帮助我们自定义生成器，良心啊<del>~</del></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g generator-generator</span><br><span class="line">yo generator</span><br></pre></td></tr></table></figure>
+
+<p>我们需要做的就是在index.js中来创造我们自己的generator</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">const</span> Generator = <span class="built_in">require</span>(<span class="string">'yeoman-generator'</span>);</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>);</span><br><span class="line"><span class="keyword">const</span> yosay = <span class="built_in">require</span>(<span class="string">'yosay'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Generator</span> </span>&#123;</span><br><span class="line">prompting() &#123;</span><br><span class="line">    <span class="comment">// Have Yeoman greet the user.</span></span><br><span class="line">    <span class="keyword">this</span>.log(</span><br><span class="line">    yosay(<span class="string">`Welcome to the tiptop <span class="subst">$&#123;chalk.red(<span class="string">'generator-xy'</span>)&#125;</span> generator!`</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> prompts = [</span><br><span class="line">    &#123;</span><br><span class="line">    type: <span class="string">'confirm'</span>,</span><br><span class="line">    name: <span class="string">'someAnswer'</span>,</span><br><span class="line">    message: <span class="string">'Would you like to enable this option?'</span>,</span><br><span class="line">    <span class="keyword">default</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.prompt(prompts).then(<span class="function"><span class="params">props</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// To access props later use this.props.someAnswer;</span></span><br><span class="line">    <span class="keyword">this</span>.props = props;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">writing() &#123;</span><br><span class="line">    <span class="keyword">this</span>.fs.copy(</span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'dummyfile.txt'</span>),</span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'dummyfile.txt'</span>)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">install() &#123;</span><br><span class="line">    <span class="keyword">this</span>.installDependencies();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到核心的流程是在一个继承了generator的类当中<br>其实这里generator一共提供了 initializing，prompting，configuring，default，writing，conflicts，install，end这几个函数</p>
+<blockquote>
+<p>Prompting()方法是执行前的过渡，实现与用户的交互，你可以在prompts问题集中定义一些问题，比如你叫啥，干啥，弄啥，家里几口人，人均几亩地………..然后将用户输入的内容保存在this.props中，方便以后调用。</p>
+</blockquote>
+<h4 id="我们自己来写一个generator"><a href="#我们自己来写一个generator" class="headerlink" title="我们自己来写一个generator"></a>我们自己来写一个generator</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">prompting() &#123;</span><br><span class="line">        <span class="comment">// Have Yeoman greet the user.</span></span><br><span class="line">        <span class="keyword">this</span>.log(</span><br><span class="line">        yosay(<span class="string">`Welcome to the tiptop <span class="subst">$&#123;chalk.red(<span class="string">'generator-xy'</span>)&#125;</span> generator!`</span>)</span><br><span class="line">    );</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.prompt([&#123;</span><br><span class="line">    type    : <span class="string">'input'</span>,</span><br><span class="line">    name    : <span class="string">'appname'</span>,</span><br><span class="line">    message : <span class="string">'input your project  name'</span>,</span><br><span class="line">    <span class="keyword">default</span> : <span class="keyword">this</span>.appname     </span><br><span class="line">&#125;</span><br><span class="line">]).then(<span class="function">(<span class="params">answers</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.log(<span class="string">'appname ：'</span>, answers.appname);</span><br><span class="line">    <span class="keyword">this</span>.props = answers;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在后面的方法中，我们便可以通过this.props.appname来获取到输入的项目名称</p>
+<p>我们在原来的基础上定义一个defaults方法来生成用户输入的目录</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> mkdirp = <span class="built_in">require</span>(<span class="string">'mkdirp'</span>);</span><br><span class="line"></span><br><span class="line">defaults () &#123;           </span><br><span class="line"><span class="keyword">if</span> (path.basename(<span class="keyword">this</span>.destinationPath()) !== <span class="keyword">this</span>.props.appname) &#123; <span class="comment">//判断是否存在该目录</span></span><br><span class="line">    <span class="keyword">this</span>.log(</span><br><span class="line">    <span class="string">'Your generator must be inside a folder named '</span> + <span class="keyword">this</span>.props.appname + <span class="string">'\n'</span> +</span><br><span class="line">    <span class="string">'I\'ll automatically create this folder.'</span></span><br><span class="line">    );</span><br><span class="line">    mkdirp(<span class="keyword">this</span>.props.appname); <span class="comment">// 即 mkdir -p 创建该目录</span></span><br><span class="line">    <span class="keyword">this</span>.destinationRoot(<span class="keyword">this</span>.destinationPath(<span class="keyword">this</span>.props.appname));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="writing"><a href="#writing" class="headerlink" title="writing"></a>writing</h4><p>writing方法用来书写创建工程文件的步骤<br>在这之前我们首先在template文件夹下创建一个public目录，里面创建如下文件作为咱们这个初级教程的全部内容</p>
+<p>开始写writing方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">writing() &#123;</span><br><span class="line">mkdirp(<span class="string">'css'</span>);      <span class="comment">//创建css文件夹</span></span><br><span class="line">mkdirp(<span class="string">'js'</span>);      <span class="comment">//创建js文件夹</span></span><br><span class="line"><span class="keyword">this</span>.fs.copy(     <span class="comment">//调用方法将模板的内容创建到根目录</span></span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'public/index.html'</span>),       <span class="comment">//模板文件地址 </span></span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'index.html'</span>),          <span class="comment">//创建在根目录</span></span><br><span class="line">),</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.fs.copy(</span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'public/index.css'</span>),</span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'css/index.css'</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.fs.copy(</span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'public/index.js'</span>),</span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'js/index.js'</span>)</span><br><span class="line">);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="install"><a href="#install" class="headerlink" title="install"></a>install</h4><p>最后install方法，官方的api说的很清楚this.installDependencies()，即是用来安装我们项目依赖的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">install() &#123;</span><br><span class="line">  <span class="keyword">this</span>.npmInstall([<span class="string">'jquery'</span>], &#123; <span class="string">'save-dev'</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里就安装一个jquery作为说明即可。<br>最后我们在根目录执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm link</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以在全局使用该generator了</p>
+<p>然后切换到开发目录，执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yo xy</span><br></pre></td></tr></table></figure>
+
+<p>然后你就可以开始编码了，so easy今后所有这种类型的项目一个命令几秒钟就可以开始愉快的编码，而且代码风格统一<del>~</del></p>
+<h2 id="Gulp-Webpack"><a href="#Gulp-Webpack" class="headerlink" title="Gulp+Webpack"></a>Gulp+Webpack</h2><blockquote>
+<p>这里把Gulp和Webpack放到一起来说。<br>博主最早是只用了webpack来构建自己的项目，后来加入Gulp对其进行整合，发现配合食用，口感更佳呀<br>核心依然是plugin</p>
+</blockquote>
+<blockquote>
+<p>Webpack出口文件即Gulp入口文件</p>
+</blockquote>
+<p>这里也只是讲如何写一个初略的gulpfile.js</p>
+<p>核心便是task,src,start,watch等api，详细说明见官网<a href="https://www.gulpjs.com.cn/docs/api/" target="_blank" rel="noopener">Gulp Api</a><br>基本工作流程：</p>
+<ul>
+<li>通过gulp.src()方法获取到我们想要处理的文件流(<a href="https://github.com/wearefractal/vinyl-fs" target="_blank" rel="noopener">Vinyl files</a> 的 <a href="http://nodejs.org/api/stream.html" target="_blank" rel="noopener">stream</a>)，</li>
+<li>把文件流通过pipe方法导入到gulp的插件中进行处理，比如调用concat方法合并所有css，再调用minify()压缩css。（具体插件用法，<a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm官网</a>均有介绍）</li>
+<li>把处理后的流再通过pipe方法导入到gulp.dest()中，最后把流中的内容写入到文件中</li>
+</ul>
+<h3 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//加载外挂：自动瞄准，无后座，锁血，大挪移.......~~~</span></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">minify=<span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>);</span><br><span class="line">autoprefixer = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>),</span><br><span class="line">jshint = <span class="built_in">require</span>(<span class="string">'gulp-jshint'</span>),</span><br><span class="line">uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</span><br><span class="line">imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>),</span><br><span class="line">clean = <span class="built_in">require</span>(<span class="string">'gulp-clean'</span>),</span><br><span class="line">concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>),</span><br><span class="line">notify = <span class="built_in">require</span>(<span class="string">'gulp-notify'</span>),</span><br><span class="line">cache = <span class="built_in">require</span>(<span class="string">'gulp-cache'</span>),</span><br><span class="line">livereload = <span class="built_in">require</span>(<span class="string">'gulp-livereload'</span>),</span><br><span class="line">fileinclude = <span class="built_in">require</span>(<span class="string">'gulp-file-include'</span>),</span><br><span class="line">webpack = <span class="built_in">require</span>(<span class="string">'gulp-webpack'</span>);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">gulp.src(<span class="string">'src/css/*.css'</span>)</span><br><span class="line">    .pipe(concat(<span class="string">'main.css'</span>))</span><br><span class="line">    .pipe(minify())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'dist/css'</span>));</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'scripts'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> gulp.src(<span class="string">'src/entry.js'</span>)</span><br><span class="line">  .pipe(webpack( <span class="built_in">require</span>(<span class="string">'./webpack.config.js'</span>) ))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'dist/js'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'images'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> gulp.src(<span class="string">'src/images/**/*'</span>)</span><br><span class="line">  .pipe(cache(imagemin(&#123; <span class="attr">optimizationLevel</span>: <span class="number">3</span>, <span class="attr">progressive</span>: <span class="literal">true</span>, <span class="attr">interlaced</span>: <span class="literal">true</span> &#125;)))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'dist/images'</span>))</span><br><span class="line">  .pipe(notify(&#123; <span class="attr">message</span>: <span class="string">'Images compile complete'</span> &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> gulp.src(<span class="string">'src/**/*.html'</span>)</span><br><span class="line">  .pipe(fileinclude(&#123;</span><br><span class="line">    prefix: <span class="string">'@@'</span>,</span><br><span class="line">    basepath: <span class="string">'@file'</span></span><br><span class="line">  &#125;))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'dist/'</span>))</span><br><span class="line">  .pipe(notify(&#123; <span class="attr">message</span>: <span class="string">'html compile complete'</span> &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'clean'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> gulp.src([<span class="string">'dist/css'</span>, <span class="string">'dist/js'</span>, <span class="string">'dist/images'</span>], &#123;<span class="attr">read</span>: <span class="literal">false</span>&#125;)</span><br><span class="line">   .pipe(clean());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'clean'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   gulp.start(<span class="string">'css'</span>,<span class="string">'scripts'</span>, <span class="string">'images'</span>, <span class="string">'html'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/css/**/*.css'</span>, [<span class="string">'css'</span>]);</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/js/**/*.js'</span>, [<span class="string">'scripts'</span>]);</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/images/**/*'</span>, [<span class="string">'images'</span>]);</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/**/*.html'</span>, [<span class="string">'html'</span>]) ;</span><br><span class="line">   </span><br><span class="line">   livereload.listen();</span><br><span class="line">   gulp.watch([<span class="string">'dist/**'</span>]).on(<span class="string">'change'</span>, livereload.changed);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>插件的话按需自取，这里我用的插件是包含了处理所有文件的。可以酌情增减</li>
+<li>gulp.task第一个参数为任务名，gulp task-name 即可执行对应的任务，这里需要解释的就是对于js的处理。刚才说过webpack的出口文件就是gulp的入口文件，这里我们用到了gulp-webpack包来优化。</li>
+<li>在默认任务这里执行编译之前调用gulp.clean清空上一次的编译结果</li>
+<li>这里使用了livereload插件，需要配置Chrome（美中不足，显然没有webpack-dev-server实在啊）</li>
+<li>运行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gulp</span><br><span class="line">gulp watch</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/gulp/" rel="tag"># gulp</a>
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/yeoman/" rel="tag"># yeoman</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/frontend/react-reflux/" rel="next" title="设计模式之ReFlux">
+                <i class="fa fa-chevron-left"></i> 设计模式之ReFlux
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/frontend/antd-load/" rel="prev" title="Antd 按需加载并使用自定义样式">
+                Antd 按需加载并使用自定义样式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Irwin</p>
+              <p class="site-description motion-element" itemprop="description">web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phaoer" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:phaoer@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yeoman"><span class="nav-number">2.</span> <span class="nav-text">Yeoman</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用："><span class="nav-number">2.2.</span> <span class="nav-text">使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建自己的generator"><span class="nav-number">2.3.</span> <span class="nav-text">创建自己的generator</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#我们自己来写一个generator"><span class="nav-number">2.3.1.</span> <span class="nav-text">我们自己来写一个generator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#writing"><span class="nav-number">2.3.2.</span> <span class="nav-text">writing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#install"><span class="nav-number">2.3.3.</span> <span class="nav-text">install</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gulp-Webpack"><span class="nav-number">3.</span> <span class="nav-text">Gulp+Webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gulpfile-js"><span class="nav-number">3.1.</span> <span class="nav-text">gulpfile.js</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

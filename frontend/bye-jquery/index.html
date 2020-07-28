@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript,jquery," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 首先，直接操作dom的编程方式已经成为过去，数据驱动才是正途！其次，不一定非要舍弃jQuery，只是可以，选择权在自己手上！下面只是就事论事  落幕 2018年7月 全球最大的同性交友社区（Github）被微软收购后的 52 天，改版并放弃了 jQuery 。这一举动让我等搬运工陷入了沉思。  Why？随着ECMAScript标准的更新，原生js已经可代替jQuery，给我babel一个面子">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么放弃jQuery">
+<meta property="og:url" content="https://phaoer.github.io/frontend/bye-jquery/index.html">
+<meta property="og:site_name" content="Phaoer">
+<meta property="og:description" content="前言 首先，直接操作dom的编程方式已经成为过去，数据驱动才是正途！其次，不一定非要舍弃jQuery，只是可以，选择权在自己手上！下面只是就事论事  落幕 2018年7月 全球最大的同性交友社区（Github）被微软收购后的 52 天，改版并放弃了 jQuery 。这一举动让我等搬运工陷入了沉思。  Why？随着ECMAScript标准的更新，原生js已经可代替jQuery，给我babel一个面子">
+<meta property="article:published_time" content="2020-07-28T10:25:15.000Z">
+<meta property="article:modified_time" content="2020-07-28T11:39:13.753Z">
+<meta property="article:author" content="Irwin">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="jquery">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phaoer.github.io/frontend/bye-jquery/"/>
+
+
+
+
+
+  <title>为什么放弃jQuery | Phaoer</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Phaoer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/bye-jquery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">为什么放弃jQuery</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:25:15+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/jquery/" itemprop="url" rel="index">
+                    <span itemprop="name">jquery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>首先，直接操作dom的编程方式已经成为过去，数据驱动才是正途！<br>其次，不一定非要舍弃jQuery，只是可以，选择权在自己手上！<br>下面只是就事论事</p>
+</blockquote>
+<h1 id="落幕"><a href="#落幕" class="headerlink" title="落幕"></a>落幕</h1><blockquote>
+<p>2018年7月 全球最大的同性交友社区（Github）被微软收购后的 52 天，改版并放弃了 jQuery 。这一举动让我等搬运工陷入了沉思。</p>
+</blockquote>
+<h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>随着ECMAScript标准的更新，原生js已经可代替jQuery，给我babel一个面子，不要再说兼容不支持的话！<br>下面举两个比较常用的方面来说明：</p>
+<blockquote>
+<ul>
+<li>jQuery Api可以使用原生轻松实现</li>
+<li>使用 fetch 来代替 ajax；<br>Fetch API 是基于 Promise 设计，更符合目前的异步解决方案。什么是目前的异步解决方案？翻看上一篇async &amp; await</li>
+</ul>
+</blockquote>
+<h1 id="具体实现对比（部分）"><a href="#具体实现对比（部分）" class="headerlink" title="具体实现对比（部分）"></a>具体实现对比（部分）</h1><blockquote>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2></blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jq</span></span><br><span class="line">$(<span class="string">"#a .b"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Native</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">"#a .b"</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//jq</span></span><br><span class="line"> $(selector).append(html);</span><br><span class="line"> <span class="comment">//prepend</span></span><br><span class="line"> <span class="comment">//before</span></span><br><span class="line"> <span class="comment">//after</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//Native</span></span><br><span class="line"> <span class="built_in">document</span>.querySelectorAll(selector).insertAdjacentHTML(<span class="string">"beforeend"</span>, html);</span><br><span class="line"><span class="comment">//beforebegin 开始标签之前 before</span></span><br><span class="line"><span class="comment">//afterbegin  开始标签之后 prepend</span></span><br><span class="line"><span class="comment">//beforeend  结束标签之前 append</span></span><br><span class="line"><span class="comment">//afterbegin  结束标签之后 after</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="类操作"><a href="#类操作" class="headerlink" title="类操作"></a>类操作</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//jq</span></span><br><span class="line"> $(selector).addClass(className);</span><br><span class="line"> <span class="comment">//hasClass</span></span><br><span class="line"> <span class="comment">//removeClass</span></span><br><span class="line"> <span class="comment">//toggleClass</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//Native</span></span><br><span class="line"> <span class="built_in">document</span>.querySelectorAll(selector).classList.add(className, className, className...);</span><br><span class="line"><span class="comment">//contains(className) 检测是否存在</span></span><br><span class="line"><span class="comment">//removeClass(className, className, className...) 删除</span></span><br><span class="line"><span class="comment">//toggle(className, true|false) 切换</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jq</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    <span class="comment">//.................</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Native</span></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line"> <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> req(url, &#123;<span class="attr">headers</span>: &#123;<span class="attr">Accept</span>: <span class="string">"text/html"</span>&#125;&#125;);</span><br><span class="line">    <span class="keyword">if</span>(......)&#123;</span><br><span class="line">       .......</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">req</span>(<span class="params">url, data</span>) </span>&#123;    <span class="comment">//自己封装，仅供参考</span></span><br><span class="line">  <span class="keyword">let</span> sendurl = url;</span><br><span class="line">  <span class="keyword">let</span> setting = &#123;</span><br><span class="line">      method: data.type ? data.type : <span class="string">"get"</span>,</span><br><span class="line">      headers: <span class="keyword">new</span> Headers(&#123;</span><br><span class="line">          <span class="string">"Accept"</span>: <span class="string">"application/json, text/javascript, */*; q=0.01"</span>,</span><br><span class="line">          <span class="string">"Pragma"</span>: <span class="string">"no-cache"</span>,</span><br><span class="line">          <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>,</span><br><span class="line">          <span class="string">"X-Requested-With"</span>: <span class="string">"XMLHttpRequest"</span></span><br><span class="line">  &#125;),</span><br><span class="line">  credentials: <span class="string">"include"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(data.headers)&#123;</span><br><span class="line">    <span class="keyword">const</span> headers = setting.headers;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> attr <span class="keyword">in</span> data.headers)&#123;</span><br><span class="line">        <span class="keyword">if</span>(headers.has(attr))&#123;</span><br><span class="line">            headers.set(attr, data.headers[attr]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            headers.append(attr, data.headers[attr]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (setting.method == <span class="string">"post"</span>) &#123;</span><br><span class="line">    setting.body = data.param ? paramData(data.param) : <span class="string">""</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    sendurl = sendurl + (data.param ? <span class="string">"?"</span> + paramData(data.param) : <span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> fetch(sendurl, setting).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (response.status &gt;= <span class="number">200</span> &amp;&amp; response.status &lt; <span class="number">300</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(response.statusText);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">const</span> accept = setting.headers.get(<span class="string">"accept"</span>);</span><br><span class="line">     <span class="keyword">if</span>(accept.includes(<span class="string">"/json"</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> response.json();</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span>(accept.includes(<span class="string">"/html"</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> response.text();</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="原生实现类jQuery的库"><a href="#原生实现类jQuery的库" class="headerlink" title="原生实现类jQuery的库"></a>原生实现类jQuery的库</h1><blockquote>
+<p>上手才是关键，下面实现了部分jQuery的Api（代码构建编译部分省略），可能功能有所差异，但是就是这个味儿~</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test"</span> <span class="attr">actid</span>=<span class="string">"111"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="class"><span class="keyword">class</span> <span class="title">xy</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">constructor</span>(selector)&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.dom = <span class="built_in">document</span>.querySelectorAll(selector);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.length = <span class="built_in">document</span>.querySelectorAll(selector).length;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    eq(index)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.dom = [<span class="keyword">this</span>.dom[index]];</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> <span class="keyword">this</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    attr(name)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> <span class="keyword">this</span>.dom[<span class="number">0</span>].getAttribute(name);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    children(index)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> childrenList = [];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; <span class="keyword">this</span>.dom.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            childrenList.push(<span class="keyword">this</span>.dom[i].children);</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> arr = [];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; childrenList.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            arr.push(index != <span class="literal">undefined</span> ? childrenList[i][index] : childrenList[i]);</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> arr.length &gt; <span class="number">1</span> ? arr : arr[<span class="number">0</span>];</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    append(htmlStr)&#123;</span><br><span class="line"><span class="actionscript">        <span class="comment">// for(let i = 0;i &lt; this.dom.length;i++)&#123;</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">//     this.dom[i].insertAdjacentHTML("beforeend", htmlStr);</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">// &#125;</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.insertAdjacentHTML('beforeend', '"</span> + htmlStr + <span class="string">"')"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    html(htmlStr)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.innerHTML = '"</span> + htmlStr.replace(<span class="regexp">/\s*/g</span>,<span class="string">""</span>) + <span class="string">"'"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    remove()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.parentNode.removeChild(dom)"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    addClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.classFun(<span class="string">"add"</span>, className);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    removeClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.classFun(<span class="string">"remove"</span>, className);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    toggleClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.classList.toggle('"</span> + className + <span class="string">"')"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    classFun(order, className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> classArr = className.split(<span class="string">" "</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> code = <span class="string">"dom.classList."</span> + order + <span class="string">"("</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; classArr.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            code += <span class="string">"'"</span> + classArr[i] + <span class="string">"',"</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        code = code.substr(0, code.length - 1);</span><br><span class="line"><span class="actionscript">        code += <span class="string">")"</span>;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(code);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    circulationFun(code)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; <span class="keyword">this</span>.dom.length;i++)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"dom"</span>, <span class="string">"i"</span>, code)(<span class="keyword">this</span>.dom[i], i);</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="comment">//你可以不停的去扩展</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">$xy</span>(<span class="params">selector</span>)</span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> <span class="keyword">new</span> xy(selector);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">$xy(<span class="string">".test"</span>).attr(<span class="string">"actid"</span>);</span></span><br><span class="line"><span class="actionscript"><span class="comment">//output 111</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/jquery/" rel="tag"># jquery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/frontend/nginx-node-statistics/" rel="next" title="Nginx搭配Node来构建统计系统">
+                <i class="fa fa-chevron-left"></i> Nginx搭配Node来构建统计系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Irwin</p>
+              <p class="site-description motion-element" itemprop="description">web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phaoer" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:phaoer@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#落幕"><span class="nav-number">2.</span> <span class="nav-text">落幕</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why？"><span class="nav-number">3.</span> <span class="nav-text">Why？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现对比（部分）"><span class="nav-number">4.</span> <span class="nav-text">具体实现对比（部分）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择器"><span class="nav-number">4.1.</span> <span class="nav-text">选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入"><span class="nav-number">4.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类操作"><span class="nav-number">4.3.</span> <span class="nav-text">类操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax"><span class="nav-number">4.4.</span> <span class="nav-text">ajax</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原生实现类jQuery的库"><span class="nav-number">5.</span> <span class="nav-text">原生实现类jQuery的库</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
