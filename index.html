@@ -207,16 +207,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
 
       
     </ul>
@@ -250,7 +240,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/bye-jquery/">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/react-native-update/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Irwin">
@@ -269,7 +259,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/frontend/bye-jquery/" itemprop="url">为什么放弃jQuery</a></h1>
+                <a class="post-title-link" href="/frontend/react-native-update/" itemprop="url">react-native App更新方案</a></h1>
         
 
         <div class="post-meta">
@@ -281,8 +271,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:25:15+08:00">
-                2020-07-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T10:05:22+08:00">
+                2020-08-12
               </time>
             
 
@@ -315,8 +305,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/APP/" itemprop="url" rel="index">
+                    <span itemprop="name">APP</span>
                   </a>
                 </span>
 
@@ -326,8 +316,19 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/jquery/" itemprop="url" rel="index">
-                    <span itemprop="name">jquery</span>
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/APP/Hybrid/" itemprop="url" rel="index">
+                    <span itemprop="name">Hybrid</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/APP/Hybrid/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
                   </a>
                 </span>
 
@@ -366,31 +367,50 @@
         
           
             <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
-<p>首先，直接操作dom的编程方式已经成为过去，数据驱动才是正途！<br>其次，不一定非要舍弃jQuery，只是可以，选择权在自己手上！<br>下面只是就事论事</p>
+<p>用react-native（一下简称RN）开发的app的更新方案有很多，其中比较火的是热更新方案，有官方推荐的<a href="https://pushy.reactnative.cn/" target="_blank" rel="noopener">pushy</a>和微软的<a href="http://microsoft.github.io/code-push/" target="_blank" rel="noopener">code-push</a><br>文档很详细，接入也比较简单<br>这里主要介绍一种最传统的更新方案，也是很多原生开发在使用的方案——全量更新</p>
 </blockquote>
-<h1 id="落幕"><a href="#落幕" class="headerlink" title="落幕"></a>落幕</h1><blockquote>
-<p>2018年7月 全球最大的同性交友社区（Github）被微软收购后的 52 天，改版并放弃了 jQuery 。这一举动让我等搬运工陷入了沉思。</p>
+<h1 id="全量更新"><a href="#全量更新" class="headerlink" title="全量更新"></a>全量更新</h1><blockquote>
+<p>顾名思义，即每次更新通过http去下载新版本包去然后去做一个覆盖安装，这种做法在更新迭代中会避免很多不必要的麻烦，而且在这个5G都要到来的时代，网络资源大小的限制也显得不那么重要。</p>
 </blockquote>
-<h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>随着ECMAScript标准的更新，原生js已经可代替jQuery，给我babel一个面子，不要再说兼容不支持的话！<br>下面举两个比较常用的方面来说明：</p>
-<blockquote>
-<ul>
-<li>jQuery Api可以使用原生轻松实现</li>
-<li>使用 fetch 来代替 ajax；<br>Fetch API 是基于 Promise 设计，更符合目前的异步解决方案。什么是目前的异步解决方案？翻看上一篇async &amp; await</li>
-</ul>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="获取当前APP版本号"><a href="#获取当前APP版本号" class="headerlink" title="获取当前APP版本号"></a>获取当前APP版本号</h2><blockquote>
+<p>react-native是不提供获取版本号模块的，所以我们需要自己去写一个原生模块去获取当前app的版本号。<br>传送门：<a href="https://reactnative.cn/docs/native-modules-android" target="_blank" rel="noopener">原生模块</a></p>
 </blockquote>
-<h1 id="具体实现对比（部分）"><a href="#具体实现对比（部分）" class="headerlink" title="具体实现对比（部分）"></a>具体实现对比（部分）</h1><blockquote>
-<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2></blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jq</span></span><br><span class="line">$(<span class="string">"#a .b"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Native</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">"#a .b"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="新建一个模块文件夹"><a href="#新建一个模块文件夹" class="headerlink" title="新建一个模块文件夹"></a>新建一个模块文件夹</h3><p>新建一个文件夹在android/app/src/main/java/com/your-app-name/下，这里我取名叫appinfo</p>
+<h3 id="新建一个类"><a href="#新建一个类" class="headerlink" title="新建一个类"></a>新建一个类</h3><p>在appinfo新建一个类为AppInfoModule.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.your-app-name.appinfo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.NativeModule;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactApplicationContext;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactContext;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactContextBaseJavaModule;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactMethod;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.Callback;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.facebook.react.uimanager.IllegalViewOperationException;</span><br><span class="line"><span class="keyword">import</span> android.content.pm.PackageInfo;</span><br><span class="line"><span class="keyword">import</span> android.content.pm.PackageManager;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppInfoModule</span> <span class="keyword">extends</span> <span class="title">ReactContextBaseJavaModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppInfoModule</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(reactContext);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"AppInfo"</span>;     <span class="comment">//后面需要调用的模块名</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ReactMethod</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getVersion</span><span class="params">(Callback successCallback)</span> </span>&#123;    <span class="comment">//后面需要调用的方法名，不需要传参</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            PackageInfo info = getPackageInfo();</span><br><span class="line">            <span class="keyword">if</span>(info != <span class="keyword">null</span>)&#123;</span><br><span class="line">                successCallback.invoke(info.versionName);    <span class="comment">//这里我是一回调函数的形式返回，也可以用promise的方式</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                successCallback.invoke(<span class="string">""</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IllegalViewOperationException e)&#123;</span><br><span class="line">            successCallback.invoke(<span class="string">""</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> PackageInfo <span class="title">getPackageInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        PackageManager manager = getReactApplicationContext().getPackageManager();</span><br><span class="line">        PackageInfo info = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            info = manager.getPackageInfo(getReactApplicationContext().getPackageName(),<span class="number">0</span>);</span><br><span class="line">            <span class="keyword">return</span> info;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> info;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//jq</span></span><br><span class="line"> $(selector).append(html);</span><br><span class="line"> <span class="comment">//prepend</span></span><br><span class="line"> <span class="comment">//before</span></span><br><span class="line"> <span class="comment">//after</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//Native</span></span><br><span class="line"> <span class="built_in">document</span>.querySelectorAll(selector).insertAdjacentHTML(<span class="string">"beforeend"</span>, html);</span><br><span class="line"><span class="comment">//beforebegin 开始标签之前 before</span></span><br><span class="line"><span class="comment">//afterbegin  开始标签之后 prepend</span></span><br><span class="line"><span class="comment">//beforeend  结束标签之前 append</span></span><br><span class="line"><span class="comment">//afterbegin  结束标签之后 after</span></span><br></pre></td></tr></table></figure>
+<h3 id="注册模块"><a href="#注册模块" class="headerlink" title="注册模块"></a>注册模块</h3><p>用于在JavaScript 中访问，新建一个AppInfoPackage.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.your-app-name.appinfo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.facebook.react.ReactPackage;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.NativeModule;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactApplicationContext;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.uimanager.ViewManager;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppInfoPackage</span> <span class="keyword">implements</span> <span class="title">ReactPackage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> List&lt;ViewManager&gt; <span class="title">createViewManagers</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;NativeModule&gt; <span class="title">createNativeModules</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">        List&lt;NativeModule&gt; modules = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        modules.add(<span class="keyword">new</span> AppInfoModule(reactContext));     <span class="comment">//你的模块</span></span><br><span class="line">        <span class="keyword">return</span> modules;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="类操作"><a href="#类操作" class="headerlink" title="类操作"></a>类操作</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//jq</span></span><br><span class="line"> $(selector).addClass(className);</span><br><span class="line"> <span class="comment">//hasClass</span></span><br><span class="line"> <span class="comment">//removeClass</span></span><br><span class="line"> <span class="comment">//toggleClass</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//Native</span></span><br><span class="line"> <span class="built_in">document</span>.querySelectorAll(selector).classList.add(className, className, className...);</span><br><span class="line"><span class="comment">//contains(className) 检测是否存在</span></span><br><span class="line"><span class="comment">//removeClass(className, className, className...) 删除</span></span><br><span class="line"><span class="comment">//toggle(className, true|false) 切换</span></span><br></pre></td></tr></table></figure>
+<h3 id="暴露方法"><a href="#暴露方法" class="headerlink" title="暴露方法"></a>暴露方法</h3><p>暴露该模块，修改android/app/src/main/java/com/your-app-name/MainApplication.java文件的getPackages方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.your-app-name.appinfo.AppInfoPackage;</span><br><span class="line">......</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> List&lt;ReactPackage&gt; <span class="title">getPackages</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"UnnecessaryLocalVariable"</span>)</span><br><span class="line">    List&lt;ReactPackage&gt; packages = <span class="keyword">new</span> PackageList(<span class="keyword">this</span>).getPackages();</span><br><span class="line">    packages.add(<span class="keyword">new</span> AppInfoPackage());    <span class="comment">//导入注册好的模块</span></span><br><span class="line">    <span class="keyword">return</span> packages;</span><br><span class="line">&#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
 
-<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jq</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    <span class="comment">//.................</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Native</span></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line"> <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> req(url, &#123;<span class="attr">headers</span>: &#123;<span class="attr">Accept</span>: <span class="string">"text/html"</span>&#125;&#125;);</span><br><span class="line">    <span class="keyword">if</span>(......)&#123;</span><br><span class="line">       .......</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">req</span>(<span class="params">url, data</span>) </span>&#123;    <span class="comment">//自己封装，仅供参考</span></span><br><span class="line">  <span class="keyword">let</span> sendurl = url;</span><br><span class="line">  <span class="keyword">let</span> setting = &#123;</span><br><span class="line">      method: data.type ? data.type : <span class="string">"get"</span>,</span><br><span class="line">      headers: <span class="keyword">new</span> Headers(&#123;</span><br><span class="line">          <span class="string">"Accept"</span>: <span class="string">"application/json, text/javascript, */*; q=0.01"</span>,</span><br><span class="line">          <span class="string">"Pragma"</span>: <span class="string">"no-cache"</span>,</span><br><span class="line">          <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>,</span><br><span class="line">          <span class="string">"X-Requested-With"</span>: <span class="string">"XMLHttpRequest"</span></span><br><span class="line">  &#125;),</span><br><span class="line">  credentials: <span class="string">"include"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(data.headers)&#123;</span><br><span class="line">    <span class="keyword">const</span> headers = setting.headers;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> attr <span class="keyword">in</span> data.headers)&#123;</span><br><span class="line">        <span class="keyword">if</span>(headers.has(attr))&#123;</span><br><span class="line">            headers.set(attr, data.headers[attr]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            headers.append(attr, data.headers[attr]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (setting.method == <span class="string">"post"</span>) &#123;</span><br><span class="line">    setting.body = data.param ? paramData(data.param) : <span class="string">""</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    sendurl = sendurl + (data.param ? <span class="string">"?"</span> + paramData(data.param) : <span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> fetch(sendurl, setting).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (response.status &gt;= <span class="number">200</span> &amp;&amp; response.status &lt; <span class="number">300</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(response.statusText);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">const</span> accept = setting.headers.get(<span class="string">"accept"</span>);</span><br><span class="line">     <span class="keyword">if</span>(accept.includes(<span class="string">"/json"</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> response.json();</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span>(accept.includes(<span class="string">"/html"</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> response.text();</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="原生实现类jQuery的库"><a href="#原生实现类jQuery的库" class="headerlink" title="原生实现类jQuery的库"></a>原生实现类jQuery的库</h1><blockquote>
-<p>上手才是关键，下面实现了部分jQuery的Api（代码构建编译部分省略），可能功能有所差异，但是就是这个味儿~</p>
+<h3 id="JavaScript调用"><a href="#JavaScript调用" class="headerlink" title="JavaScript调用"></a>JavaScript调用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NativeModules.AppInfo.getVersion(<span class="function">(<span class="params">version</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(version);</span><br><span class="line">    <span class="comment">//output 1.1.0</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="版本校验"><a href="#版本校验" class="headerlink" title="版本校验"></a>版本校验</h2><blockquote>
+<p>写一个版本比较接口，把获取到的版本号提交上去，以此来判断是否需要更新</p>
 </blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test"</span> <span class="attr">actid</span>=<span class="string">"111"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="class"><span class="keyword">class</span> <span class="title">xy</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">constructor</span>(selector)&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.dom = <span class="built_in">document</span>.querySelectorAll(selector);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.length = <span class="built_in">document</span>.querySelectorAll(selector).length;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    eq(index)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.dom = [<span class="keyword">this</span>.dom[index]];</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> <span class="keyword">this</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    attr(name)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> <span class="keyword">this</span>.dom[<span class="number">0</span>].getAttribute(name);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    children(index)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> childrenList = [];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; <span class="keyword">this</span>.dom.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            childrenList.push(<span class="keyword">this</span>.dom[i].children);</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> arr = [];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; childrenList.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            arr.push(index != <span class="literal">undefined</span> ? childrenList[i][index] : childrenList[i]);</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> arr.length &gt; <span class="number">1</span> ? arr : arr[<span class="number">0</span>];</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    append(htmlStr)&#123;</span><br><span class="line"><span class="actionscript">        <span class="comment">// for(let i = 0;i &lt; this.dom.length;i++)&#123;</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">//     this.dom[i].insertAdjacentHTML("beforeend", htmlStr);</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">// &#125;</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.insertAdjacentHTML('beforeend', '"</span> + htmlStr + <span class="string">"')"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    html(htmlStr)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.innerHTML = '"</span> + htmlStr.replace(<span class="regexp">/\s*/g</span>,<span class="string">""</span>) + <span class="string">"'"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    remove()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.parentNode.removeChild(dom)"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    addClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.classFun(<span class="string">"add"</span>, className);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    removeClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.classFun(<span class="string">"remove"</span>, className);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    toggleClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.classList.toggle('"</span> + className + <span class="string">"')"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    classFun(order, className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> classArr = className.split(<span class="string">" "</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> code = <span class="string">"dom.classList."</span> + order + <span class="string">"("</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; classArr.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            code += <span class="string">"'"</span> + classArr[i] + <span class="string">"',"</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        code = code.substr(0, code.length - 1);</span><br><span class="line"><span class="actionscript">        code += <span class="string">")"</span>;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(code);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    circulationFun(code)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; <span class="keyword">this</span>.dom.length;i++)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"dom"</span>, <span class="string">"i"</span>, code)(<span class="keyword">this</span>.dom[i], i);</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="comment">//你可以不停的去扩展</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">$xy</span>(<span class="params">selector</span>)</span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> <span class="keyword">new</span> xy(selector);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">$xy(<span class="string">".test"</span>).attr(<span class="string">"actid"</span>);</span></span><br><span class="line"><span class="actionscript"><span class="comment">//output 111</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>提供一个php的版本比较方法：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">compareVersion</span><span class="params">($v1,$v2)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">empty</span>($v2))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    $l1  = explode(<span class="string">'.'</span>,$v1);</span><br><span class="line">    $l2  = explode(<span class="string">'.'</span>,$v2);</span><br><span class="line">    $len = count($l1) &gt; count($l2) ? count($l1): count($l2);</span><br><span class="line">    <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $len; $i++) &#123;</span><br><span class="line">        $n1 = $l1[$i] ? $l1[$i] : <span class="number">0</span>;</span><br><span class="line">        $n2 = $l2[$i] ? $l2[$i] : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> ($n1 &gt; $n2) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ($n1 &lt; $n2) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载新版本"><a href="#下载新版本" class="headerlink" title="下载新版本"></a>下载新版本</h2><blockquote>
+<p>版本校验需要更新，得到更新的地址后去下载保存到本机</p>
+</blockquote>
+<h3 id="获取读取存储的权限"><a href="#获取读取存储的权限" class="headerlink" title="获取读取存储的权限"></a>获取读取存储的权限</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> permissions = [</span><br><span class="line">      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,</span><br><span class="line">      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> granteds = <span class="keyword">await</span> PermissionsAndroid.requestMultiple(permissions);</span><br><span class="line">    <span class="keyword">if</span> (granteds[<span class="string">"android.permission.ACCESS_FINE_LOCATION"</span>] === <span class="string">"granted"</span> &amp;&amp; granteds[<span class="string">"android.permission.READ_EXTERNAL_STORAGE"</span>] === <span class="string">"granted"</span> &amp;&amp; granteds[<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span>] === <span class="string">"granted"</span>) &#123;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      ToastAndroid.show(<span class="string">'授权被拒绝'</span>, ToastAndroid.LONG)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    ToastAndroid.show(err.toString(), ToastAndroid.LONG);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<h3 id="react-native-fs下载"><a href="#react-native-fs下载" class="headerlink" title="react-native-fs下载"></a>react-native-fs下载</h3><blockquote>
+<p>接入文档<a href="https://github.com/itinance/react-native-fs" target="_blank" rel="noopener">react-native-fs</a></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> RNFS <span class="keyword">from</span> <span class="string">'react-native-fs'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> downloadDest = <span class="string">`<span class="subst">$&#123;RNFS.DownloadDirectoryPath&#125;</span>/app.apk`</span>;    </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  fromUrl: UPDATEURL,    <span class="comment">//更新包的地址</span></span><br><span class="line">  toFile: downloadDest,  <span class="comment">//下载后保存的地址</span></span><br><span class="line">  background: <span class="literal">true</span>,</span><br><span class="line">  begin: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> ret = RNFS.downloadFile(options);</span><br><span class="line">ret.promise.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 下载成功</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  ToastAndroid.show(err, ToastAndroid.LONG);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
+<p>下载成功后，考虑到用户体验，还得有一个自动安装吧~<br>当然去打开指定路径的文件也是需要我们自己写原生模块的。</p>
+</blockquote>
+<p>按照上面的流程，我新建了update模块和UpdateModule.java类<br>这里流程很上面的获取版本号一致，我直接贴UpdateModule.java的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.your-app-name.update;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.NativeModule;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactApplicationContext;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactContext;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactContextBaseJavaModule;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactMethod;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.Callback;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Intent;</span><br><span class="line"><span class="keyword">import</span> android.net.Uri;</span><br><span class="line"><span class="keyword">import</span> android.os.Build;</span><br><span class="line"><span class="comment">//使用FileProvider需要一定的配置</span></span><br><span class="line"><span class="keyword">import</span> androidx.core.content.FileProvider;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateModule</span> <span class="keyword">extends</span> <span class="title">ReactContextBaseJavaModule</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> ReactApplicationContext context;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UpdateModule</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(reactContext);</span><br><span class="line">        context = reactContext;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Update"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ReactMethod</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">installApp</span><span class="params">(<span class="keyword">final</span> String path, Callback successCallback)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">24</span>) &#123;    <span class="comment">//android 7.0以后，处于安全考虑必须使用FileProvider打开文件</span></span><br><span class="line">                Uri contentUri = FileProvider.getUriForFile(context, <span class="string">"com.your-app-name.fileprovider"</span>, <span class="keyword">new</span> File(path));</span><br><span class="line"></span><br><span class="line">                Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW)</span><br><span class="line">                .setDataAndType(contentUri, <span class="string">"application/vnd.android.package-archive"</span>);</span><br><span class="line"></span><br><span class="line">                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);</span><br><span class="line">                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line"></span><br><span class="line">                context.startActivity(intent);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW).setDataAndType(Uri.parse(<span class="string">"file://"</span> + path), <span class="string">"application/vnd.android.package-archive"</span>).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">                context.startActivity(intent);</span><br><span class="line">            &#125;</span><br><span class="line">            successCallback.invoke(<span class="string">"安装成功"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            successCallback.invoke(<span class="string">"安装失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更新下逻辑代码，下载成功后自动安装</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line">ret.promise.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 下载成功</span></span><br><span class="line">  NativeModules.Update.installApp(downloadDest, (res) =&gt; &#123;</span><br><span class="line">      <span class="comment">// 安装成功</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  ToastAndroid.show(err, ToastAndroid.LONG);</span><br><span class="line">&#125;);</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
           
         
       
@@ -438,7 +458,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/nginx-node-statistics/">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/upnp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Irwin">
@@ -457,7 +477,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/frontend/nginx-node-statistics/" itemprop="url">Nginx搭配Node来构建统计系统</a></h1>
+                <a class="post-title-link" href="/frontend/upnp/" itemprop="url">路由器之UPnP协议</a></h1>
         
 
         <div class="post-meta">
@@ -469,8 +489,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:24:59+08:00">
-                2020-07-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-10T17:00:00+08:00">
+                2020-08-10
               </time>
             
 
@@ -503,8 +523,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%8E%E7%AB%AF/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">网络协议</span>
                   </a>
                 </span>
 
@@ -542,253 +562,25 @@
       
         
           
-            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><blockquote>
-<p>一个互联网企业少不了对自身业务的数据访问量的监控和分析。统计行业，如今CNZZ和百度作为两大巨头，是第一优先选择。</p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>通用即插即用（英语：Universal Plug and Play，简称UPnP）是由“通用即插即用论坛”（UPnP™ Forum）推广的一套网络协议。该协议的目标是使家庭网络（数据共享、通信和娱乐）和公司网络中的各种设备能够相互无缝连接，并简化相关网络的实现。UPnP通过定义和发布基于开放、因特网通讯网协议标准的UPnP设备控制协议来实现这一目标。<br>————百度百科</p>
 </blockquote>
-<p>但是这两方的覆盖面积太广，难免有时候会有些“疏漏”：</p>
-<ul>
-<li>CNZZ和百度统计经常数据不一致</li>
-<li>经常出现数据缺失（比如对于站点根目录的PV,UV访问）</li>
-</ul>
-<p>作为企业肯定是对于自身业务的数据是第一关注点，那么数据准确率和迭代速度就成为了优先选择。</p>
-<h1 id="统计系统v1-0-0"><a href="#统计系统v1-0-0" class="headerlink" title="统计系统v1.0.0"></a>统计系统v1.0.0</h1><h2 id="数据统计前端规则"><a href="#数据统计前端规则" class="headerlink" title="数据统计前端规则"></a>数据统计前端规则</h2><blockquote>
-<p>这里主要是说日志收集和处理方向，统计规则我说了，反正就是围绕cookies和localStorage再添加各种限制展开。有兴趣的可以看我的repo=&gt;<a href="https://github.com/phaoer/Pure_statistics" target="_blank" rel="noopener"> Pure_statistics </a>，这里讲述了对PV和UV的收集规则。</p>
-</blockquote>
-<h2 id="日志收集和处理"><a href="#日志收集和处理" class="headerlink" title="日志收集和处理"></a>日志收集和处理</h2><ul>
-<li>用静态资源作为“载体”</li>
-<li>rsyslog解析并推送到MySQL</li>
-</ul>
-<p>这就是统计系统的雏形</p>
-<p>不过久而久之就出现了瓶颈，rsyslog不灵活，迭代过程十分痛苦。</p>
-<h1 id="取其精华，去其糟粕"><a href="#取其精华，去其糟粕" class="headerlink" title="取其精华，去其糟粕"></a>取其精华，去其糟粕</h1><blockquote>
-<p>保留Nginx处理静态资源访问的优势，用对字符串十分友好的Node来处理日志，解析字段。<br>虽然Nginx和Node都是基于事件驱动的服务模型，但是不得不承认Nginx对于静态访问的处理是优于Node的。<br>像普遍情况专门有一台NodeServer，在拓展业务上可以用Nginx做一个反向代理​，实现动静分离，发挥其各自的优势。​</p>
-</blockquote>
-<h1 id="进一步优化"><a href="#进一步优化" class="headerlink" title="进一步优化"></a>进一步优化</h1><h2 id="nginx-conf"><a href="#nginx-conf" class="headerlink" title="nginx.conf"></a>nginx.conf</h2><blockquote>
-<p>其实我们在处理日志的时候只需要去处理我们“载体”相关的日志，那么我们就得将统计日志和普通日志分离。</p>
-</blockquote>
-<p>这里我介绍一种配置路由的方式来分离日志</p>
-<ul>
-<li>将你的载体放在某一个目录下，比如/tongji/</li>
-<li>利用location的普通字符匹配规则去匹配载体访问</li>
-<li>匹配后修改日志路径</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location ^~ &#x2F;tongji&#x2F; &#123;</span><br><span class="line">    if ($time_iso8601 ~ &quot;(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)&quot;) &#123;</span><br><span class="line">         set $time $1$2$3;</span><br><span class="line">    &#125;</span><br><span class="line">    access_log  路径马赛克&#x2F;$time-access.log  static;</span><br><span class="line">    # static 规则按需配置.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样在解析日志的时候可以避免冗余日志，节约是美德呀<del>~</del><br>当然你还可以做很多事，比如匹配站点，避免非自己业务的访问干扰数据精确度等等</p>
-<blockquote>
-<p>当然，如果你司足够壕，当我没说。</p>
-</blockquote>
-<h2 id="Node处理程序"><a href="#Node处理程序" class="headerlink" title="Node处理程序"></a>Node处理程序</h2><blockquote>
-<p>剩下来的事情就是用Node去读日志了<br>createReadStream创建一个可读流交给<a href="http://nodejs.cn/api/readline.html" target="_blank" rel="noopener"> readline </a>逐行读取处理就行了，剩下的这就是JavaScript开发者的拿手戏了 =&gt; 字符串解析</p>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><blockquote>
+<p>目前市面上大部分路由器都支持UPnP协议，那么我们在开发关于路由器的项目时，都会去获取路由器的一些相关信息，这时候UPnP协议就派上用场了。</p>
 </blockquote>
 <blockquote>
-<p>请注意，node在处理大文件或者未知内存文件大小的时候千万不要使用readFile，会突破V8内存限制。<br>推荐使用stream + pipe去处理，其不受V8限制，如果不设计字符串的操作还可以纯粹用buffer去操作，当然此时便是受物理内存的限制了。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">const</span> readline = <span class="built_in">require</span>(<span class="string">'readline'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">'cost-time'</span>);</span><br><span class="line"><span class="keyword">const</span> rl = readline.createInterface(&#123;</span><br><span class="line">    input: fs.createReadStream(<span class="string">'路径马赛克/20200221-access.log'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"></span><br><span class="line">rl.on(<span class="string">'line'</span>, (line) =&gt; &#123;</span><br><span class="line">    <span class="comment">//你自己的业务逻辑</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">rl.on(<span class="string">'close'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'cost-time'</span>);    <span class="comment">//假吧意思看个耗时</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/php-contentType/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Irwin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phaoer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/frontend/php-contentType/" itemprop="url">PHP对于不同的Content-Type取值的处理方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:23:55+08:00">
-                2020-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">后端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%8E%E7%AB%AF/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="HTTP协议-（Hyper-Text-Transfer-Protocol）"><a href="#HTTP协议-（Hyper-Text-Transfer-Protocol）" class="headerlink" title="HTTP协议 （Hyper Text Transfer Protocol）"></a>HTTP协议 （Hyper Text Transfer Protocol）</h1><blockquote>
-<p>HTTP是一个基于TCP/IP通信协议来传递数据，包括html文件、图像、结果等，即是一个客户端和服务器端请求和应答的标准。</p>
-</blockquote>
-<h2 id="HTTP协议特点"><a href="#HTTP协议特点" class="headerlink" title="HTTP协议特点"></a>HTTP协议特点</h2><ul>
-<li>http无连接：限制每次连接只处理一个请求，服务端完成客户端的请求后，即断开连接。（传输速度快，减少不必要的连接，但也意味着每一次访问都要建立一次连接，效率降低）</li>
-<li>http无状态：对于事务处理没有记忆能力。每一次请求都是独立的，不记录客户端任何行为。（优点解放服务器，但可能每次请求会传输大量重复的内容信息）</li>
-<li>客户端/服务端模型：客户端支持web浏览器或其他任何客户端，服务器通常是nginx或者apache等</li>
-<li>简单快速</li>
-<li>灵活：可以传输任何类型的数据</li>
-</ul>
-<h2 id="一次HTTP请求过程"><a href="#一次HTTP请求过程" class="headerlink" title="一次HTTP请求过程"></a>一次HTTP请求过程</h2><blockquote>
-<p>域名 =》DNS域名解析 =》TCP三次握手建立连接 =》传输http报文 =》四次挥手断开连接</p>
-</blockquote>
-<h3 id="TCP三次握手过程"><a href="#TCP三次握手过程" class="headerlink" title="TCP三次握手过程"></a>TCP三次握手过程</h3><ul>
-<li>第一次握手客户端需要发送一个syn=1告诉服务端需要联机，并且会同时发送一个随机生成的顺序号码（seq）。</li>
-<li>第二次握手由服务端发起，服务端需要回复客户端一个确认ACK，这个值为第一次客户端生成的顺序号码加1，另外也生成一个随机顺序号码给到客户端。</li>
-<li>第三次握手由客户端收到第二次握手的消息后，回复服务端一个确认消息ACK，这个值为服务端的顺序号码加1，也会发送一个seq。<blockquote>
-<p>第一次握手，是客户端需要确认自己发消息没问题，服务端收到消息以后证明自己收消息没问题，这时他还需要证明自己发消息没问题所以他发起第二次握手。<br>客户端收到第二次握手的消息后确认了自己的发消息和收消息都没问题，但这时候服务端只知道自己收消息没有问题，他第二次发出的消息他并不知道客户端是否成功接收了。<br>所以有了第三次握手，告诉服务端我收到了，你发消息没问题。这时，就证明了客户端和服务端双方的收发都没有问题。</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h3><blockquote>
-<p>一个HTTP请求报文由请求行（request line）、请求头部（header）和请求体（body）组成。</p>
+<p>关于UPnP的原理解析和介绍，网络上的文章太多了，这里就不再赘述。<br>直接上干货</p>
 </blockquote>
 <ul>
-<li>请求行：请求方法、请求地址和协议版本</li>
-<li>请求头：主要说Content-Type（请求的与实体对应的MIME信息）<ul>
-<li>常见取值 ：<br>application/x-www-form-urlencoded （使用jquery发送ajax请求会默认类型）<br>application/json<br>multipart/form-data （传输文件固定类型）</li>
-<li>后端如何接收：（PHP）<br>取值为application/x-www-data-urlencoded情况下$_POST 和  php://input均有值。<br>取值为 application/json  时$_POST无值。<br>取值为multipart/form-data 时php://input无值。此时应该用$_POST来获取字段，$_FILES 来获取上传的文件信息</li>
-</ul>
+<li><p>1.使用udp多播向239.255.255.250:1900发送一条ssdp搜索报文</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">M-SEARCH * HTTP&#x2F;1.1\r\nHOST: 239.255.255.250:1900\r\nMAN:&quot;ssdp:discover&quot;\r\nMX:5\r\nST: upnp:rootdevice\r\n</span><br></pre></td></tr></table></figure>
 </li>
-<li>请求体：<ul>
-<li>常见类型 ：<br>application/x-www-form-urlencoded ：a=1&amp;b=2<br>application/json ：”{“a”:1,”b”:2}”</li>
-</ul>
+<li><p>2.监听239.255.255.250:1900，如果网络存在一个UPnP设备的话，设备必须发送响应信息</p>
+</li>
+<li><p>3.解析响应消息，获得LOCATION的值，会得到一个xml的地址，即根设备（路由器）的描述信息地址</p>
 </li>
 </ul>
-<h3 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h3><blockquote>
-<p>HTTP响应报文主要由状态行、响应头、及响应数据组成。</p>
-</blockquote>
-<ul>
-<li>状态行：协议版本，状态码，状态码描述。</li>
-<li>响应头：主要说Content-Type<ul>
-<li>常见值 ：<br>text/html ： HTML格式<br>text/plain ：纯文本格式<br>text/xml ：  XML格式<br>image/gif ：gif图片格式<br>image/jpeg ：jpg图片格式<br>image/png：png图片格式<h3 id="四次挥手断开"><a href="#四次挥手断开" class="headerlink" title="四次挥手断开"></a>四次挥手断开</h3><blockquote>
-<p>通过前面，我们已经知道ACK是用来应答的，SYN是用来代表连接的。而这里的FIN报文就是代表断开连接的，当主动方没有数据再需要传输给对方时，会向对方发起FIN报文，但这时候被动方不会立马断开连接，他只会回复一个ACK告诉主动方你发的FIN报文我收到了，很可能不会立马关闭，因为他可能还没处理完请求，可能还有消息需要发送，这时主动方进入FIN_WAIT_2状态。等被动发也没有消息需要发送了，这时候才会也发一个FIN给主动方，主动方回复以后，连接断开。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="COOKIE"><a href="#COOKIE" class="headerlink" title="COOKIE"></a>COOKIE</h1><blockquote>
-<p>Http 协议中引入了 cookie 技术，用来解决 http 协议无状态的问题。通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态；Cookie会根据从服务器端发送的响应报文内的一个叫做 Set-Cookie 的首部字段信息，通知客户端保存 Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后发送出去。后端以 session 这样的机制来保存服务端的对象状态。</p>
-</blockquote>
-
+<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> socket = dgram.createSocket(<span class="string">'udp4'</span>);</span><br><span class="line"></span><br><span class="line">socket.on(<span class="string">'error'</span>, (err) =&gt; &#123;</span><br><span class="line">    socket.close();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">socket.bind(<span class="number">1900</span>, () =&gt; &#123;</span><br><span class="line">    socket.setMulticastTTL(<span class="number">128</span>);</span><br><span class="line">    socket.addMembership(<span class="string">'239.255.255.250'</span>);</span><br><span class="line">    socket.setMulticastLoopback(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> msg = toByteArray(<span class="string">'M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN:"ssdp:discover"\r\nMX:5\r\nST: upnp:rootdevice\r\n'</span>);</span><br><span class="line"></span><br><span class="line">    socket.send(msg, <span class="number">0</span>, msg.length, <span class="number">1900</span>, <span class="string">'239.255.255.250'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, bytes</span>) </span>&#123;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">socket.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data, rinfo</span>) </span>&#123;</span><br><span class="line">    socket.close();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> str = <span class="built_in">String</span>.fromCharCode.apply(<span class="literal">null</span>, <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(data));</span><br><span class="line">    <span class="keyword">const</span> ClearBr = <span class="function">(<span class="params">key</span>) =&gt;</span> &#123; </span><br><span class="line">        key = key.replace(<span class="regexp">/&lt;\/?.+?&gt;/g</span>,<span class="string">""</span>); </span><br><span class="line">        key = key.replace(<span class="regexp">/[\r\n]/g</span>, <span class="string">""</span>); </span><br><span class="line">        <span class="keyword">return</span> key; </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> xmlAddress = ClearBr(str).match(<span class="regexp">/LOCATION: (\S*).xml/</span>)[<span class="number">1</span>] + <span class="string">".xml"</span>;</span><br><span class="line"></span><br><span class="line">    fetch(xmlAddress).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> res.text();</span><br><span class="line">    &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">        <span class="keyword">const</span> modelName = res.match(<span class="regexp">/&lt;modelName&gt;(\S*)&lt;\/modelName&gt;/</span>);   <span class="comment">//路由器型号</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toByteArray</span> (<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> uint = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(obj.length);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, l = obj.length; i &lt; l; i++)&#123;</span><br><span class="line">        uint[i] = obj.charCodeAt(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(uint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1074,6 +866,771 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/bye-jquery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/bye-jquery/" itemprop="url">为什么放弃jQuery</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-20T10:21:15+08:00">
+                2020-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/jquery/" itemprop="url" rel="index">
+                    <span itemprop="name">jquery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>首先，直接操作dom的编程方式已经成为过去，数据驱动才是正途！<br>其次，不一定非要舍弃jQuery，只是可以，选择权在自己手上！<br>下面只是就事论事</p>
+</blockquote>
+<h1 id="落幕"><a href="#落幕" class="headerlink" title="落幕"></a>落幕</h1><blockquote>
+<p>2018年7月 全球最大的同性交友社区（Github）被微软收购后的 52 天，改版并放弃了 jQuery 。这一举动让我等搬运工陷入了沉思。</p>
+</blockquote>
+<h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>随着ECMAScript标准的更新，原生js已经可代替jQuery，给我babel一个面子，不要再说兼容不支持的话！<br>下面举两个比较常用的方面来说明：</p>
+<blockquote>
+<ul>
+<li>jQuery Api可以使用原生轻松实现</li>
+<li>使用 fetch 来代替 ajax；<br>Fetch API 是基于 Promise 设计，更符合目前的异步解决方案。什么是目前的异步解决方案？翻看上一篇async &amp; await</li>
+</ul>
+</blockquote>
+<h1 id="具体实现对比（部分）"><a href="#具体实现对比（部分）" class="headerlink" title="具体实现对比（部分）"></a>具体实现对比（部分）</h1><blockquote>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2></blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jq</span></span><br><span class="line">$(<span class="string">"#a .b"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Native</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">"#a .b"</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//jq</span></span><br><span class="line"> $(selector).append(html);</span><br><span class="line"> <span class="comment">//prepend</span></span><br><span class="line"> <span class="comment">//before</span></span><br><span class="line"> <span class="comment">//after</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//Native</span></span><br><span class="line"> <span class="built_in">document</span>.querySelectorAll(selector).insertAdjacentHTML(<span class="string">"beforeend"</span>, html);</span><br><span class="line"><span class="comment">//beforebegin 开始标签之前 before</span></span><br><span class="line"><span class="comment">//afterbegin  开始标签之后 prepend</span></span><br><span class="line"><span class="comment">//beforeend  结束标签之前 append</span></span><br><span class="line"><span class="comment">//afterbegin  结束标签之后 after</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="类操作"><a href="#类操作" class="headerlink" title="类操作"></a>类操作</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//jq</span></span><br><span class="line"> $(selector).addClass(className);</span><br><span class="line"> <span class="comment">//hasClass</span></span><br><span class="line"> <span class="comment">//removeClass</span></span><br><span class="line"> <span class="comment">//toggleClass</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//Native</span></span><br><span class="line"> <span class="built_in">document</span>.querySelectorAll(selector).classList.add(className, className, className...);</span><br><span class="line"><span class="comment">//contains(className) 检测是否存在</span></span><br><span class="line"><span class="comment">//removeClass(className, className, className...) 删除</span></span><br><span class="line"><span class="comment">//toggle(className, true|false) 切换</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jq</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    <span class="comment">//.................</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Native</span></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line"> <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> req(url, &#123;<span class="attr">headers</span>: &#123;<span class="attr">Accept</span>: <span class="string">"text/html"</span>&#125;&#125;);</span><br><span class="line">    <span class="keyword">if</span>(......)&#123;</span><br><span class="line">       .......</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">req</span>(<span class="params">url, data</span>) </span>&#123;    <span class="comment">//自己封装，仅供参考</span></span><br><span class="line">  <span class="keyword">let</span> sendurl = url;</span><br><span class="line">  <span class="keyword">let</span> setting = &#123;</span><br><span class="line">      method: data.type ? data.type : <span class="string">"get"</span>,</span><br><span class="line">      headers: <span class="keyword">new</span> Headers(&#123;</span><br><span class="line">          <span class="string">"Accept"</span>: <span class="string">"application/json, text/javascript, */*; q=0.01"</span>,</span><br><span class="line">          <span class="string">"Pragma"</span>: <span class="string">"no-cache"</span>,</span><br><span class="line">          <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>,</span><br><span class="line">          <span class="string">"X-Requested-With"</span>: <span class="string">"XMLHttpRequest"</span></span><br><span class="line">  &#125;),</span><br><span class="line">  credentials: <span class="string">"include"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(data.headers)&#123;</span><br><span class="line">    <span class="keyword">const</span> headers = setting.headers;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> attr <span class="keyword">in</span> data.headers)&#123;</span><br><span class="line">        <span class="keyword">if</span>(headers.has(attr))&#123;</span><br><span class="line">            headers.set(attr, data.headers[attr]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            headers.append(attr, data.headers[attr]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (setting.method == <span class="string">"post"</span>) &#123;</span><br><span class="line">    setting.body = data.param ? paramData(data.param) : <span class="string">""</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    sendurl = sendurl + (data.param ? <span class="string">"?"</span> + paramData(data.param) : <span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> fetch(sendurl, setting).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (response.status &gt;= <span class="number">200</span> &amp;&amp; response.status &lt; <span class="number">300</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(response.statusText);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">const</span> accept = setting.headers.get(<span class="string">"accept"</span>);</span><br><span class="line">     <span class="keyword">if</span>(accept.includes(<span class="string">"/json"</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> response.json();</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span>(accept.includes(<span class="string">"/html"</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> response.text();</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="原生实现类jQuery的库"><a href="#原生实现类jQuery的库" class="headerlink" title="原生实现类jQuery的库"></a>原生实现类jQuery的库</h1><blockquote>
+<p>上手才是关键，下面实现了部分jQuery的Api（代码构建编译部分省略），可能功能有所差异，但是就是这个味儿~</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test"</span> <span class="attr">actid</span>=<span class="string">"111"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="class"><span class="keyword">class</span> <span class="title">xy</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">constructor</span>(selector)&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.dom = <span class="built_in">document</span>.querySelectorAll(selector);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.length = <span class="built_in">document</span>.querySelectorAll(selector).length;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    eq(index)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.dom = [<span class="keyword">this</span>.dom[index]];</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> <span class="keyword">this</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    attr(name)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> <span class="keyword">this</span>.dom[<span class="number">0</span>].getAttribute(name);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    children(index)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> childrenList = [];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; <span class="keyword">this</span>.dom.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            childrenList.push(<span class="keyword">this</span>.dom[i].children);</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> arr = [];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; childrenList.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            arr.push(index != <span class="literal">undefined</span> ? childrenList[i][index] : childrenList[i]);</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> arr.length &gt; <span class="number">1</span> ? arr : arr[<span class="number">0</span>];</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    append(htmlStr)&#123;</span><br><span class="line"><span class="actionscript">        <span class="comment">// for(let i = 0;i &lt; this.dom.length;i++)&#123;</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">//     this.dom[i].insertAdjacentHTML("beforeend", htmlStr);</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">// &#125;</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.insertAdjacentHTML('beforeend', '"</span> + htmlStr + <span class="string">"')"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    html(htmlStr)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.innerHTML = '"</span> + htmlStr.replace(<span class="regexp">/\s*/g</span>,<span class="string">""</span>) + <span class="string">"'"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    remove()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.parentNode.removeChild(dom)"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    addClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.classFun(<span class="string">"add"</span>, className);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    removeClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.classFun(<span class="string">"remove"</span>, className);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    toggleClass(className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(<span class="string">"dom.classList.toggle('"</span> + className + <span class="string">"')"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    classFun(order, className)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> classArr = className.split(<span class="string">" "</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> code = <span class="string">"dom.classList."</span> + order + <span class="string">"("</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; classArr.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">            code += <span class="string">"'"</span> + classArr[i] + <span class="string">"',"</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        code = code.substr(0, code.length - 1);</span><br><span class="line"><span class="actionscript">        code += <span class="string">")"</span>;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.circulationFun(code);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    circulationFun(code)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; <span class="keyword">this</span>.dom.length;i++)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"dom"</span>, <span class="string">"i"</span>, code)(<span class="keyword">this</span>.dom[i], i);</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="comment">//你可以不停的去扩展</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">$xy</span>(<span class="params">selector</span>)</span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> <span class="keyword">new</span> xy(selector);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">$xy(<span class="string">".test"</span>).attr(<span class="string">"actid"</span>);</span></span><br><span class="line"><span class="actionscript"><span class="comment">//output 111</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/php-contentType/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/php-contentType/" itemprop="url">PHP对于不同的Content-Type取值的处理方式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-02T18:23:55+08:00">
+                2020-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HTTP协议-（Hyper-Text-Transfer-Protocol）"><a href="#HTTP协议-（Hyper-Text-Transfer-Protocol）" class="headerlink" title="HTTP协议 （Hyper Text Transfer Protocol）"></a>HTTP协议 （Hyper Text Transfer Protocol）</h1><blockquote>
+<p>HTTP是一个基于TCP/IP通信协议来传递数据，包括html文件、图像、结果等，即是一个客户端和服务器端请求和应答的标准。</p>
+</blockquote>
+<h2 id="HTTP协议特点"><a href="#HTTP协议特点" class="headerlink" title="HTTP协议特点"></a>HTTP协议特点</h2><ul>
+<li>http无连接：限制每次连接只处理一个请求，服务端完成客户端的请求后，即断开连接。（传输速度快，减少不必要的连接，但也意味着每一次访问都要建立一次连接，效率降低）</li>
+<li>http无状态：对于事务处理没有记忆能力。每一次请求都是独立的，不记录客户端任何行为。（优点解放服务器，但可能每次请求会传输大量重复的内容信息）</li>
+<li>客户端/服务端模型：客户端支持web浏览器或其他任何客户端，服务器通常是nginx或者apache等</li>
+<li>简单快速</li>
+<li>灵活：可以传输任何类型的数据</li>
+</ul>
+<h2 id="一次HTTP请求过程"><a href="#一次HTTP请求过程" class="headerlink" title="一次HTTP请求过程"></a>一次HTTP请求过程</h2><blockquote>
+<p>域名 =》DNS域名解析 =》TCP三次握手建立连接 =》传输http报文 =》四次挥手断开连接</p>
+</blockquote>
+<h3 id="TCP三次握手过程"><a href="#TCP三次握手过程" class="headerlink" title="TCP三次握手过程"></a>TCP三次握手过程</h3><ul>
+<li>第一次握手客户端需要发送一个syn=1告诉服务端需要联机，并且会同时发送一个随机生成的顺序号码（seq）。</li>
+<li>第二次握手由服务端发起，服务端需要回复客户端一个确认ACK，这个值为第一次客户端生成的顺序号码加1，另外也生成一个随机顺序号码给到客户端。</li>
+<li>第三次握手由客户端收到第二次握手的消息后，回复服务端一个确认消息ACK，这个值为服务端的顺序号码加1，也会发送一个seq。<blockquote>
+<p>第一次握手，是客户端需要确认自己发消息没问题，服务端收到消息以后证明自己收消息没问题，这时他还需要证明自己发消息没问题所以他发起第二次握手。<br>客户端收到第二次握手的消息后确认了自己的发消息和收消息都没问题，但这时候服务端只知道自己收消息没有问题，他第二次发出的消息他并不知道客户端是否成功接收了。<br>所以有了第三次握手，告诉服务端我收到了，你发消息没问题。这时，就证明了客户端和服务端双方的收发都没有问题。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h3><blockquote>
+<p>一个HTTP请求报文由请求行（request line）、请求头部（header）和请求体（body）组成。</p>
+</blockquote>
+<ul>
+<li>请求行：请求方法、请求地址和协议版本</li>
+<li>请求头：主要说Content-Type（请求的与实体对应的MIME信息）<ul>
+<li>常见取值 ：<br>application/x-www-form-urlencoded （使用jquery发送ajax请求会默认类型）<br>application/json<br>multipart/form-data （传输文件固定类型）</li>
+<li>后端如何接收：（PHP）<br>取值为application/x-www-data-urlencoded情况下$_POST 和  php://input均有值。<br>取值为 application/json  时$_POST无值。<br>取值为multipart/form-data 时php://input无值。此时应该用$_POST来获取字段，$_FILES 来获取上传的文件信息</li>
+</ul>
+</li>
+<li>请求体：<ul>
+<li>常见类型 ：<br>application/x-www-form-urlencoded ：a=1&amp;b=2<br>application/json ：”{“a”:1,”b”:2}”</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h3><blockquote>
+<p>HTTP响应报文主要由状态行、响应头、及响应数据组成。</p>
+</blockquote>
+<ul>
+<li>状态行：协议版本，状态码，状态码描述。</li>
+<li>响应头：主要说Content-Type<ul>
+<li>常见值 ：<br>text/html ： HTML格式<br>text/plain ：纯文本格式<br>text/xml ：  XML格式<br>image/gif ：gif图片格式<br>image/jpeg ：jpg图片格式<br>image/png：png图片格式</li>
+</ul>
+</li>
+</ul>
+<h3 id="四次挥手断开"><a href="#四次挥手断开" class="headerlink" title="四次挥手断开"></a>四次挥手断开</h3><blockquote>
+<p>通过前面，我们已经知道ACK是用来应答的，SYN是用来代表连接的。而这里的FIN报文就是代表断开连接的，当主动方没有数据再需要传输给对方时，会向对方发起FIN报文，但这时候被动方不会立马断开连接，他只会回复一个ACK告诉主动方你发的FIN报文我收到了，很可能不会立马关闭，因为他可能还没处理完请求，可能还有消息需要发送，这时主动方进入FIN_WAIT_2状态。等被动发也没有消息需要发送了，这时候才会也发一个FIN给主动方，主动方回复以后，连接断开。</p>
+</blockquote>
+<h1 id="COOKIE"><a href="#COOKIE" class="headerlink" title="COOKIE"></a>COOKIE</h1><blockquote>
+<p>Http 协议中引入了 cookie 技术，用来解决 http 协议无状态的问题。通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态；Cookie会根据从服务器端发送的响应报文内的一个叫做 Set-Cookie 的首部字段信息，通知客户端保存 Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后发送出去。后端以 session 这样的机制来保存服务端的对象状态。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/nginx-node-statistics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/nginx-node-statistics/" itemprop="url">Nginx搭配Node来构建统计系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-05T09:00:59+08:00">
+                2020-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><blockquote>
+<p>一个互联网企业少不了对自身业务的数据访问量的监控和分析。统计行业，如今CNZZ和百度作为两大巨头，是第一优先选择。</p>
+</blockquote>
+<p>但是这两方的覆盖面积太广，难免有时候会有些“疏漏”：</p>
+<ul>
+<li>CNZZ和百度统计经常数据不一致</li>
+<li>经常出现数据缺失（比如对于站点根目录的PV,UV访问）</li>
+</ul>
+<p>作为企业肯定是对于自身业务的数据是第一关注点，那么数据准确率和迭代速度就成为了优先选择。</p>
+<h1 id="统计系统v1-0-0"><a href="#统计系统v1-0-0" class="headerlink" title="统计系统v1.0.0"></a>统计系统v1.0.0</h1><h2 id="数据统计前端规则"><a href="#数据统计前端规则" class="headerlink" title="数据统计前端规则"></a>数据统计前端规则</h2><blockquote>
+<p>这里主要是说日志收集和处理方向，统计规则我说了，反正就是围绕cookies和localStorage再添加各种限制展开。有兴趣的可以看我的repo=&gt;<a href="https://github.com/phaoer/Pure_statistics" target="_blank" rel="noopener"> Pure_statistics </a>，这里讲述了对PV和UV的收集规则。</p>
+</blockquote>
+<h2 id="日志收集和处理"><a href="#日志收集和处理" class="headerlink" title="日志收集和处理"></a>日志收集和处理</h2><ul>
+<li>用静态资源作为“载体”</li>
+<li>rsyslog解析并推送到MySQL</li>
+</ul>
+<p>这就是统计系统的雏形</p>
+<p>不过久而久之就出现了瓶颈，rsyslog不灵活，迭代过程十分痛苦。</p>
+<h1 id="取其精华，去其糟粕"><a href="#取其精华，去其糟粕" class="headerlink" title="取其精华，去其糟粕"></a>取其精华，去其糟粕</h1><blockquote>
+<p>保留Nginx处理静态资源访问的优势，用对字符串十分友好的Node来处理日志，解析字段。<br>虽然Nginx和Node都是基于事件驱动的服务模型，但是不得不承认Nginx对于静态访问的处理是优于Node的。<br>像普遍情况专门有一台NodeServer，在拓展业务上可以用Nginx做一个反向代理​，实现动静分离，发挥其各自的优势。​</p>
+</blockquote>
+<h1 id="进一步优化"><a href="#进一步优化" class="headerlink" title="进一步优化"></a>进一步优化</h1><h2 id="nginx-conf"><a href="#nginx-conf" class="headerlink" title="nginx.conf"></a>nginx.conf</h2><blockquote>
+<p>其实我们在处理日志的时候只需要去处理我们“载体”相关的日志，那么我们就得将统计日志和普通日志分离。</p>
+</blockquote>
+<p>这里我介绍一种配置路由的方式来分离日志</p>
+<ul>
+<li>将你的载体放在某一个目录下，比如/tongji/</li>
+<li>利用location的普通字符匹配规则去匹配载体访问</li>
+<li>匹配后修改日志路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location ^~ &#x2F;tongji&#x2F; &#123;</span><br><span class="line">    if ($time_iso8601 ~ &quot;(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)&quot;) &#123;</span><br><span class="line">         set $time $1$2$3;</span><br><span class="line">    &#125;</span><br><span class="line">    access_log  路径马赛克&#x2F;$time-access.log  static;</span><br><span class="line">    # static 规则按需配置.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样在解析日志的时候可以避免冗余日志，节约是美德呀<del>~</del><br>当然你还可以做很多事，比如匹配站点，避免非自己业务的访问干扰数据精确度等等</p>
+<blockquote>
+<p>当然，如果你司足够壕，当我没说。</p>
+</blockquote>
+<h2 id="Node处理程序"><a href="#Node处理程序" class="headerlink" title="Node处理程序"></a>Node处理程序</h2><blockquote>
+<p>剩下来的事情就是用Node去读日志了<br>createReadStream创建一个可读流交给<a href="http://nodejs.cn/api/readline.html" target="_blank" rel="noopener"> readline </a>逐行读取处理就行了，剩下的这就是JavaScript开发者的拿手戏了 =&gt; 字符串解析</p>
+</blockquote>
+<blockquote>
+<p>请注意，node在处理大文件或者未知内存文件大小的时候千万不要使用readFile，会突破V8内存限制。<br>推荐使用stream + pipe去处理，其不受V8限制，如果不设计字符串的操作还可以纯粹用buffer去操作，当然此时便是受物理内存的限制了。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">const</span> readline = <span class="built_in">require</span>(<span class="string">'readline'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">'cost-time'</span>);</span><br><span class="line"><span class="keyword">const</span> rl = readline.createInterface(&#123;</span><br><span class="line">    input: fs.createReadStream(<span class="string">'路径马赛克/20200221-access.log'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"></span><br><span class="line">rl.on(<span class="string">'line'</span>, (line) =&gt; &#123;</span><br><span class="line">    <span class="comment">//你自己的业务逻辑</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">rl.on(<span class="string">'close'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'cost-time'</span>);    <span class="comment">//假吧意思看个耗时</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/antd-load/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/frontend/antd-load/" itemprop="url">Antd 按需加载并使用自定义样式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-20T12:23:00+08:00">
+                2019-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">构建工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="按需加载"><a href="#按需加载" class="headerlink" title="按需加载"></a>按需加载</h1><h2 id="为什么要按需加载？"><a href="#为什么要按需加载？" class="headerlink" title="为什么要按需加载？"></a>为什么要按需加载？</h2><ul>
+<li>在使用antd的组件时会自动加载css</li>
+<li>大大减少打包后的文件体积</li>
+</ul>
+<p>按照官网的介绍使用<a href="https://github.com/ant-design/babel-plugin-import" target="_blank" rel="noopener">babel-plugin-loader</a>即可实现，这里就不赘述</p>
+<h2 id="按需加载同时使用自定义样式"><a href="#按需加载同时使用自定义样式" class="headerlink" title="按需加载同时使用自定义样式"></a>按需加载同时使用自定义样式</h2><p>这里需要用到三个loader</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev style-loader css-loader url-loader</span><br></pre></td></tr></table></figure>
+
+<h2 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h2><p>在配置的时候我们得写两套样式处理规则，分别处理antd样式和自己的样式</p>
+<h3 id="处理Antd样式"><a href="#处理Antd样式" class="headerlink" title="处理Antd样式"></a>处理Antd样式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"style-loader"</span>,</span><br><span class="line">       &#125;,</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"css-loader"</span>,</span><br><span class="line">         options: &#123;</span><br><span class="line">              importLoaders: <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    ],</span><br><span class="line">  exclude: <span class="regexp">/app/</span>,    <span class="comment">//这里要将自己的排除在规则外</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="处理自己的样式"><a href="#处理自己的样式" class="headerlink" title="处理自己的样式"></a>处理自己的样式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"style-loader"</span>,</span><br><span class="line">       &#125;,</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"css-loader"</span>,</span><br><span class="line">       &#125;</span><br><span class="line">    ],</span><br><span class="line">  exclude: <span class="regexp">/node_modules/</span>,    <span class="comment">//这里要将Antd的样式排除</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里还需要注意的是在配置entry的时候，因为我们的antd已经按需加载了，所以无需再重复打包</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/webpack-contentBase-publicPath/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1105,8 +1662,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:23:27+08:00">
-                2020-07-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-10T09:22:27+08:00">
+                2019-10-10
               </time>
             
 
@@ -1276,418 +1833,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/antd-load/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Irwin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phaoer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/frontend/antd-load/" itemprop="url">Antd 按需加载并使用自定义样式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:23:00+08:00">
-                2020-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">构建工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="按需加载"><a href="#按需加载" class="headerlink" title="按需加载"></a>按需加载</h1><h2 id="为什么要按需加载？"><a href="#为什么要按需加载？" class="headerlink" title="为什么要按需加载？"></a>为什么要按需加载？</h2><ul>
-<li>在使用antd的组件时会自动加载css</li>
-<li>大大减少打包后的文件体积</li>
-</ul>
-<p>按照官网的介绍使用<a href="https://github.com/ant-design/babel-plugin-import" target="_blank" rel="noopener">babel-plugin-loader</a>即可实现，这里就不赘述</p>
-<h2 id="按需加载同时使用自定义样式"><a href="#按需加载同时使用自定义样式" class="headerlink" title="按需加载同时使用自定义样式"></a>按需加载同时使用自定义样式</h2><p>这里需要用到三个loader</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev style-loader css-loader url-loader</span><br></pre></td></tr></table></figure>
-
-<h2 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h2><p>在配置的时候我们得写两套样式处理规则，分别处理antd样式和自己的样式</p>
-<h3 id="处理Antd样式"><a href="#处理Antd样式" class="headerlink" title="处理Antd样式"></a>处理Antd样式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"style-loader"</span>,</span><br><span class="line">       &#125;,</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"css-loader"</span>,</span><br><span class="line">         options: &#123;</span><br><span class="line">              importLoaders: <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    ],</span><br><span class="line">  exclude: <span class="regexp">/app/</span>,    <span class="comment">//这里要将自己的排除在规则外</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="处理自己的样式"><a href="#处理自己的样式" class="headerlink" title="处理自己的样式"></a>处理自己的样式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"style-loader"</span>,</span><br><span class="line">       &#125;,</span><br><span class="line">       &#123;</span><br><span class="line">         loader: <span class="string">"css-loader"</span>,</span><br><span class="line">       &#125;</span><br><span class="line">    ],</span><br><span class="line">  exclude: <span class="regexp">/node_modules/</span>,    <span class="comment">//这里要将Antd的样式排除</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>这里还需要注意的是在配置entry的时候，因为我们的antd已经按需加载了，所以无需再重复打包</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/yeoman-gulp-webpack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Irwin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phaoer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/frontend/yeoman-gulp-webpack/" itemprop="url">用Yeoman + gulp + webpack 来管理你的前端项目</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:22:25+08:00">
-                2020-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">构建工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>Yeoman：前端脚手架，快速搭建前端开发环境，优化工作流~<br>Gulp：工程化构建工具，基于task来处理任务<br>Webpack：最常见的前端构建工具，类似与gulp，但不如gulp灵活，专注于代码打包编译</p>
-</blockquote>
-<p>OK，主人公们介绍完了，该篇主要说明三个工具的基本用法，安装配置自己解决。</p>
-<h2 id="Yeoman"><a href="#Yeoman" class="headerlink" title="Yeoman"></a>Yeoman</h2><blockquote>
-<p>Q:</p>
-</blockquote>
-<ul>
-<li>在写东西的时候经常会遇到一些重复性的操作和代码，苦于Ctrl+c</li>
-<li>人数较多的前端团队10个人拥有十种代码风格，十种项目结构，后期维护及其繁琐</li>
-</ul>
-<p>——使用Yeoman 达到One Code Style One Directory Structure</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g yo</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><pre><code>yeoman 提供很多generator，可以直接使用</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir project-name</span><br><span class="line"><span class="built_in">cd</span> project-name</span><br><span class="line">yo</span><br></pre></td></tr></table></figure>
-
-<p>按照提示选择需要的模板就行了，这里主要说一说怎么私人订制<del>~</del>嘻嘻</p>
-<h3 id="创建自己的generator"><a href="#创建自己的generator" class="headerlink" title="创建自己的generator"></a>创建自己的generator</h3><p>yeoman官方提供了generator-generator 来帮助我们自定义生成器，良心啊<del>~</del></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g generator-generator</span><br><span class="line">yo generator</span><br></pre></td></tr></table></figure>
-
-<p>我们需要做的就是在index.js中来创造我们自己的generator</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">const</span> Generator = <span class="built_in">require</span>(<span class="string">'yeoman-generator'</span>);</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>);</span><br><span class="line"><span class="keyword">const</span> yosay = <span class="built_in">require</span>(<span class="string">'yosay'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Generator</span> </span>&#123;</span><br><span class="line">prompting() &#123;</span><br><span class="line">    <span class="comment">// Have Yeoman greet the user.</span></span><br><span class="line">    <span class="keyword">this</span>.log(</span><br><span class="line">    yosay(<span class="string">`Welcome to the tiptop <span class="subst">$&#123;chalk.red(<span class="string">'generator-xy'</span>)&#125;</span> generator!`</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> prompts = [</span><br><span class="line">    &#123;</span><br><span class="line">    type: <span class="string">'confirm'</span>,</span><br><span class="line">    name: <span class="string">'someAnswer'</span>,</span><br><span class="line">    message: <span class="string">'Would you like to enable this option?'</span>,</span><br><span class="line">    <span class="keyword">default</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.prompt(prompts).then(<span class="function"><span class="params">props</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// To access props later use this.props.someAnswer;</span></span><br><span class="line">    <span class="keyword">this</span>.props = props;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">writing() &#123;</span><br><span class="line">    <span class="keyword">this</span>.fs.copy(</span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'dummyfile.txt'</span>),</span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'dummyfile.txt'</span>)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">install() &#123;</span><br><span class="line">    <span class="keyword">this</span>.installDependencies();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到核心的流程是在一个继承了generator的类当中<br>其实这里generator一共提供了 initializing，prompting，configuring，default，writing，conflicts，install，end这几个函数</p>
-<blockquote>
-<p>Prompting()方法是执行前的过渡，实现与用户的交互，你可以在prompts问题集中定义一些问题，比如你叫啥，干啥，弄啥，家里几口人，人均几亩地………..然后将用户输入的内容保存在this.props中，方便以后调用。</p>
-</blockquote>
-<h4 id="我们自己来写一个generator"><a href="#我们自己来写一个generator" class="headerlink" title="我们自己来写一个generator"></a>我们自己来写一个generator</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">prompting() &#123;</span><br><span class="line">        <span class="comment">// Have Yeoman greet the user.</span></span><br><span class="line">        <span class="keyword">this</span>.log(</span><br><span class="line">        yosay(<span class="string">`Welcome to the tiptop <span class="subst">$&#123;chalk.red(<span class="string">'generator-xy'</span>)&#125;</span> generator!`</span>)</span><br><span class="line">    );</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.prompt([&#123;</span><br><span class="line">    type    : <span class="string">'input'</span>,</span><br><span class="line">    name    : <span class="string">'appname'</span>,</span><br><span class="line">    message : <span class="string">'input your project  name'</span>,</span><br><span class="line">    <span class="keyword">default</span> : <span class="keyword">this</span>.appname     </span><br><span class="line">&#125;</span><br><span class="line">]).then(<span class="function">(<span class="params">answers</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.log(<span class="string">'appname ：'</span>, answers.appname);</span><br><span class="line">    <span class="keyword">this</span>.props = answers;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在后面的方法中，我们便可以通过this.props.appname来获取到输入的项目名称</p>
-<p>我们在原来的基础上定义一个defaults方法来生成用户输入的目录</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> mkdirp = <span class="built_in">require</span>(<span class="string">'mkdirp'</span>);</span><br><span class="line"></span><br><span class="line">defaults () &#123;           </span><br><span class="line"><span class="keyword">if</span> (path.basename(<span class="keyword">this</span>.destinationPath()) !== <span class="keyword">this</span>.props.appname) &#123; <span class="comment">//判断是否存在该目录</span></span><br><span class="line">    <span class="keyword">this</span>.log(</span><br><span class="line">    <span class="string">'Your generator must be inside a folder named '</span> + <span class="keyword">this</span>.props.appname + <span class="string">'\n'</span> +</span><br><span class="line">    <span class="string">'I\'ll automatically create this folder.'</span></span><br><span class="line">    );</span><br><span class="line">    mkdirp(<span class="keyword">this</span>.props.appname); <span class="comment">// 即 mkdir -p 创建该目录</span></span><br><span class="line">    <span class="keyword">this</span>.destinationRoot(<span class="keyword">this</span>.destinationPath(<span class="keyword">this</span>.props.appname));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="writing"><a href="#writing" class="headerlink" title="writing"></a>writing</h4><p>writing方法用来书写创建工程文件的步骤<br>在这之前我们首先在template文件夹下创建一个public目录，里面创建如下文件作为咱们这个初级教程的全部内容</p>
-<p>开始写writing方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">writing() &#123;</span><br><span class="line">mkdirp(<span class="string">'css'</span>);      <span class="comment">//创建css文件夹</span></span><br><span class="line">mkdirp(<span class="string">'js'</span>);      <span class="comment">//创建js文件夹</span></span><br><span class="line"><span class="keyword">this</span>.fs.copy(     <span class="comment">//调用方法将模板的内容创建到根目录</span></span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'public/index.html'</span>),       <span class="comment">//模板文件地址 </span></span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'index.html'</span>),          <span class="comment">//创建在根目录</span></span><br><span class="line">),</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.fs.copy(</span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'public/index.css'</span>),</span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'css/index.css'</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.fs.copy(</span><br><span class="line">    <span class="keyword">this</span>.templatePath(<span class="string">'public/index.js'</span>),</span><br><span class="line">    <span class="keyword">this</span>.destinationPath(<span class="string">'js/index.js'</span>)</span><br><span class="line">);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="install"><a href="#install" class="headerlink" title="install"></a>install</h4><p>最后install方法，官方的api说的很清楚this.installDependencies()，即是用来安装我们项目依赖的</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">install() &#123;</span><br><span class="line">  <span class="keyword">this</span>.npmInstall([<span class="string">'jquery'</span>], &#123; <span class="string">'save-dev'</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里就安装一个jquery作为说明即可。<br>最后我们在根目录执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm link</span><br></pre></td></tr></table></figure>
-
-<p>这样我们就可以在全局使用该generator了</p>
-<p>然后切换到开发目录，执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yo xy</span><br></pre></td></tr></table></figure>
-
-<p>然后你就可以开始编码了，so easy今后所有这种类型的项目一个命令几秒钟就可以开始愉快的编码，而且代码风格统一<del>~</del></p>
-<h2 id="Gulp-Webpack"><a href="#Gulp-Webpack" class="headerlink" title="Gulp+Webpack"></a>Gulp+Webpack</h2><blockquote>
-<p>这里把Gulp和Webpack放到一起来说。<br>博主最早是只用了webpack来构建自己的项目，后来加入Gulp对其进行整合，发现配合食用，口感更佳呀<br>核心依然是plugin</p>
-</blockquote>
-<blockquote>
-<p>Webpack出口文件即Gulp入口文件</p>
-</blockquote>
-<p>这里也只是讲如何写一个初略的gulpfile.js</p>
-<p>核心便是task,src,start,watch等api，详细说明见官网<a href="https://www.gulpjs.com.cn/docs/api/" target="_blank" rel="noopener">Gulp Api</a><br>基本工作流程：</p>
-<ul>
-<li>通过gulp.src()方法获取到我们想要处理的文件流(<a href="https://github.com/wearefractal/vinyl-fs" target="_blank" rel="noopener">Vinyl files</a> 的 <a href="http://nodejs.org/api/stream.html" target="_blank" rel="noopener">stream</a>)，</li>
-<li>把文件流通过pipe方法导入到gulp的插件中进行处理，比如调用concat方法合并所有css，再调用minify()压缩css。（具体插件用法，<a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm官网</a>均有介绍）</li>
-<li>把处理后的流再通过pipe方法导入到gulp.dest()中，最后把流中的内容写入到文件中</li>
-</ul>
-<h3 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//加载外挂：自动瞄准，无后座，锁血，大挪移.......~~~</span></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">minify=<span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>);</span><br><span class="line">autoprefixer = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>),</span><br><span class="line">jshint = <span class="built_in">require</span>(<span class="string">'gulp-jshint'</span>),</span><br><span class="line">uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</span><br><span class="line">imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>),</span><br><span class="line">clean = <span class="built_in">require</span>(<span class="string">'gulp-clean'</span>),</span><br><span class="line">concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>),</span><br><span class="line">notify = <span class="built_in">require</span>(<span class="string">'gulp-notify'</span>),</span><br><span class="line">cache = <span class="built_in">require</span>(<span class="string">'gulp-cache'</span>),</span><br><span class="line">livereload = <span class="built_in">require</span>(<span class="string">'gulp-livereload'</span>),</span><br><span class="line">fileinclude = <span class="built_in">require</span>(<span class="string">'gulp-file-include'</span>),</span><br><span class="line">webpack = <span class="built_in">require</span>(<span class="string">'gulp-webpack'</span>);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">gulp.src(<span class="string">'src/css/*.css'</span>)</span><br><span class="line">    .pipe(concat(<span class="string">'main.css'</span>))</span><br><span class="line">    .pipe(minify())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'dist/css'</span>));</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'scripts'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> gulp.src(<span class="string">'src/entry.js'</span>)</span><br><span class="line">  .pipe(webpack( <span class="built_in">require</span>(<span class="string">'./webpack.config.js'</span>) ))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'dist/js'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'images'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> gulp.src(<span class="string">'src/images/**/*'</span>)</span><br><span class="line">  .pipe(cache(imagemin(&#123; <span class="attr">optimizationLevel</span>: <span class="number">3</span>, <span class="attr">progressive</span>: <span class="literal">true</span>, <span class="attr">interlaced</span>: <span class="literal">true</span> &#125;)))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'dist/images'</span>))</span><br><span class="line">  .pipe(notify(&#123; <span class="attr">message</span>: <span class="string">'Images compile complete'</span> &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> gulp.src(<span class="string">'src/**/*.html'</span>)</span><br><span class="line">  .pipe(fileinclude(&#123;</span><br><span class="line">    prefix: <span class="string">'@@'</span>,</span><br><span class="line">    basepath: <span class="string">'@file'</span></span><br><span class="line">  &#125;))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'dist/'</span>))</span><br><span class="line">  .pipe(notify(&#123; <span class="attr">message</span>: <span class="string">'html compile complete'</span> &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'clean'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> gulp.src([<span class="string">'dist/css'</span>, <span class="string">'dist/js'</span>, <span class="string">'dist/images'</span>], &#123;<span class="attr">read</span>: <span class="literal">false</span>&#125;)</span><br><span class="line">   .pipe(clean());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'clean'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   gulp.start(<span class="string">'css'</span>,<span class="string">'scripts'</span>, <span class="string">'images'</span>, <span class="string">'html'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/css/**/*.css'</span>, [<span class="string">'css'</span>]);</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/js/**/*.js'</span>, [<span class="string">'scripts'</span>]);</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/images/**/*'</span>, [<span class="string">'images'</span>]);</span><br><span class="line"></span><br><span class="line">   gulp.watch(<span class="string">'src/**/*.html'</span>, [<span class="string">'html'</span>]) ;</span><br><span class="line">   </span><br><span class="line">   livereload.listen();</span><br><span class="line">   gulp.watch([<span class="string">'dist/**'</span>]).on(<span class="string">'change'</span>, livereload.changed);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>插件的话按需自取，这里我用的插件是包含了处理所有文件的。可以酌情增减</li>
-<li>gulp.task第一个参数为任务名，gulp task-name 即可执行对应的任务，这里需要解释的就是对于js的处理。刚才说过webpack的出口文件就是gulp的入口文件，这里我们用到了gulp-webpack包来优化。</li>
-<li>在默认任务这里执行编译之前调用gulp.clean清空上一次的编译结果</li>
-<li>这里使用了livereload插件，需要配置Chrome（美中不足，显然没有webpack-dev-server实在啊）</li>
-<li>运行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gulp</span><br><span class="line">gulp watch</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/react-reflux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1719,8 +1864,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:22:08+08:00">
-                2020-07-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-28T18:22:08+08:00">
+                2019-09-28
               </time>
             
 
@@ -1896,8 +2041,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:22:02+08:00">
-                2020-07-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T18:22:02+08:00">
+                2019-06-20
               </time>
             
 
@@ -2105,184 +2250,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/react-performs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Irwin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phaoer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/frontend/react-performs/" itemprop="url">React 之性能优化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:21:49+08:00">
-                2020-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="包含父子组件的Tab切换"><a href="#包含父子组件的Tab切换" class="headerlink" title="包含父子组件的Tab切换"></a>包含父子组件的Tab切换</h1><p>当我们将tab切换分离到子组件时很多人喜欢这样写</p>
-<h2 id="父组件："><a href="#父组件：" class="headerlink" title="父组件："></a>父组件：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.type = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> tabSwitch()&#123;</span><br><span class="line">     <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">           <span class="comment">//change state</span></span><br><span class="line">     &#125;)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">  render()&#123;</span><br><span class="line">  	<span class="keyword">return</span> (</span><br><span class="line">       	  &lt;Tab renderFun=&#123;<span class="keyword">this</span>.tabSwitch&#125; type=&#123;<span class="keyword">this</span>.type&#125;  /&gt;</span><br><span class="line">  	)</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;App /&gt;,</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h2 id="子组件："><a href="#子组件：" class="headerlink" title="子组件："></a>子组件：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Tab</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">	  <span class="keyword">super</span>(props);</span><br><span class="line">	  <span class="keyword">this</span>.state = &#123;</span><br><span class="line">	    tab:[<span class="string">'tab1'</span>,<span class="string">'tab2'</span>],</span><br><span class="line">	    current:<span class="keyword">this</span>.props.type</span><br><span class="line">	  &#125;;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tabSwitch(index)&#123;</span><br><span class="line">	  <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">	    current:index</span><br><span class="line">	  &#125;,() =&gt; &#123;</span><br><span class="line">	  	<span class="keyword">this</span>.props.renderFun(<span class="keyword">this</span>.state.current);</span><br><span class="line">	  &#125;)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	render()&#123;</span><br><span class="line">    <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">  	<span class="keyword">return</span> (</span><br><span class="line">       &lt;div className=<span class="string">'tab'</span>&gt;</span><br><span class="line">       	   &#123; <span class="keyword">this</span>.state.tab.map(<span class="function"><span class="keyword">function</span>(<span class="params">ele,index</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span> <span class="attr">className</span>=<span class="string">&#123;</span>'<span class="attr">tab_</span>' + <span class="attr">index</span> + ' ' + (<span class="attr">_this.state.current</span> == <span class="string">index</span> ? '<span class="attr">tab_active</span>'<span class="attr">:</span>'')&#125; <span class="attr">onClick</span>=<span class="string">&#123;_this.tabSwitch.bind(_this,index)&#125;</span>&gt;</span>&#123;ele&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">             &#125;)</span><br><span class="line">           &#125;</span><br><span class="line">       &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  	)</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>这样的写法实现功能是没问题。当我们切换tab时，将点击的tab栏目传递给父组件，父组件改变state去重新渲染tab列表。但是这里虽然功能实现，但是写法上说不太react。</p>
-<blockquote>
-<p>我们在子组件点击的时候，setState改变了current，子组件重新渲染，然后回调点击的tab给父组件，父组件执行setState会开始更新过程，这时候父组件的shouldComponentUpdate返回的肯定是true，<br>此时按照componentWillUpdate-》render-》componentDidUpdate，父组件完成了更新过程，由于父组件的渲染，所以子组件也开始更新过程，<br>此时由于newProps == this.props，所以子组件的shouldComponentUpdate返回false，更新过程终止。</p>
-</blockquote>
-<h1 id="比较正规的写法："><a href="#比较正规的写法：" class="headerlink" title="比较正规的写法："></a>比较正规的写法：</h1><blockquote>
-<p>React建议将关系到渲染的数据保存在state中。这里能勾关系到渲染的就是这个type了。因为type的改变会导致我们的列表改变</p>
-</blockquote>
-<h2 id="父组件：-1"><a href="#父组件：-1" class="headerlink" title="父组件："></a>父组件：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">          type:<span class="number">0</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> tabSwitch(index)&#123;</span><br><span class="line">     <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">          type:index</span><br><span class="line">     &#125;)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">  render()&#123;</span><br><span class="line">  	<span class="keyword">return</span> (</span><br><span class="line">       	  &lt;Tab renderFun=&#123;<span class="keyword">this</span>.tabSwitch&#125; type=&#123;<span class="keyword">this</span>.state.type&#125;  /&gt;</span><br><span class="line">  	)</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;App /&gt;,</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="子组件：-1"><a href="#子组件：-1" class="headerlink" title="子组件："></a>子组件：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Tab</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">	  <span class="keyword">super</span>(props);</span><br><span class="line">	  <span class="keyword">this</span>.state = &#123;</span><br><span class="line">	    tab:[<span class="string">'tab1'</span>,<span class="string">'tab2'</span>],</span><br><span class="line">	  &#125;;</span><br><span class="line">          <span class="keyword">this</span>.current = <span class="keyword">this</span>.props.type;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tabSwitch(index)&#123;</span><br><span class="line">	 <span class="keyword">this</span>.current = index;</span><br><span class="line">	 <span class="keyword">this</span>.props.renderFun(index);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	render()&#123;</span><br><span class="line">    <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">  	<span class="keyword">return</span> (</span><br><span class="line">       &lt;div className=<span class="string">'tab'</span>&gt;</span><br><span class="line">       	   &#123; <span class="keyword">this</span>.state.tab.map(<span class="function"><span class="keyword">function</span>(<span class="params">ele,index</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span> <span class="attr">className</span>=<span class="string">&#123;</span>'<span class="attr">tab_</span>' + <span class="attr">index</span> + ' ' + (<span class="attr">_this.current</span> == <span class="string">index</span> ? '<span class="attr">tab_active</span>'<span class="attr">:</span>'')&#125; <span class="attr">onClick</span>=<span class="string">&#123;_this.tabSwitch.bind(_this,index)&#125;</span>&gt;</span>&#123;ele&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">             &#125;)</span><br><span class="line">           &#125;</span><br><span class="line">       &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  	)</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2331,9 +2298,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives%7C%7C%20archive">
+                <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2344,7 +2311,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2355,7 +2322,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2418,7 +2385,7 @@
 </div>
 
 
-  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> | NexT</div>
 
 
 

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="php,http,https,Content-Type,cookie," />
+  <meta name="keywords" content="cookie,php,http,https,Content-Type," />
 
 
 
@@ -85,14 +85,14 @@
 <meta property="og:url" content="https://phaoer.github.io/frontend/php-contentType/index.html">
 <meta property="og:site_name" content="Phaoer">
 <meta property="og:description" content="HTTP协议 （Hyper Text Transfer Protocol） HTTP是一个基于TCP&#x2F;IP通信协议来传递数据，包括html文件、图像、结果等，即是一个客户端和服务器端请求和应答的标准。  HTTP协议特点 http无连接：限制每次连接只处理一个请求，服务端完成客户端的请求后，即断开连接。（传输速度快，减少不必要的连接，但也意味着每一次访问都要建立一次连接，效率降低） http无状态">
-<meta property="article:published_time" content="2020-07-28T10:23:55.000Z">
-<meta property="article:modified_time" content="2020-07-28T11:40:55.877Z">
+<meta property="article:published_time" content="2020-05-02T10:23:55.000Z">
+<meta property="article:modified_time" content="2020-10-15T11:03:36.595Z">
 <meta property="article:author" content="Irwin">
+<meta property="article:tag" content="cookie">
 <meta property="article:tag" content="php">
 <meta property="article:tag" content="http">
 <meta property="article:tag" content="https">
 <meta property="article:tag" content="Content-Type">
-<meta property="article:tag" content="cookie">
 <meta name="twitter:card" content="summary">
 
 
@@ -213,16 +213,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
 
       
     </ul>
@@ -285,8 +275,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T18:23:55+08:00">
-                2020-07-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-02T18:23:55+08:00">
+                2020-05-02
               </time>
             
 
@@ -398,13 +388,13 @@
 <ul>
 <li>状态行：协议版本，状态码，状态码描述。</li>
 <li>响应头：主要说Content-Type<ul>
-<li>常见值 ：<br>text/html ： HTML格式<br>text/plain ：纯文本格式<br>text/xml ：  XML格式<br>image/gif ：gif图片格式<br>image/jpeg ：jpg图片格式<br>image/png：png图片格式<h3 id="四次挥手断开"><a href="#四次挥手断开" class="headerlink" title="四次挥手断开"></a>四次挥手断开</h3><blockquote>
+<li>常见值 ：<br>text/html ： HTML格式<br>text/plain ：纯文本格式<br>text/xml ：  XML格式<br>image/gif ：gif图片格式<br>image/jpeg ：jpg图片格式<br>image/png：png图片格式</li>
+</ul>
+</li>
+</ul>
+<h3 id="四次挥手断开"><a href="#四次挥手断开" class="headerlink" title="四次挥手断开"></a>四次挥手断开</h3><blockquote>
 <p>通过前面，我们已经知道ACK是用来应答的，SYN是用来代表连接的。而这里的FIN报文就是代表断开连接的，当主动方没有数据再需要传输给对方时，会向对方发起FIN报文，但这时候被动方不会立马断开连接，他只会回复一个ACK告诉主动方你发的FIN报文我收到了，很可能不会立马关闭，因为他可能还没处理完请求，可能还有消息需要发送，这时主动方进入FIN_WAIT_2状态。等被动发也没有消息需要发送了，这时候才会也发一个FIN给主动方，主动方回复以后，连接断开。</p>
 </blockquote>
-</li>
-</ul>
-</li>
-</ul>
 <h1 id="COOKIE"><a href="#COOKIE" class="headerlink" title="COOKIE"></a>COOKIE</h1><blockquote>
 <p>Http 协议中引入了 cookie 技术，用来解决 http 协议无状态的问题。通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态；Cookie会根据从服务器端发送的响应报文内的一个叫做 Set-Cookie 的首部字段信息，通知客户端保存 Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后发送出去。后端以 session 这样的机制来保存服务端的对象状态。</p>
 </blockquote>
@@ -418,12 +408,38 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Do the best!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Irwin 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/cookie/" rel="tag"># cookie</a>
           
             <a href="/tags/php/" rel="tag"># php</a>
           
@@ -432,8 +448,6 @@
             <a href="/tags/https/" rel="tag"># https</a>
           
             <a href="/tags/Content-Type/" rel="tag"># Content-Type</a>
-          
-            <a href="/tags/cookie/" rel="tag"># cookie</a>
           
         </div>
       
@@ -446,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/frontend/async-await/" rel="next" title="异步解决方案async & await 及在Gulp和WebPack中的使用">
-                <i class="fa fa-chevron-left"></i> 异步解决方案async & await 及在Gulp和WebPack中的使用
+              <a href="/frontend/nginx-node-statistics/" rel="next" title="Nginx搭配Node来构建统计系统">
+                <i class="fa fa-chevron-left"></i> Nginx搭配Node来构建统计系统
               </a>
             
           </div>
@@ -456,8 +470,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/frontend/nginx-node-statistics/" rel="prev" title="Nginx搭配Node来构建统计系统">
-                Nginx搭配Node来构建统计系统 <i class="fa fa-chevron-right"></i>
+              <a href="/frontend/bye-jquery/" rel="prev" title="为什么放弃jQuery">
+                为什么放弃jQuery <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -533,9 +547,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives%7C%7C%20archive">
+                <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -546,7 +560,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -557,7 +571,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -636,7 +650,7 @@
 </div>
 
 
-  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> | NexT</div>
 
 
 
