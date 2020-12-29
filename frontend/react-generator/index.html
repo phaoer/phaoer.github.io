@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript,react,create-react-app," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 按理说都2020了不应该再去谈react的构建这些东西，但是仍有人向我询问这些东西，所以这里细说一下如何最快速的构建一个兼容IE9的react应用  create-react-app create-react-app是一个官方支持的创建 React 单页应用程序的方法。它提供了一个零配置的现代构建设置。  使用npx或yarn create12npx create-react-app dem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何快速构建一个兼容IE9的react应用">
+<meta property="og:url" content="https://phaoer.github.io/frontend/react-generator/index.html">
+<meta property="og:site_name" content="Phaoer">
+<meta property="og:description" content="前言 按理说都2020了不应该再去谈react的构建这些东西，但是仍有人向我询问这些东西，所以这里细说一下如何最快速的构建一个兼容IE9的react应用  create-react-app create-react-app是一个官方支持的创建 React 单页应用程序的方法。它提供了一个零配置的现代构建设置。  使用npx或yarn create12npx create-react-app dem">
+<meta property="article:published_time" content="2020-10-02T02:05:02.000Z">
+<meta property="article:modified_time" content="2020-12-29T08:46:39.586Z">
+<meta property="article:author" content="Irwin">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="create-react-app">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phaoer.github.io/frontend/react-generator/"/>
+
+
+
+
+
+  <title>如何快速构建一个兼容IE9的react应用 | Phaoer</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Phaoer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/frontend/react-generator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何快速构建一个兼容IE9的react应用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-02T10:05:02+08:00">
+                2020-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>按理说都2020了不应该再去谈react的构建这些东西，但是仍有人向我询问这些东西，所以这里细说一下如何最快速的构建一个兼容IE9的react应用</p>
+</blockquote>
+<h1 id="create-react-app"><a href="#create-react-app" class="headerlink" title="create-react-app"></a>create-react-app</h1><blockquote>
+<p><a href="https://www.html.cn/create-react-app/docs/getting-started/" target="_blank" rel="noopener">create-react-app</a>是一个官方支持的创建 React 单页应用程序的方法。它提供了一个零配置的现代构建设置。</p>
+</blockquote>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="npx或yarn-create"><a href="#npx或yarn-create" class="headerlink" title="npx或yarn create"></a>npx或yarn create</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app demo</span><br><span class="line">yarn create react-app demo</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装兼容IE的依赖"><a href="#安装兼容IE的依赖" class="headerlink" title="安装兼容IE的依赖"></a>安装兼容IE的依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-app-polyfill core-js</span><br></pre></td></tr></table></figure>
+<h3 id="为何是react-app-polyfill和core-js"><a href="#为何是react-app-polyfill和core-js" class="headerlink" title="为何是react-app-polyfill和core-js"></a>为何是react-app-polyfill和core-js</h3><p>关于<a href="https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md#polyfilling-other-language-features" target="_blank" rel="noopener">react-app-polyfill</a>的解释可以自行参看官方文档。<br>至于core-js的引用是因为React 16 依赖集合类型 Map 和 Set ，需要为IE &lt; 11这一类的旧浏览器提供一个全局的 polyfill，core-js只是一个选择，你可以使用其他的polyfill。</p>
+<h3 id="shim和polyfill？"><a href="#shim和polyfill？" class="headerlink" title="shim和polyfill？"></a>shim和polyfill？</h3><p>首先你需要知道的是这两者都是为了兼容而生，而polyfill可以理解为一个shim库。<br>两者的区别在于，shim的实现方式是产生一个新的api去实现兼容，而polyfill则是使用符合当前浏览器规范的语法去实现旧的api。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h3><blockquote>
+<p>找到 /你的项目名/src/index.js</p>
+</blockquote>
+<p>在首行添加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'core-js/es'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'react-app-polyfill/ie9'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'react-app-polyfill/stable'</span>;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><blockquote>
+<p>找到 /你的项目名/package.json</p>
+</blockquote>
+<p>为browserslist添加IE配置</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//package.json</span></span><br><span class="line">&#123;</span><br><span class="line">    ......</span><br><span class="line">    "browserslist": &#123;</span><br><span class="line">        "production": [</span><br><span class="line">            ......</span><br><span class="line">            <span class="string">"ie &gt;= 9"</span></span><br><span class="line">        ],</span><br><span class="line">        "development": [</span><br><span class="line">            ......</span><br><span class="line">            <span class="string">"ie &gt;= 9"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>至此，一个兼容IE9的react应用就告成了，当然create-react-app还有很多实用的功能，自行参考官网即可。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Do the best!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Irwin 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/create-react-app/" rel="tag"># create-react-app</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/frontend/react-native-update/" rel="next" title="react-native App更新方案">
+                <i class="fa fa-chevron-left"></i> react-native App更新方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/frontend/react-hooks/" rel="prev" title="reactHooks实现一个简易redux">
+                reactHooks实现一个简易redux <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Irwin</p>
+              <p class="site-description motion-element" itemprop="description">web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phaoer" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:phaoer@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#create-react-app"><span class="nav-number">2.</span> <span class="nav-text">create-react-app</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#npx或yarn-create"><span class="nav-number">3.1.</span> <span class="nav-text">npx或yarn create</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装兼容IE的依赖"><span class="nav-number">3.2.</span> <span class="nav-text">安装兼容IE的依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为何是react-app-polyfill和core-js"><span class="nav-number">3.2.1.</span> <span class="nav-text">为何是react-app-polyfill和core-js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shim和polyfill？"><span class="nav-number">3.2.2.</span> <span class="nav-text">shim和polyfill？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">3.3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#index-js"><span class="nav-number">3.3.1.</span> <span class="nav-text">index.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">3.3.2.</span> <span class="nav-text">package.json</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> | NexT</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

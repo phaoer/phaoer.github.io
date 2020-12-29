@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="node,UPnP,SSDP,udp,socket,路由器," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 通用即插即用（英语：Universal Plug and Play，简称UPnP）是由“通用即插即用论坛”（UPnP™ Forum）推广的一套网络协议。该协议的目标是使家庭网络（数据共享、通信和娱乐）和公司网络中的各种设备能够相互无缝连接，并简化相关网络的实现。UPnP通过定义和发布基于开放、因特网通讯网协议标准的UPnP设备控制协议来实现这一目标。————百度百科  实例 目前市面上大部分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由器之UPnP协议">
+<meta property="og:url" content="https://phaoer.github.io/background/upnp/index.html">
+<meta property="og:site_name" content="Phaoer">
+<meta property="og:description" content="前言 通用即插即用（英语：Universal Plug and Play，简称UPnP）是由“通用即插即用论坛”（UPnP™ Forum）推广的一套网络协议。该协议的目标是使家庭网络（数据共享、通信和娱乐）和公司网络中的各种设备能够相互无缝连接，并简化相关网络的实现。UPnP通过定义和发布基于开放、因特网通讯网协议标准的UPnP设备控制协议来实现这一目标。————百度百科  实例 目前市面上大部分">
+<meta property="article:published_time" content="2020-08-10T09:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-29T09:10:38.470Z">
+<meta property="article:author" content="Irwin">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="UPnP">
+<meta property="article:tag" content="SSDP">
+<meta property="article:tag" content="udp">
+<meta property="article:tag" content="socket">
+<meta property="article:tag" content="路由器">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phaoer.github.io/background/upnp/"/>
+
+
+
+
+
+  <title>路由器之UPnP协议 | Phaoer</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Phaoer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://phaoer.github.io/background/upnp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phaoer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">路由器之UPnP协议</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-10T17:00:00+08:00">
+                2020-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">网络协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>通用即插即用（英语：Universal Plug and Play，简称UPnP）是由“通用即插即用论坛”（UPnP™ Forum）推广的一套网络协议。该协议的目标是使家庭网络（数据共享、通信和娱乐）和公司网络中的各种设备能够相互无缝连接，并简化相关网络的实现。UPnP通过定义和发布基于开放、因特网通讯网协议标准的UPnP设备控制协议来实现这一目标。<br>————百度百科</p>
+</blockquote>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><blockquote>
+<p>目前市面上大部分路由器都支持UPnP协议，那么我们在开发关于路由器的项目时，都会去获取路由器的一些相关信息，这时候UPnP协议就派上用场了。</p>
+</blockquote>
+<blockquote>
+<p>关于UPnP的原理解析和介绍，网络上的文章太多了，这里就不再赘述。<br>直接上干货</p>
+</blockquote>
+<ul>
+<li><p>1.使用udp多播向239.255.255.250:1900发送一条ssdp搜索报文</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">M-SEARCH * HTTP&#x2F;1.1\r\nHOST: 239.255.255.250:1900\r\nMAN:&quot;ssdp:discover&quot;\r\nMX:5\r\nST: upnp:rootdevice\r\n</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.监听239.255.255.250:1900，如果网络存在一个UPnP设备的话，设备必须发送响应信息</p>
+</li>
+<li><p>3.解析响应消息，获得LOCATION的值，会得到一个xml的地址，即根设备（路由器）的描述信息地址</p>
+</li>
+</ul>
+<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> socket = dgram.createSocket(<span class="string">'udp4'</span>);</span><br><span class="line"></span><br><span class="line">socket.on(<span class="string">'error'</span>, (err) =&gt; &#123;</span><br><span class="line">    socket.close();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">socket.bind(<span class="number">1900</span>, () =&gt; &#123;</span><br><span class="line">    socket.setMulticastTTL(<span class="number">128</span>);</span><br><span class="line">    socket.addMembership(<span class="string">'239.255.255.250'</span>);</span><br><span class="line">    socket.setMulticastLoopback(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> msg = toByteArray(<span class="string">'M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN:"ssdp:discover"\r\nMX:5\r\nST: upnp:rootdevice\r\n'</span>);</span><br><span class="line"></span><br><span class="line">    socket.send(msg, <span class="number">0</span>, msg.length, <span class="number">1900</span>, <span class="string">'239.255.255.250'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, bytes</span>) </span>&#123;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">socket.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data, rinfo</span>) </span>&#123;</span><br><span class="line">    socket.close();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> str = <span class="built_in">String</span>.fromCharCode.apply(<span class="literal">null</span>, <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(data));</span><br><span class="line">    <span class="keyword">const</span> ClearBr = <span class="function">(<span class="params">key</span>) =&gt;</span> &#123; </span><br><span class="line">        key = key.replace(<span class="regexp">/&lt;\/?.+?&gt;/g</span>,<span class="string">""</span>); </span><br><span class="line">        key = key.replace(<span class="regexp">/[\r\n]/g</span>, <span class="string">""</span>); </span><br><span class="line">        <span class="keyword">return</span> key; </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> xmlAddress = ClearBr(str).match(<span class="regexp">/LOCATION: (\S*).xml/</span>)[<span class="number">1</span>] + <span class="string">".xml"</span>;</span><br><span class="line"></span><br><span class="line">    fetch(xmlAddress).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> res.text();</span><br><span class="line">    &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">        <span class="keyword">const</span> modelName = res.match(<span class="regexp">/&lt;modelName&gt;(\S*)&lt;\/modelName&gt;/</span>);   <span class="comment">//路由器型号</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toByteArray</span> (<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> uint = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(obj.length);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, l = obj.length; i &lt; l; i++)&#123;</span><br><span class="line">        uint[i] = obj.charCodeAt(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(uint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Do the best!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Irwin 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/UPnP/" rel="tag"># UPnP</a>
+          
+            <a href="/tags/SSDP/" rel="tag"># SSDP</a>
+          
+            <a href="/tags/udp/" rel="tag"># udp</a>
+          
+            <a href="/tags/socket/" rel="tag"># socket</a>
+          
+            <a href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/" rel="tag"># 路由器</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/frontend/async-await/" rel="next" title="异步解决方案async & await 及在Gulp和WebPack中的使用">
+                <i class="fa fa-chevron-left"></i> 异步解决方案async & await 及在Gulp和WebPack中的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/frontend/react-native-update/" rel="prev" title="react-native App更新方案">
+                react-native App更新方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Irwin</p>
+              <p class="site-description motion-element" itemprop="description">web技术探讨总结，javascript疑难，nodejs应用，微信小程序，react-native实战，网络通信。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phaoer" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:phaoer@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码示例"><span class="nav-number">3.</span> <span class="nav-text">代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#node"><span class="nav-number">3.1.</span> <span class="nav-text">node</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Power By <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> | NexT</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
